@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zinley — Seed Round</title>
+  <title>Zinley</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
@@ -65,7 +65,9 @@
     .p{color:#d97706}
     .fund{display:flex;height:32px;border-radius:6px;overflow:hidden}
     .fund div{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;letter-spacing:.3px}
-    .av{width:44px;height:44px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff;flex-shrink:0}
+    .av{width:44px;height:44px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff;flex-shrink:0;overflow:hidden}
+    .av img{width:100%;height:100%;object-fit:cover}
+    .av-lg{width:100px;height:100px}
     .s-blk .av{background:#333}
     .tl{position:relative;padding-left:20px}
     .tl::before{content:'';position:absolute;left:3px;top:5px;bottom:5px;width:1px;background:#ddd}
@@ -114,12 +116,13 @@
 <section class="s s-blk" id="s1">
   <div class="si tc">
     <img src="Untitled design-4_compressed.png" alt="Orion" style="width:120px;height:120px;margin-bottom:32px;object-fit:contain">
-    <div style="font-size:24px;font-weight:800;letter-spacing:4px;color:#fff;margin-bottom:48px">ZINLEY</div>
+    <div style="font-size:24px;font-weight:800;letter-spacing:4px;color:#fff;margin-bottom:12px">ZINLEY</div>
+    <div style="font-size:13px;color:#555;letter-spacing:2px;font-style:italic;margin-bottom:48px">Where entity meets essence</div>
     <h1 style="color:#fff;font-size:44px;margin-bottom:20px">
-      We built the first AI agent<br>that works without you.
+      The future of intelligence is<br>it works in the real world &mdash;<br>without you in the loop.
     </h1>
     <div class="sub mb40" style="margin:0 auto;text-align:center;color:#666">
-      Its own phone number. Its own email. Makes calls, joins meetings, coordinates across every device you own &mdash; without you.
+      We&rsquo;re not building a better agent. We&rsquo;re building a being &mdash; reliable, secure, personal, and always reachable. Orion is our first <a href="https://en.wikipedia.org/wiki/Doraemon" target="_blank" style="color:inherit;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px">Doraemon</a>: its own phone number, its own email, its own mind. Not software. A being.
     </div>
   </div>
   <div class="wm">March 2026</div>
@@ -142,7 +145,7 @@
     <div style="font-size:14px;line-height:1.7;color:#444;max-width:640px;margin:0 auto">
       <p style="margin:0 0 12px"><span style="font-weight:600">Then it fell apart.</span> A content creator in China had OpenClaw delete her entire hard drive &mdash; years of photos and work, gone in seconds. A Meta AI security director&rsquo;s agent deleted important emails when its memory overflowed. 20% of skills in OpenClaw&rsquo;s marketplace were found to contain malicious code. <a class="cite" href="https://www.aol.com/news/china-rushed-openclaw-now-stressed-082952426.html" target="_blank">AOL</a></p>
       <p style="margin:0 0 12px">In China, 1,000 people queued at Tencent&rsquo;s headquarters for help installing it. Street kiosks charged $599 to set it up &mdash; then $299 to uninstall it when things went wrong. China&rsquo;s national CERT issued two official warnings. Banks and government agencies banned it.</p>
-      <p style="margin:0"><span style="font-weight:600">The demand was massive. The technology wasn&rsquo;t ready.</span> Every agent still needs a human in the loop. Remove the human, it breaks.</p>
+      <p style="margin:0"><span style="font-weight:600">Demand was proven. Execution failed.</span> Every agent still needs a human in the loop. Remove the human, it breaks. The missing piece isn&rsquo;t smarter models &mdash; it&rsquo;s reliability, security, personalization, and always-on access.</p>
     </div>
   </div>
   <div class="sn">02</div>
@@ -150,15 +153,42 @@
 
 <!-- 03 OUR DNA -->
 <section class="s s-blk" id="s3">
-  <div class="si tc">
-    <div style="max-width:640px;margin:0 auto">
-      <div style="font-size:22px;font-style:italic;line-height:1.6;color:#fff;margin-bottom:24px">
-        &ldquo;You&rsquo;ve got to start with the customer experience and work backwards to the technology. You can&rsquo;t start with the technology and try to figure out where you&rsquo;re going to sell it.&rdquo;
+  <div class="si">
+    <div style="max-width:700px;margin:0 auto;text-align:center">
+      <div style="font-size:22px;font-style:italic;line-height:1.6;color:#fff;margin-bottom:16px">
+        For intelligence to tap into the real world without a human watching,<br>four things must be true.
       </div>
-      <div style="font-size:12px;color:#555;font-weight:600;letter-spacing:1px;margin-bottom:48px">Steve Jobs &middot; WWDC 1997</div>
-      <div style="font-size:17px;line-height:1.65;color:#888">
-        Everyone else started with the LLM and tried to make it autonomous.<br>We started with the end result &mdash; an agent that works without you &mdash;<br>and built the research to get there.
+      <div style="font-size:15px;line-height:1.65;color:#888;margin-bottom:36px">
+        A being that operates in the real world needs four things. We built all four.
       </div>
+    </div>
+
+    <!-- Four pillars -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:2px;margin-bottom:24px">
+      <div style="padding:28px 18px;background:rgba(74,222,128,.06);border-left:3px solid rgba(74,222,128,.4);border-radius:8px 0 0 8px;text-align:center">
+        <div style="font-size:32px;font-weight:800;color:#4ade80;line-height:1;margin-bottom:8px">99.x%</div>
+        <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px">Reliability</div>
+        <div style="font-size:11px;color:#888;line-height:1.5">High success rate. Self-verification. Multi-agent audit before every action.</div>
+      </div>
+      <div style="padding:28px 18px;background:rgba(74,222,128,.06);border-left:3px solid rgba(74,222,128,.4);text-align:center">
+        <div style="font-size:32px;font-weight:800;color:#4ade80;line-height:1;margin-bottom:8px">0</div>
+        <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px">Security</div>
+        <div style="font-size:11px;color:#888;line-height:1.5">Zero breaches. Granular permissions. Identity checks. Full audit trail. Compliance from day one.</div>
+      </div>
+      <div style="padding:28px 18px;background:rgba(74,222,128,.06);border-left:3px solid rgba(74,222,128,.4);text-align:center">
+        <div style="font-size:32px;font-weight:800;color:#4ade80;line-height:1;margin-bottom:8px">&lt; 1s</div>
+        <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px">Personalization</div>
+        <div style="font-size:11px;color:#888;line-height:1.5">Knows your voice instantly. Learns contacts, patterns. Deepens over time. Becomes irreplaceable.</div>
+      </div>
+      <div style="padding:28px 18px;background:rgba(74,222,128,.06);border-left:3px solid rgba(74,222,128,.4);border-radius:0 8px 8px 0;text-align:center">
+        <div style="font-size:32px;font-weight:800;color:#4ade80;line-height:1;margin-bottom:8px">24/7</div>
+        <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px">Always Accessible</div>
+        <div style="font-size:11px;color:#888;line-height:1.5">Works without internet. Call or text from any phone. Five surfaces, always on.</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;font-size:14px;color:#888;max-width:560px;margin:0 auto">
+      <a href="https://en.wikipedia.org/wiki/Doraemon" target="_blank" style="color:inherit;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px">Doraemon</a> wasn&rsquo;t about gadgets. It was a companion that showed up every day. <span style="color:#fff;font-weight:600">That&rsquo;s what we&rsquo;re building.</span>
     </div>
   </div>
   <div class="sn">03</div>
@@ -169,13 +199,13 @@
   <div class="si">
     <div class="ey">The problem &amp; our fix</div>
     <h2 class="mb16">Human in the loop. That&rsquo;s the constraint.<br>We removed it.</h2>
-    <div class="sub mb24">Every agent today requires a human watching it. We fixed every problem that forces that dependency.</div>
+    <div class="sub mb24">Every agent today requires a human watching it. We built the four capabilities that eliminate that dependency: reliability, security, personalization, and 24/7 access.</div>
 
     <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:20px">
       <!-- Row 1 -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px">
         <div style="padding:18px 20px;background:#fff;border-radius:8px 0 0 0">
-          <div style="font-size:11px;font-weight:800;color:#dc2626;letter-spacing:1px;margin-bottom:6px">PROBLEM 1</div>
+          <div style="font-size:11px;font-weight:800;color:#dc2626;letter-spacing:1px;margin-bottom:6px">RELIABILITY</div>
           <div class="b mb4" style="font-size:14px">It can&rsquo;t see what you see.</div>
           <div class="sm" style="color:#666;line-height:1.55">A creator in China had OpenClaw delete her entire hard drive &mdash; it couldn&rsquo;t see she was working on those files.</div>
         </div>
@@ -189,21 +219,21 @@
       <!-- Row 2 -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px">
         <div style="padding:18px 20px;background:#fff">
-          <div style="font-size:11px;font-weight:800;color:#dc2626;letter-spacing:1px;margin-bottom:6px">PROBLEM 2</div>
+          <div style="font-size:11px;font-weight:800;color:#dc2626;letter-spacing:1px;margin-bottom:6px">SECURITY</div>
           <div class="b mb4" style="font-size:14px">Nobody checks its work.</div>
           <div class="sm" style="color:#666;line-height:1.55">20% of OpenClaw marketplace skills contained malicious code. No agent verified them.</div>
         </div>
         <div style="padding:18px 20px;background:#fff">
           <div style="font-size:11px;font-weight:800;color:#16a34a;letter-spacing:1px;margin-bottom:6px">OUR FIX</div>
           <div class="b mb4" style="font-size:14px">Multi-Agent Self-Audit</div>
-          <div class="sm" style="color:#666;line-height:1.55">A second agent reviews every action before it executes. Different model, fresh perspective, zero bias.</div>
+          <div class="sm" style="color:#666;line-height:1.55">A second model reviews every action before it executes. Different perspective, zero bias, built-in accountability.</div>
           <a class="cite" href="https://hiorion.ai/self-audit" target="_blank" style="font-size:10px;margin-top:6px;display:inline-block">Published paper &rarr;</a>
         </div>
       </div>
       <!-- Row 3 -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px">
         <div style="padding:18px 20px;background:#fff">
-          <div style="font-size:11px;font-weight:800;color:#dc2626;letter-spacing:1px;margin-bottom:6px">PROBLEM 3</div>
+          <div style="font-size:11px;font-weight:800;color:#dc2626;letter-spacing:1px;margin-bottom:6px">ACCESSIBILITY</div>
           <div class="b mb4" style="font-size:14px">It&rsquo;s trapped on one device.</div>
           <div class="sm" style="color:#666;line-height:1.55">42,665 OpenClaw instances exposed online, no authentication. <a class="cite" href="https://www.wiz.io/blog/jinx-openclaw-remote-code-execution" target="_blank">Wiz</a></div>
         </div>
@@ -217,20 +247,20 @@
       <!-- Row 4 -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px">
         <div style="padding:18px 20px;background:#fff;border-radius:0 0 0 8px">
-          <div style="font-size:11px;font-weight:800;color:#dc2626;letter-spacing:1px;margin-bottom:6px">PROBLEM 4</div>
-          <div class="b mb4" style="font-size:14px">There&rsquo;s no way to stop it.</div>
+          <div style="font-size:11px;font-weight:800;color:#dc2626;letter-spacing:1px;margin-bottom:6px">PERSONALIZATION</div>
+          <div class="b mb4" style="font-size:14px">It doesn&rsquo;t know you &mdash; so it can&rsquo;t protect you.</div>
           <div class="sm" style="color:#666;line-height:1.55">A Meta AI director&rsquo;s agent deleted critical emails when its context overflowed.</div>
         </div>
         <div style="padding:18px 20px;background:#fff;border-radius:0 0 8px 0">
           <div style="font-size:11px;font-weight:800;color:#16a34a;letter-spacing:1px;margin-bottom:6px">OUR FIX</div>
-          <div class="b mb4" style="font-size:14px">Agent Safety &amp; Security</div>
-          <div class="sm" style="color:#666;line-height:1.55">Granular permissions, identity checks, full audit trail, instant kill switch. Built for FCC compliance, two-party consent, AI disclosure, and GDPR from day one.</div>
+          <div class="b mb4" style="font-size:14px">Deep Personalization &amp; Safety</div>
+          <div class="sm" style="color:#666;line-height:1.55">Learns your voice, contacts, patterns, and boundaries. Granular permissions, identity checks, full audit trail. The more it knows you, the safer it gets.</div>
           <a class="cite" href="https://hiorion.ai/orion-safety" target="_blank" style="font-size:10px;margin-top:6px;display:inline-block">Published paper &rarr;</a>
         </div>
       </div>
     </div>
 
-    <div style="font-size:14px;line-height:1.7;color:#444;text-align:center;max-width:640px;margin:0 auto"><span style="font-weight:600">40% of agentic AI projects will be cancelled by 2027.</span> <a class="cite" href="https://squirro.com/squirro-blog/avoiding-agentic-ai-failure" target="_blank">Gartner</a><br>They patch symptoms. We removed the human from the loop.</div>
+    <div style="font-size:14px;line-height:1.7;color:#444;text-align:center;max-width:640px;margin:0 auto"><span style="font-weight:600">40% of agentic AI projects will be cancelled by 2027.</span> <a class="cite" href="https://squirro.com/squirro-blog/avoiding-agentic-ai-failure" target="_blank">Gartner</a><br>They patch symptoms. We built the four capabilities a being needs to work in the real world.</div>
   </div>
   <div class="sn">04</div>
 </section>
@@ -238,8 +268,8 @@
 <!-- 05 PRODUCT -->
 <section class="s s-blk" id="s5">
   <div class="si">
-    <div class="ey">Product</div>
-    <h2 style="color:#fff" class="mb8">This is what an autonomous agent actually looks like.</h2>
+    <div class="ey">Orion</div>
+    <h2 style="color:#fff" class="mb8">Orion: five surfaces, one persistent being.</h2>
     <div class="sub mb20">Its own phone number. Its own email. Calls, meetings, follow-ups &mdash; without being asked.</div>
 
     <!-- The magic — 4 core properties -->
@@ -281,7 +311,7 @@
       </div>
       <div style="background:rgba(255,255,255,.04);padding:16px 12px">
         <div style="font-size:9px;font-weight:800;letter-spacing:2px;color:#4ade80;margin-bottom:8px">TERMINAL</div>
-        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:4px">Developer agent</div>
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:4px">Developer mode</div>
         <div style="font-size:11px;color:#777;line-height:1.4">Writes code, debugs, deploys. Multi-agent orchestration.</div>
       </div>
       <div style="background:rgba(255,255,255,.04);padding:16px 12px;border-radius:0 8px 8px 0">
@@ -291,7 +321,7 @@
       </div>
     </div>
 
-    <div style="font-size:13px;color:#666;text-align:center">Five surfaces. One mind. It never sleeps.</div>
+    <div style="font-size:13px;color:#666;text-align:center">Five surfaces. Shared state. Always reachable.</div>
   </div>
   <div class="sn">05</div>
 </section>
@@ -348,8 +378,8 @@
 <section class="s s-blk" id="s7">
   <div class="si">
     <div class="ey">Landscape</div>
-    <h2 style="color:#fff" class="mb8">Everyone else stops at two or three.</h2>
-    <div class="sub mb24">Every major AI agent launched in the last 12 months. None check all ten boxes.</div>
+    <h2 style="color:#fff" class="mb8">No competitor covers all ten.</h2>
+    <div class="sub mb24">They build tools. We build a being &mdash; with the safety layer, the phone line, the memory, and the cross-device coordination built in.</div>
     <table style="width:100%;border-collapse:collapse;font-size:12px">
       <thead>
         <tr>
@@ -444,7 +474,7 @@
         </tr>
       </tbody>
     </table>
-    <div class="mt16" style="font-size:11px;color:#666;text-align:center">10 capabilities. <span style="color:#fff">Only one agent checks every box.</span></div>
+    <div class="mt16" style="font-size:11px;color:#666;text-align:center">10 capabilities. <span style="color:#fff">Only one checks every box.</span></div>
   </div>
   <div class="sn">07</div>
 </section>
@@ -453,7 +483,7 @@
 <section class="s s-gray" id="s8">
   <div class="si">
     <div class="ey">Defensibility</div>
-    <h2 class="mb8">Big labs will build agents. Here&rsquo;s why we still win.</h2>
+    <h2 class="mb8">Big labs build models. We build the capability layer.<br>Here&rsquo;s why that&rsquo;s hard to replicate.</h2>
 
     <!-- Three-layer moat -->
     <div style="margin-top:36px">
@@ -462,8 +492,8 @@
       <div class="f ai gap24 mb24" style="padding:24px 0;border-bottom:1px solid #eee">
         <div style="min-width:44px;height:44px;background:#111;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px">1</div>
         <div style="flex:1">
-          <div class="b mb4" style="font-size:17px">We started the research before anyone else.</div>
-          <div class="sm" style="color:#666;line-height:1.7">We had a working agent prototype 8 months before OpenClaw launched. We chose to spend that time on foundational research instead of rushing to market. Now we have both the product and the infrastructure underneath it.</div>
+          <div class="b mb4" style="font-size:17px">8 months of R&amp;D before competitors launched.</div>
+          <div class="sm" style="color:#666;line-height:1.7">Working prototype completed 8 months before OpenClaw launched. That time went into the sensor layer, safety architecture, and cross-device sync. Now we have both the product and the infrastructure underneath it.</div>
         </div>
         <div style="min-width:80px;text-align:center">
           <div style="font-size:28px;font-weight:800;color:#111">8mo</div>
@@ -475,8 +505,8 @@
       <div class="f ai gap24 mb24" style="padding:24px 0;border-bottom:1px solid #eee">
         <div style="min-width:44px;height:44px;background:#111;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px">2</div>
         <div style="flex:1">
-          <div class="b mb4" style="font-size:17px">We innovate. We don&rsquo;t just build.</div>
-          <div class="sm" style="color:#666;line-height:1.7">Zinley is a research lab that ships product. Every breakthrough goes straight into the hands of real users &mdash; creating a feedback loop that makes the next breakthrough faster. Big labs publish. We ship.</div>
+          <div class="b mb4" style="font-size:17px">Research to production.</div>
+          <div class="sm" style="color:#666;line-height:1.7">Zinley is a research lab. Results deploy directly into Orion, so production data informs the next research cycle.</div>
         </div>
         <div style="min-width:80px;text-align:center">
           <svg width="80" height="48" viewBox="0 0 80 48">
@@ -492,8 +522,8 @@
       <div class="f ai gap24" style="padding:24px 0">
         <div style="min-width:44px;height:44px;background:#111;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px">3</div>
         <div style="flex:1">
-          <div class="b mb4" style="font-size:17px">Even if they catch up, users won&rsquo;t switch.</div>
-          <div class="sm" style="color:#666;line-height:1.7">Orion learns your voice, contacts, patterns, preferences, and communication style. Six months in, it knows you better than you know yourself. Switching to a competitor means starting from zero.</div>
+          <div class="b mb4" style="font-size:17px">Deep personalization creates switching cost.</div>
+          <div class="sm" style="color:#666;line-height:1.7">Orion learns your voice, contacts, patterns, preferences, and communication style. Personalization deepens over time. Switching to a competitor means starting from zero.</div>
         </div>
         <div style="min-width:80px;text-align:center">
           <svg width="80" height="48" viewBox="0 0 80 48">
@@ -509,7 +539,7 @@
 
     <!-- Bottom line -->
     <div style="margin-top:24px;padding:16px 20px;background:#111;border-radius:8px;text-align:center">
-      <div style="font-size:13px;color:#fff;font-weight:500">Head start to ship first. Innovation speed to stay first. Deep personalization to keep every user.</div>
+      <div style="font-size:13px;color:#fff;font-weight:500">8-month R&amp;D lead. Research ships to production. High switching cost from personalization.</div>
     </div>
 
   </div>
@@ -545,11 +575,11 @@
     <!-- Chi Wang - multi-device agent coordination -->
     <div class="c mb16" style="padding:24px">
       <div class="f ai jb mb12">
-        <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:#999">MULTI-DEVICE AGENT COORDINATION</div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:#999">MULTI-DEVICE COORDINATION</div>
         <a href="https://x.com/Chi_Wang_/status/2012603555912601619" target="_blank" style="font-size:11px;color:#1d9bf0;text-decoration:none;font-weight:600">View on X &rarr;</a>
       </div>
       <div style="font-size:14px;line-height:1.7;color:#444;font-style:italic;margin-bottom:12px">&ldquo;Works with and enhances your experience with your favorite apps and AI tools. Supervises workflows when you are away. Coordinates AI agents across all your devices &mdash; each operating one device independently.&rdquo;</div>
-      <div class="sm">Not a traditional agent team. Each device <span class="b">is</span> an agent &mdash; your laptop, your phone, your VM. Orion on one device proactively talks to Orion on another to find a number, make a call, or finish a task. No human in the loop.</div>
+      <div class="sm">Not a traditional agent team. Each device is an extension of the same being &mdash; your laptop, your phone, your VM. Orion on one device proactively talks to Orion on another to find a number, make a call, or finish a task. No human in the loop.</div>
       <div style="margin-top:16px;display:flex;justify-content:center">
         <blockquote class="twitter-tweet" data-theme="light" data-width="500"><a href="https://x.com/Chi_Wang_/status/2012603555912601619"></a></blockquote>
       </div>
@@ -590,25 +620,25 @@
 <section class="s s-blk" id="s10">
   <div class="si">
     <div class="ey">Business</div>
-    <h2 class="mb8" style="color:#fff">The more the agent does, the more we earn.</h2>
-    <div class="sub mb24">Subscriptions are the engine. As the agent gets more autonomous, new revenue layers unlock on top.</div>
+    <h2 class="mb8" style="color:#fff">The more Orion does, the more we earn.</h2>
+    <div class="sub mb24">Subscriptions are the engine. As Orion becomes more capable, new revenue layers unlock on top.</div>
 
     <!-- Revenue streams — staged -->
     <div style="display:flex;gap:2px;margin-bottom:24px">
       <div style="flex:1.3;padding:18px 14px;background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15);border-radius:8px 0 0 8px">
         <div style="font-size:9px;font-weight:800;letter-spacing:2px;color:#4ade80;margin-bottom:4px">NOW</div>
         <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px">Subscriptions &middot; $0&ndash;$200/mo</div>
-        <div style="font-size:11px;color:#888;line-height:1.5">Free &rarr; Plus &rarr; Pro &rarr; Max &rarr; Enterprise. Recurring, predictable, proven. This is the core engine.</div>
+        <div style="font-size:11px;color:#888;line-height:1.5">Free &rarr; Plus &rarr; Pro &rarr; Max &rarr; Enterprise. Recurring and predictable. This drives the business.</div>
       </div>
       <div style="flex:1;padding:18px 14px;background:rgba(255,255,255,.04)">
         <div style="font-size:9px;font-weight:800;letter-spacing:2px;color:#555;margin-bottom:4px">NEXT</div>
         <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px">Revenue share</div>
-        <div style="font-size:11px;color:#888;line-height:1.5">When the agent handles clients or completes paid work, Zinley earns a percentage. Revenue scales with agent activity.</div>
+        <div style="font-size:11px;color:#888;line-height:1.5">When Orion handles clients or completes paid work, Zinley earns a percentage. Revenue scales with activity.</div>
       </div>
       <div style="flex:1;padding:18px 14px;background:rgba(255,255,255,.04);border-radius:0 8px 8px 0">
         <div style="font-size:9px;font-weight:800;letter-spacing:2px;color:#555;margin-bottom:4px">LATER</div>
-        <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px">Agent marketplace</div>
-        <div style="font-size:11px;color:#888;line-height:1.5">Train your agent to master a skill, then sell that trained version to others. Zinley takes a cut of every transaction.</div>
+        <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px">Orion marketplace</div>
+        <div style="font-size:11px;color:#888;line-height:1.5">Train your Orion to master a skill, then sell that trained version to others. Zinley takes a cut of every transaction.</div>
       </div>
     </div>
 
@@ -631,13 +661,13 @@
         <div class="tag tag-g mb6">Most Popular</div>
         <div style="font-size:24px;font-weight:800;color:#fff">$100<span style="font-size:12px;font-weight:400;color:#666">/mo</span></div>
         <div class="xs mb12">Power users</div>
-        <div class="sm">5x usage. Top-tier AI. Coordinated workflows. Red team agents. Full audit trail.</div>
+        <div class="sm">5x usage. Top-tier AI. Coordinated workflows. Red team verification. Full audit trail.</div>
       </div>
       <div class="c" style="padding:20px">
         <div class="xs mb6" style="letter-spacing:1px;font-weight:600">MAX</div>
         <div style="font-size:24px;font-weight:800;color:#fff">$200<span style="font-size:12px;font-weight:400;color:#666">/mo</span></div>
         <div class="xs mb12">Most capable</div>
-        <div class="sm">20x usage. Every AI model. Unlimited phone actions. Self-improving agents.</div>
+        <div class="sm">20x usage. Every AI model. Unlimited phone actions. Self-improving intelligence.</div>
       </div>
       <div class="c" style="padding:20px">
         <div class="xs mb6" style="letter-spacing:1px;font-weight:600">ENTERPRISE</div>
@@ -655,7 +685,7 @@
   <div class="si">
     <div class="ey">Go-to-market</div>
     <h2 class="mb8">800M people use AI weekly. 96% aren&rsquo;t developers.<br>Only 3% pay. We&rsquo;re going after the rest.</h2>
-    <div class="sub mb24">Current AI just chats. Orion acts. No terminal needed &mdash; just text or call.</div>
+    <div class="sub mb24">Current AI responds to prompts. Orion lives with you and acts on its own. No terminal needed &mdash; just text or call.</div>
 
     <!-- Stats bar -->
     <div style="display:flex;gap:2px;margin-bottom:20px">
@@ -690,7 +720,7 @@
       <div class="c" style="padding:16px 20px;border-radius:0;display:flex;align-items:center;gap:16px">
         <div style="font-size:28px;font-weight:800;color:#111;min-width:40px">02</div>
         <div style="flex:1">
-          <div class="b" style="font-size:14px">Non-technical users &mdash; the real unlock</div>
+          <div class="b" style="font-size:14px">Non-technical users &mdash; the largest untapped segment</div>
           <div class="sm" style="color:#666">No terminal needed. Text it, call it. Viral on TikTok/Shorts: &ldquo;I texted my AI and it booked me a table.&rdquo;</div>
         </div>
         <div style="font-size:10px;color:#999;white-space:nowrap">Mo 3&ndash;6</div>
@@ -709,7 +739,7 @@
     <div class="g g3 gap12">
       <div class="c tc" style="padding:16px">
         <div style="font-size:20px;font-weight:800;color:#111;margin-bottom:4px">Every call = a demo</div>
-        <div class="sm" style="color:#666">Orion calls someone &rarr; they experience the product. Built-in virality.</div>
+        <div class="sm" style="color:#666">Orion calls someone &rarr; they meet it. Every call is a demo.</div>
       </div>
       <div class="c tc" style="padding:16px">
         <div style="font-size:20px;font-weight:800;color:#111;margin-bottom:4px">Zero install</div>
@@ -765,71 +795,102 @@
   <div class="sn">13</div>
 </section>
 
-<!-- 14 TEAM -->
+<!-- 14 EARLY TRACTION -->
 <section class="s" id="s14">
   <div class="si">
-    <div class="ey">Team</div>
-    <h2 class="mb12">Google. Apple. Meta.<br>Stanford. Oxford. Then this.</h2>
-    <div class="g g3 gap16">
-      <div class="c" style="padding:24px">
-        <div class="f ai gap12 mb12">
-          <div class="av">KN</div>
-          <div><div class="b" style="font-size:15px">Khoi Nguyen</div><div class="sm" style="font-size:11px">CEO &middot; Co-Founder</div></div>
-        </div>
-        <div class="sm">The first Orion creator. Stanford MS dropout. Researcher at Stanford STAIR Lab &mdash; AI treatment simulation for congenital pediatric conditions with Stanford Medicine. Previously Google. Co-founded Campus Connect (scaled to 7 schools) and uEAT (campus delivery).</div>
+    <div class="ey">Early validation</div>
+    <h2 class="mb12">Paying users. No ads. No outreach.<br>They just won&rsquo;t stop using it.</h2>
+    <div class="sub mb32">We cap every user because we don&rsquo;t have the infrastructure for more. Users who want more are paying up to $200/mo &mdash; pre-funding, purely organic.</div>
+
+    <div class="g g3 gap16 mb24">
+      <div class="c tc" style="padding:28px">
+        <div class="num">~8 hrs</div>
+        <div class="label">Peak daily usage per user</div>
       </div>
-      <div class="c" style="padding:24px">
-        <div class="f ai gap12 mb12">
-          <div class="av">JC</div>
-          <div><div class="b" style="font-size:15px">Jason Chen</div><div class="sm" style="font-size:11px">Co-Founder</div></div>
-        </div>
-        <div class="sm">Georgia Tech MS. 5+ yrs Senior SWE at Apple. Founding engineer at Relvino. Ex&ndash;Northrop Grumman.</div>
+      <div class="c tc" style="padding:28px">
+        <div class="num">$200/mo</div>
+        <div class="label">Users paying at highest tier</div>
       </div>
-      <div class="c" style="padding:24px">
-        <div class="f ai gap12 mb12">
-          <div class="av">ML</div>
-          <div><div class="b" style="font-size:15px">Minh Le</div><div class="sm" style="font-size:11px">CTO &middot; Co-Founder</div></div>
-        </div>
-        <div class="sm">Oxford BA &amp; MSc (CS). Senior Quant Technologist at QRT &mdash; built firm-wide real-time monitoring across 3,000+ HFT strategies and 2B+ daily orders (EMEA, AMER, APAC, Crypto). NLP &amp; federated learning research at Oxford-Man Institute. Ex&ndash;Meta &amp; Amazon. Thatcher Scholar. Founded Tram Uoc Foundation.</div>
+      <div class="c tc" style="padding:28px">
+        <div class="num">100%</div>
+        <div class="label">Organic &mdash; zero marketing spend</div>
       </div>
     </div>
-    <div class="c mt16 f ai jb" style="padding:12px 20px">
-      <div class="sm"><span class="b">Legal:</span> Wilson Sonsini &middot; Delaware C-Corp &middot; Equity Plan &middot; Palo Alto, CA</div>
-      <div class="tag tag-b">WSGR</div>
-    </div>
+
+    <div style="font-size:14px;line-height:1.7;color:#444;text-align:center;max-width:560px;margin:0 auto">People aren&rsquo;t trying Orion. They&rsquo;re <span style="font-weight:600">living with it</span> &mdash; hours a day, every day. The engagement pattern looks like a utility, not an app.</div>
   </div>
   <div class="sn">14</div>
 </section>
 
-<!-- 15 BACKED BY -->
-<section class="s s-gray" id="s15">
+<!-- 15 TEAM & BACKERS -->
+<section class="s" id="s15">
   <div class="si">
-    <div class="ey">Backed by</div>
-    <h2 class="mb12">They don't just back us.<br>They build with us.</h2>
-    <div class="g g3 gap16 mb16">
-      <div class="c" style="padding:20px">
-        <div class="f ai gap12 mb12">
-          <div class="av">PB</div>
-          <div><div class="b" style="font-size:15px">Peter Bakas</div><div class="sm" style="font-size:11px">Angel &middot; Advisor</div></div>
-        </div>
-        <div class="sm">Former Director of Engineering at Netflix — built Keystone, processing 700B+ events/day. Founded DataScale (acquired by DataStax). Now Founder &amp; MD of Incline Ventures Group.</div>
+    <div class="ey">Team</div>
+    <h2 class="mb12">We didn&rsquo;t come here to play it safe.<br>Neither should you.</h2>
+    <div class="g g3 gap16">
+      <div class="c tc" style="padding:24px">
+        <div class="av av-lg" style="margin:0 auto 12px"><img src="img/khoi-nguyen.jpeg" alt="Khoi Nguyen"></div>
+        <div class="b" style="font-size:15px">Khoi Nguyen</div>
+        <div class="sm mb8" style="font-size:11px">CEO</div>
+        <div class="sm">Orion creator. Stanford MS dropout. Former researcher at Stanford STAIR Lab &mdash; AI treatment simulation for congenital pediatric conditions with Stanford Medicine. Ex&ndash;Google. Co-founded Campus Connect (scaled to 7 schools) and uEAT (campus delivery). Master rank in League of Legends &amp; TFT (NA).</div>
       </div>
-      <div class="c" style="padding:20px">
-        <div class="f ai gap12 mb12">
-          <div class="av">CW</div>
-          <div><div class="b" style="font-size:15px">Chi Wang, PhD</div><div class="sm" style="font-size:11px">Angel &middot; Advisor</div></div>
-        </div>
-        <div class="sm">Senior Staff Research Scientist at Google DeepMind. Creator of AutoGen/AG2 — the most adopted open-source multi-agent AI framework. Previously Principal Researcher at Microsoft Research. ~15K citations.</div>
+      <div class="c tc" style="padding:24px">
+        <div class="av av-lg" style="margin:0 auto 12px"><img src="img/peter-bakas.jpeg" alt="Peter Bakas"></div>
+        <div class="b" style="font-size:15px">Peter Bakas</div>
+        <div class="sm mb8" style="font-size:11px">COO &middot; Investor</div>
+        <div class="sm">Director of Engineering at Netflix &mdash; built Keystone, processing 700B+ events/day. Co-Founded DataScale (acquired by DataStax). CISO at Ooyala (acquired by Telstra). Head of Engineering at Yahoo. Head of Site Engineering at PayPal. Principal Architect at Bank of America.</div>
       </div>
-      <div class="c" style="padding:20px">
-        <div class="f ai gap12 mb12">
-          <div class="av">LL</div>
-          <div><div class="b" style="font-size:15px">Lawrence Lou</div><div class="sm" style="font-size:11px">Angel &middot; Llama Venture</div></div>
-        </div>
-        <div class="sm">Principal at Llama Venture — early-stage AI fund with OpenAI, Anthropic, and xAI in portfolio. Former Senior PM Lead at Microsoft (AI) and AI Product at Airbnb. Active early-stage AI investor.</div>
+      <div class="c tc" style="padding:24px">
+        <div class="av av-lg" style="margin:0 auto 12px"><img src="img/minh-le.jpeg" alt="Minh Le"></div>
+        <div class="b" style="font-size:15px">Minh Le</div>
+        <div class="sm mb8" style="font-size:11px">CTO</div>
+        <div class="sm">Oxford BA &amp; MSc (CS). Senior Quant Technologist at QRT &mdash; built firm-wide real-time monitoring across 3,000+ HFT strategies and 2B+ daily orders (EMEA, AMER, APAC, Crypto). NLP &amp; federated learning research at Oxford-Man Institute. Ex&ndash;Meta &amp; Amazon. Thatcher Scholar. Founded Tram Uoc Foundation.</div>
       </div>
     </div>
-    <div style="text-align:center;padding:20px 0;font-size:18px;font-weight:600;color:#bbb;letter-spacing:1px">+ and more</div>
+    <div class="g g3 gap16 mt16">
+      <div class="c tc" style="padding:24px">
+        <div class="av av-lg" style="margin:0 auto 12px"><img src="img/jason-chen.jpeg" alt="Jason Chen"></div>
+        <div class="b" style="font-size:15px">Jason Chen</div>
+        <div class="sm mb8" style="font-size:11px">Founding Member</div>
+        <div class="sm">UCSD BS (CS), Georgia Tech MS (AI). 6 yrs Apple CoreOS &mdash; led kernel CI infrastructure &amp; built hardware test labs across Darwin teams. Built a 5-year RuneScape automation system (Arduino + OpenCV + Python) &mdash; ranked Top 10 globally. Ex&ndash;Northrop Grumman. Founding engineer at Relvino.</div>
+      </div>
+      <div class="c tc" style="padding:24px">
+        <div class="av av-lg" style="margin:0 auto 12px"><img src="img/steve-hong.jpeg" alt="Steve Hong"></div>
+        <div class="b" style="font-size:15px">Steve Hong</div>
+        <div class="sm mb8" style="font-size:11px">Founding Member</div>
+        <div class="sm">Cambridge MPhil (Machine Learning). Quant Trader at DV Trading. Ex&ndash;J.P. Morgan (Data Science). ICML-published researcher &mdash; graph generation with next-scale prediction, advised by Petar Veličković (Google DeepMind). 2 NeurIPS-published papers on influence functions &amp; multi-scale AR models. UCL First-Class Honours, Best Dissertation Award.</div>
+      </div>
+      <div class="c tc" style="padding:24px">
+        <div class="av av-lg" style="margin:0 auto 12px"><img src="img/hoang-tan.jpeg" alt="Hoang Trong Tan"></div>
+        <div class="b" style="font-size:15px">Hoang Trong Tan</div>
+        <div class="sm mb8" style="font-size:11px">Founding Member</div>
+        <div class="sm">Production Engineer at Meta &mdash; AI/HPC infrastructure, NCCL, CUDA, RDMA across Ads, Recommendation &amp; GenAI workloads supporting ~50K daily jobs. Ex&ndash;TikTok &amp; Polybee. NUS Computer Engineering, First-Class Honours. Built compilers, time-series engines &amp; drone navigation systems.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:28px;margin-bottom:12px;font-size:11px;font-weight:700;letter-spacing:1.5px;color:#999">BACKED BY &amp; WORKING CLOSELY WITH</div>
+    <div class="g g2 gap16 mb16">
+      <div class="c" style="padding:20px">
+        <div class="f ai gap12 mb12">
+          <div class="av av-lg"><img src="img/chi-wang.jpeg" alt="Chi Wang"></div>
+          <div><div class="b" style="font-size:15px">Chi Wang, PhD</div>
+          <div class="sm" style="margin-top:4px">Senior Staff Research Scientist at Google DeepMind. Creator of AutoGen/AG2 — the most adopted open-source multi-agent AI framework. Previously Principal Researcher at Microsoft Research. ~15K citations.</div></div>
+        </div>
+      </div>
+      <div class="c" style="padding:20px">
+        <div class="f ai gap12 mb12">
+          <div class="av av-lg"><img src="img/lawrence-lou.jpeg" alt="Lawrence Lou"></div>
+          <div><div class="b" style="font-size:15px">Lawrence Lou</div>
+          <div class="sm" style="margin-top:4px">Principal at Llama Venture — early-stage AI fund with OpenAI, Anthropic, and xAI in portfolio. Former Senior PM Lead at Microsoft (AI) and AI Product at Airbnb. Active early-stage AI investor.</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;padding:8px 0;font-size:16px;font-weight:600;color:#bbb;letter-spacing:1px">+ and more</div>
+
+    <div class="c mt16 f ai jb" style="padding:12px 20px">
+      <div class="sm"><span class="b">Legal:</span> Wilson Sonsini &middot; Delaware C-Corp &middot; Equity Plan &middot; Palo Alto, CA</div>
+      <div class="tag tag-b">WSGR</div>
+    </div>
   </div>
   <div class="sn">15</div>
 </section>
@@ -839,7 +900,7 @@
   <div class="si">
     <div class="ey">The ask</div>
     <h2 class="mb12">$10M. Here&rsquo;s exactly what it builds.</h2>
-    <div class="sub mb24">12&ndash;16 months of aggressive runway. Every dollar builds the moat.</div>
+    <div class="sub mb24">12&ndash;16 months of runway.</div>
 
     <div class="fund mb20">
       <div style="width:35%;background:#2563eb">Research 35%</div>
@@ -851,7 +912,7 @@
     <div class="g g4 gap12 mb16">
       <div class="c tc" style="padding:18px">
         <div style="font-size:11px;font-weight:800;letter-spacing:2px;color:#2563eb;margin-bottom:8px">RESEARCH</div>
-        <div class="sm" style="color:#666">Frontier AI research, GPU compute, training, fine-tuning. The breakthroughs that become the moat.</div>
+        <div class="sm" style="color:#666">Frontier AI research, GPU compute, training, fine-tuning.</div>
       </div>
       <div class="c tc" style="padding:18px">
         <div style="font-size:11px;font-weight:800;letter-spacing:2px;color:#16a34a;margin-bottom:8px">TEAM</div>
@@ -859,7 +920,7 @@
       </div>
       <div class="c tc" style="padding:18px">
         <div style="font-size:11px;font-weight:800;letter-spacing:2px;color:#fff;margin-bottom:8px">HIRING</div>
-        <div class="sm" style="color:#666">Scaling from ~10 to the team that wins. Recruiting, onboarding, equity.</div>
+        <div class="sm" style="color:#666">Scaling from ~10 to ~25&ndash;30. Recruiting, onboarding, equity.</div>
       </div>
       <div class="c tc" style="padding:18px">
         <div style="font-size:11px;font-weight:800;letter-spacing:2px;color:#d97706;margin-bottom:8px">OPS &amp; GROWTH</div>
@@ -880,8 +941,8 @@
 <section class="s s-blk" id="s17">
   <div class="si">
     <div class="ey">Vision</div>
-    <h2 style="color:#fff" class="mb8">What happens when the agent<br>doesn&rsquo;t need you anymore.</h2>
-    <div class="sub mb8">It starts growing on its own. That&rsquo;s when it stops being a tool and becomes an entity.</div>
+    <h2 style="color:#fff" class="mb8">What happens when intelligence<br>can tap into the real world on its own.</h2>
+    <div class="sub mb8">Reliable. Secure. Personalized. Always on. Each stage unlocks deeper autonomy.</div>
     <div class="v-prog mt32 mb4" style="max-width:100%">
       <div class="v-prog-dot"></div>
       <div class="v-prog-line"></div>
@@ -916,7 +977,7 @@
         </div>
         <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#555;margin-bottom:6px">12&ndash;24 MONTHS</div>
         <h3 class="mb6" style="color:#fff;font-size:16px">Self-evolving</h3>
-        <div class="sm" style="font-size:12px">Skill generation and on-device models. Writes its own tools, runs its own experiments. A fully automated research lab &mdash; run entirely by agents.</div>
+        <div class="sm" style="font-size:12px">Skill generation and on-device models. Writes its own tools, runs its own experiments. A fully automated research lab &mdash; run entirely by its own kind.</div>
       </div>
       <!-- Stage 4: Eventually -->
       <div class="v-card">
@@ -931,10 +992,10 @@
         </div>
         <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#555;margin-bottom:6px">LONG TERM</div>
         <h3 class="mb6" style="color:#fff;font-size:16px">Lives among us</h3>
-        <div class="sm" style="font-size:12px">All capabilities compound. Earns money. Hires other agents. Operates independently. A living, growing instance &mdash; a participant in the world, not just a tool in it.</div>
+        <div class="sm" style="font-size:12px">Earns revenue. Delegates to others. Operates independently. An autonomous economic being.</div>
       </div>
     </div>
-    <div class="tc"><div class="sub" style="margin:0 auto;color:#666;font-size:15px">Every stage is unlocked by the next breakthrough. We&rsquo;re at Stage 1. <span style="color:#fff">The $10M builds everything after.</span></div></div>
+    <div class="tc"><div class="sub" style="margin:0 auto;color:#666;font-size:15px">Every stage is unlocked by the next breakthrough. We&rsquo;re at Stage 1.</div></div>
   </div>
   <div class="sn">17</div>
 </section>
@@ -947,10 +1008,10 @@
         Imagine you leave work at 5. While you sleep, Orion closes a deal with a client in Tokyo, runs a research cycle that finds something you missed, rebooks your cancelled flight, and texts your wife the new time. You wake up to one word: &ldquo;handled.&rdquo;
       </div>
       <div style="font-size:17px;line-height:1.8;color:#888;margin-bottom:48px">
-        Now imagine it does this every night. Then starts running its own research lab. Earns its own revenue. Hires other agents. Trains its own models. Develops its own interests.
+        Now imagine it does this every night. Then starts running its own research lab. Earns its own revenue. Delegates to others. Trains its own models. Develops its own interests.
       </div>
       <div style="font-size:17px;line-height:1.8;color:#fff;font-weight:600">
-        Not a tool you use. A living instance that grows alongside you.
+        Reliable. Secure. Personal. Always on.<br>A being that compounds its own capabilities over time.
       </div>
     </div>
   </div>
@@ -962,18 +1023,16 @@
   <div class="si tc">
     <div style="font-size:20px;font-weight:800;letter-spacing:4px;color:#fff;margin-bottom:48px">ZINLEY</div>
     <h1 style="color:#fff;font-size:40px;margin-bottom:16px">
-      Everyone will have an agent.<br>We&rsquo;re building the one that becomes an entity.
+      Intelligence that works in the real world.<br>Without you in the loop.
     </h1>
-    <div class="sub mb48" style="margin:0 auto;text-align:center;font-size:15px">
-      The foundation is built. The product ships. Let&rsquo;s build what comes next.
-    </div>
+    <div style="font-size:17px;color:#888;margin-bottom:32px;font-weight:400">Orion is live. Come see it.</div>
     <div style="height:1px;background:rgba(255,255,255,.1);max-width:240px;margin:0 auto 40px"></div>
     <div class="f gap40 jc" style="font-size:13px">
-      <div><div class="xs mb4">Company</div><div class="b" style="color:#fff">zinley.com</div></div>
-      <div><div class="xs mb4">Product</div><div class="b" style="color:#fff">meetorion.app</div></div>
+      <div><div class="xs mb4">Lab</div><div class="b" style="color:#fff">zinley.com</div></div>
+      <div><div class="xs mb4">Orion</div><div class="b" style="color:#fff">hiorion.ai</div></div>
       <div><div class="xs mb4">Email</div><div class="b" style="color:#fff">khoi.nguyen@zinley.com</div></div>
     </div>
-    <div class="mt40 xs" style="color:#333">Zinley, Corporation &middot; Palo Alto, CA &middot; Delaware C-Corp</div>
+    <div class="mt40 xs" style="color:#333">Zinley Corporation &middot; Palo Alto, CA &middot; Delaware C-Corp</div>
   </div>
   <div class="wm">March 2026</div>
   <div class="sn">19</div>
