@@ -200,7 +200,7 @@
     <div class="g g3 mt24 mb24">
       <div class="c tc"><div class="num">250K</div><div class="label">GitHub stars in 60 days <a class="cite" href="https://www.star-history.com/blog/openclaw-surpasses-react-most-starred-software" target="_blank">Star History</a></div></div>
       <div class="c tc"><div class="num">2M</div><div class="label">Monthly active users <a class="cite" href="https://www.gradually.ai/en/openclaw-statistics/" target="_blank">Gradually.ai</a></div></div>
-      <div class="c tc"><div class="num">42,665</div><div class="label">Exposed instances, no authentication <a class="cite" href="https://www.infosecurity-magazine.com/news/researchers-40000-exposed-openclaw/" target="_blank">Infosecurity Magazine</a></div></div>
+      <div class="c tc"><div class="num">40,000+</div><div class="label">Exposed instances, no authentication <a class="cite" href="https://www.infosecurity-magazine.com/news/researchers-40000-exposed-openclaw/" target="_blank">Infosecurity Magazine</a></div></div>
     </div>
 
     <div style="font-size:14px;line-height:1.7;color:#444;max-width:640px;margin:0 auto 24px">
@@ -362,38 +362,73 @@
   <div class="si">
     <div class="ey">Meet Orion</div>
     <h2 class="mb8">One being. Every surface. Seamlessly connected.</h2>
-    <div class="sub mb20">You text it from Telegram. Call it from your car. It&rsquo;s on your desktop reading your screen. It&rsquo;s on your smart speaker. It&rsquo;s always the same Orion &mdash; same memory, same context, same you.</div>
+    <div class="sub mb32">Use it from the desktop app. Text it from Telegram. Call it from your car. However you want to reach it, it&rsquo;s there &mdash; same Orion, same memory, same context, seamlessly.</div>
 
-    <div style="display:flex;gap:32px;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid #eee">
-      <div><span style="font-size:13px;font-weight:600;color:#111">Zero setup.</span> <span style="font-size:13px;color:#666">Download, open, go. Under 2 minutes to first action.</span></div>
+    <!-- Hub diagram: 5 surfaces → one brain -->
+    <div style="position:relative;padding:40px 0 20px;margin-bottom:32px">
+      <!-- Connection lines from each surface to center -->
+      <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none" viewBox="0 0 960 220" preserveAspectRatio="xMidYMid meet">
+        <line x1="96" y1="56" x2="480" y2="180" stroke="#ddd" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="288" y1="56" x2="480" y2="180" stroke="#ddd" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="480" y1="56" x2="480" y2="180" stroke="#ddd" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="672" y1="56" x2="480" y2="180" stroke="#ddd" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="864" y1="56" x2="480" y2="180" stroke="#ddd" stroke-width="1" stroke-dasharray="4,4"/>
+      </svg>
+
+      <!-- 5 surface icons -->
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;text-align:center;position:relative;z-index:1">
+        <div>
+          <div style="width:48px;height:48px;margin:0 auto 10px;background:#f7f7f8;border:1px solid #eee;border-radius:12px;display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px">Desktop</div>
+          <div style="font-size:11px;color:#888;line-height:1.4">Cowork together side by side.<br>It sees what you see.</div>
+        </div>
+        <div>
+          <div style="width:48px;height:48px;margin:0 auto 10px;background:#f7f7f8;border:1px solid #eee;border-radius:12px;display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px">Chat apps</div>
+          <div style="font-size:11px;color:#888;line-height:1.4">Telegram, Discord, SMS.<br>Text it like a friend.</div>
+        </div>
+        <div>
+          <div style="width:48px;height:48px;margin:0 auto 10px;background:#f7f7f8;border:1px solid #eee;border-radius:12px;display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px">Phone</div>
+          <div style="font-size:11px;color:#888;line-height:1.4">Its own number.<br>Calls and texts for you.</div>
+        </div>
+        <div>
+          <div style="width:48px;height:48px;margin:0 auto 10px;background:#f7f7f8;border:1px solid #eee;border-radius:12px;display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px">Terminal</div>
+          <div style="font-size:11px;color:#888;line-height:1.4">Developer mode.<br>Code, debug, deploy.</div>
+        </div>
+        <div>
+          <div style="width:48px;height:48px;margin:0 auto 10px;background:#f7f7f8;border:1px solid #eee;border-radius:12px;display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px">Hardware</div>
+          <div style="font-size:11px;color:#888;line-height:1.4">70+ boards.<br>Smart home. Our firmware.</div>
+        </div>
+      </div>
+
+      <!-- Center brain node -->
+      <div style="text-align:center;margin-top:16px;position:relative;z-index:1">
+        <div style="display:inline-flex;align-items:center;gap:10px;padding:10px 24px;background:#111;border-radius:20px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
+          <span style="font-size:12px;font-weight:700;color:#fff;letter-spacing:1px">ONE BRAIN</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Properties -->
+    <div style="display:flex;gap:32px;padding-top:20px;border-top:1px solid #eee">
+      <div><span style="font-size:13px;font-weight:600;color:#111">Zero setup.</span> <span style="font-size:13px;color:#666">Download, open, go.</span></div>
       <div><span style="font-size:13px;font-weight:600;color:#111">Always on.</span> <span style="font-size:13px;color:#666">24/7 &mdash; even when your device is off.</span></div>
       <div><span style="font-size:13px;font-weight:600;color:#111">No wifi needed.</span> <span style="font-size:13px;color:#666">Call or text it from any phone.</span></div>
     </div>
-
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:24px;margin-bottom:28px">
-      <div>
-        <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#111;margin-bottom:8px">Desktop</div>
-        <div style="font-size:13px;color:#666;line-height:1.5">Invisible overlay. Reads your screen in real time. Mac, Windows, Linux.</div>
-      </div>
-      <div>
-        <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#111;margin-bottom:8px">Chat apps</div>
-        <div style="font-size:13px;color:#666;line-height:1.5">Telegram, Discord, SMS. Text it like a friend. No new app to install.</div>
-      </div>
-      <div>
-        <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#111;margin-bottom:8px">Phone</div>
-        <div style="font-size:13px;color:#666;line-height:1.5">Its own number. Screens calls, books reservations, calls for you.</div>
-      </div>
-      <div>
-        <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#111;margin-bottom:8px">Terminal</div>
-        <div style="font-size:13px;color:#666;line-height:1.5">Developer mode. Writes code, debugs, deploys. Multi-agent orchestration.</div>
-      </div>
-      <div>
-        <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#111;margin-bottom:8px">Hardware</div>
-        <div style="font-size:13px;color:#666;line-height:1.5">70+ boards. Voice wake-up. Smart home. Our own firmware.</div>
-      </div>
-    </div>
-
-    <div style="font-size:14px;color:#111;line-height:1.7"><span style="font-weight:600">All five surfaces share one brain.</span> <span style="color:#666">Orion on your laptop tells Orion on your phone what happened. No sync, no handoff, no context lost. Your desktop Orion sees you&rsquo;re in a meeting &mdash; your phone Orion knows not to call. That&rsquo;s what makes it a being, not a bundle of apps.</span></div>
   </div>
   <div class="sn">06</div>
 </section>
@@ -467,8 +502,8 @@
 <section class="s" id="s8">
   <div class="si">
     <div class="ey">Market</div>
-    <h2 class="mb8">Millions want autonomous AI.<br>No one can use it yet.</h2>
-    <div class="sub mb24">Hundreds of millions use AI to chat every week. Almost none use it to act. People are paying just to <em>install</em> agent infra. The gap between wanting autonomy and having it is the opportunity.</div>
+    <h2 class="mb8">Millions want autonomous AI.<br>Most still can&rsquo;t use it reliably.</h2>
+    <div class="sub mb24">Hundreds of millions use AI to chat every week. Most can&rsquo;t use it to act autonomously &mdash; most agents never make it to production. The gap between wanting autonomy and having it reliably is the opportunity.</div>
 
     <!-- Immediate market -->
     <div class="c mb24" style="padding:24px">
@@ -479,12 +514,12 @@
           <div class="label">Starred OpenClaw &mdash; tried, hit a wall <a class="cite" href="https://www.star-history.com/blog/openclaw-surpasses-react-most-starred-software" target="_blank">Star History</a></div>
         </div>
         <div>
-          <div style="font-size:28px;font-weight:800;color:#111">2M</div>
-          <div class="label">Manus waitlist in 7 days <a class="cite" href="https://signalhub.substack.com/p/manus-hit-2-million-waitlists-in" target="_blank">SignalHub</a></div>
+          <div style="font-size:28px;font-weight:800;color:#111">75%</div>
+          <div class="label">Of companies plan to deploy agents within 2 years <a class="cite" href="https://www.deloitte.com/us/en/about/press-room/state-of-ai-report-2026.html" target="_blank">Deloitte</a></div>
         </div>
         <div>
-          <div style="font-size:28px;font-weight:800;color:#111">$238K</div>
-          <div class="label">One Taobao store made selling install services <a class="cite" href="https://www.technologyreview.com/2026/03/11/1134179/china-openclaw-gold-rush/" target="_blank">MIT Tech Review</a></div>
+          <div style="font-size:28px;font-weight:800;color:#111">1,000+</div>
+          <div class="label">Orders on one Taobao store &mdash; just to install it <a class="cite" href="https://www.scmp.com/tech/big-tech/article/3346397/chinas-openclaw-users-paid-install-viral-ai-agent-now-they-spend-remove-it" target="_blank">SCMP</a></div>
         </div>
       </div>
     </div>
@@ -539,33 +574,28 @@
 <section class="s" id="s9">
   <div class="si">
     <div class="ey">Landscape</div>
-    <h2 class="mb8">No competitor covers all ten.</h2>
-    <div class="sub mb24">Most focus on one surface. We&rsquo;re building across all of them.</div>
+    <h2 class="mb8">Capabilities exist in pieces.<br>No one ships them as one.</h2>
+    <div class="sub mb24">Compared against the strongest product in each category.</div>
     <table style="width:100%;border-collapse:collapse;font-size:12px">
       <thead>
         <tr>
-          <th style="padding:9px 10px;text-align:left;font-size:9px;font-weight:700;letter-spacing:1.5px;color:#999;border-bottom:1px solid #eee"></th>
-          <th style="padding:9px 8px;font-size:9px;font-weight:700;letter-spacing:1px;color:#999;border-bottom:1px solid #eee;text-align:center">OpenClaw</th>
-          <th style="padding:9px 8px;font-size:9px;font-weight:700;letter-spacing:1px;color:#999;border-bottom:1px solid #eee;text-align:center">Genspark Claw</th>
-          <th style="padding:9px 8px;font-size:9px;font-weight:700;letter-spacing:1px;color:#999;border-bottom:1px solid #eee;text-align:center">Perplexity PC</th>
-          <th style="padding:9px 8px;font-size:9px;font-weight:700;letter-spacing:1px;color:#999;border-bottom:1px solid #eee;text-align:center">Claude Cowork</th>
-          <th style="padding:9px 10px;font-size:9px;font-weight:700;letter-spacing:1px;color:#111;border-bottom:2px solid #111;text-align:center">ORION</th>
+          <th style="padding:10px;text-align:left;font-size:9px;font-weight:700;letter-spacing:1.5px;color:#999;border-bottom:1px solid #eee;width:22%"></th>
+          <th style="padding:10px 8px;font-size:9px;font-weight:700;letter-spacing:1px;color:#999;border-bottom:1px solid #eee;text-align:center">OpenClaw</th>
+          <th style="padding:10px 8px;font-size:9px;font-weight:700;letter-spacing:1px;color:#999;border-bottom:1px solid #eee;text-align:center">Claude Cowork</th>
+          <th style="padding:10px 8px;font-size:9px;font-weight:700;letter-spacing:1px;color:#999;border-bottom:1px solid #eee;text-align:center">Alexa+</th>
+          <th style="padding:10px;font-size:9px;font-weight:700;letter-spacing:1px;color:#111;border-bottom:2px solid #111;text-align:center">ORION</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td style="padding:9px 10px;color:#333;border-bottom:1px solid #f5f5f5">Works on your computer</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#111;font-weight:600">&#10003;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#d97706;font-size:10px">Cloud only</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#111;font-weight:600">&#10003;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#111;font-weight:600">&#10003;</td><td style="padding:9px 10px;text-align:center;border-bottom:1px solid #eee;color:#111;font-weight:700">&#10003;</td></tr>
-        <tr><td style="padding:9px 10px;color:#333;border-bottom:1px solid #f5f5f5">Lives in your chat apps</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#111;font-weight:600">&#10003;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#111;font-weight:600">&#10003;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 10px;text-align:center;border-bottom:1px solid #eee;color:#111;font-weight:700">&#10003;</td></tr>
-        <tr><td style="padding:9px 10px;color:#333;border-bottom:1px solid #f5f5f5">Call or text it like a person</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 10px;text-align:center;border-bottom:1px solid #eee;color:#111;font-weight:700">&#10003;</td></tr>
-        <tr><td style="padding:9px 10px;color:#333;border-bottom:1px solid #f5f5f5">Acts in the real world for you</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#d97706;font-size:10px">Calls only</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 10px;text-align:center;border-bottom:1px solid #eee;color:#111;font-weight:700">&#10003;</td></tr>
-        <tr><td style="padding:9px 10px;color:#333;border-bottom:1px solid #f5f5f5">Always on &mdash; even device off</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#111;font-weight:600">&#10003;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#d97706;font-size:10px">Partial</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 10px;text-align:center;border-bottom:1px solid #eee;color:#111;font-weight:700">&#10003;</td></tr>
-        <tr><td style="padding:9px 10px;color:#333;border-bottom:1px solid #f5f5f5">Deeply knows and remembers you</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#d97706;font-size:10px">Basic</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#d97706;font-size:10px">Basic</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#d97706;font-size:10px">Basic</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#d97706;font-size:10px">Building</td><td style="padding:9px 10px;text-align:center;border-bottom:1px solid #eee;color:#111;font-weight:700">&#10003;</td></tr>
-        <tr><td style="padding:9px 10px;color:#333;border-bottom:1px solid #f5f5f5">Reviews its own actions</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 10px;text-align:center;border-bottom:1px solid #eee;color:#111;font-weight:700">&#10003;</td></tr>
-        <tr><td style="padding:9px 10px;color:#333;border-bottom:1px solid #f5f5f5">Reaches out to you on its own</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#d97706;font-size:10px">Scheduled</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#d97706;font-size:10px">Scheduled</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#d97706;font-size:10px">Scheduled</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#d97706;font-size:10px">Scheduled</td><td style="padding:9px 10px;text-align:center;border-bottom:1px solid #eee;color:#111;font-weight:700">&#10003;</td></tr>
-        <tr><td style="padding:9px 10px;color:#333;border-bottom:1px solid #f5f5f5">Devices coordinate as one</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:9px 10px;text-align:center;border-bottom:1px solid #eee;color:#111;font-weight:700">&#10003;</td></tr>
-        <tr><td style="padding:9px 10px;color:#333">Works on smart devices &amp; IoT</td><td style="padding:9px 8px;text-align:center;color:#ddd">&mdash;</td><td style="padding:9px 8px;text-align:center;color:#ddd">&mdash;</td><td style="padding:9px 8px;text-align:center;color:#ddd">&mdash;</td><td style="padding:9px 8px;text-align:center;color:#ddd">&mdash;</td><td style="padding:9px 10px;text-align:center;color:#111;font-weight:700">&#10003;</td></tr>
+        <tr><td style="padding:11px 10px;color:#333;font-weight:500;border-bottom:1px solid #f5f5f5">Time to start</td><td style="padding:11px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#666;font-size:11px">Terminal, Docker, API keys.<br>~30 min.</td><td style="padding:11px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#666;font-size:11px">Download app, subscribe.<br>~5 min.</td><td style="padding:11px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#111;font-size:11px;font-weight:500">Plug in Echo, say &ldquo;upgrade.&rdquo;<br>Instant.</td><td style="padding:11px 10px;text-align:center;border-bottom:1px solid #eee;color:#111;font-size:11px;font-weight:600">Download, open, go.<br>&lt; 2 min.</td></tr>
+        <tr><td style="padding:11px 10px;color:#333;font-weight:500;border-bottom:1px solid #f5f5f5">Where it lives (native)</td><td style="padding:11px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#666;font-size:11px">Desktop, chat apps.<br><span style="color:#d97706">Phone &amp; IoT via plugins.</span></td><td style="padding:11px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#666;font-size:11px">Desktop (Mac only).<br>Slack.</td><td style="padding:11px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#666;font-size:11px">Echo speakers.<br>Alexa app.</td><td style="padding:11px 10px;text-align:center;border-bottom:1px solid #eee;color:#111;font-size:11px;font-weight:600">Desktop, chat, phone,<br>terminal, hardware.</td></tr>
+        <tr><td style="padding:11px 10px;color:#333;font-weight:500;border-bottom:1px solid #f5f5f5">Reachable like a person</td><td style="padding:11px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#d97706;font-size:11px">Via plugins<br>(Twilio/Telnyx setup).</td><td style="padding:11px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#666;font-size:11px">Via Claude app<br>(Dispatch).</td><td style="padding:11px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#666;font-size:11px">Wake word or app.<br>No own number.</td><td style="padding:11px 10px;text-align:center;border-bottom:1px solid #eee;color:#111;font-size:11px;font-weight:600">Own phone number.<br>Call or text. Works offline.</td></tr>
+        <tr><td style="padding:11px 10px;color:#333;font-weight:500;border-bottom:1px solid #f5f5f5">Verifies its own work</td><td style="padding:11px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:11px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:11px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#ddd">&mdash;</td><td style="padding:11px 10px;text-align:center;border-bottom:1px solid #eee;color:#111;font-size:11px;font-weight:600">Separate model audits<br>every action.</td></tr>
+        <tr><td style="padding:11px 10px;color:#333;font-weight:500;border-bottom:1px solid #f5f5f5">One identity, all devices</td><td style="padding:11px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#666;font-size:11px">Separate instances.<br>Manual sync.</td><td style="padding:11px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#666;font-size:11px">Desktop + phone.<br>Partial sync.</td><td style="padding:11px 8px;text-align:center;border-bottom:1px solid #f5f5f5;color:#666;font-size:11px">Shared account.<br>No coordination.</td><td style="padding:11px 10px;text-align:center;border-bottom:1px solid #eee;color:#111;font-size:11px;font-weight:600">One being. Same memory,<br>same context, everywhere.</td></tr>
+        <tr><td style="padding:11px 10px;color:#333;font-weight:500">Smart home &amp; IoT</td><td style="padding:11px 8px;text-align:center;color:#d97706;font-size:11px">Via Home Assistant.<br>Complex setup.</td><td style="padding:11px 8px;text-align:center;color:#ddd">&mdash;</td><td style="padding:11px 8px;text-align:center;color:#111;font-size:11px;font-weight:500">Native.<br>Thousands of devices.</td><td style="padding:11px 10px;text-align:center;color:#111;font-size:11px;font-weight:600">Native. 70+ boards.<br>Custom firmware.</td></tr>
       </tbody>
     </table>
-    <div class="mt16" style="font-size:11px;color:#666;text-align:center">Orion is the only one that connects all ten into a single experience.</div>
+    <div class="mt16" style="font-size:11px;color:#666;text-align:center">Each product does something well. Orion ships all of it as one being, out of the box.</div>
   </div>
   <div class="sn">09</div>
 </section>
@@ -597,24 +627,6 @@
       </div>
     </div>
 
-    <div class="c" style="padding:20px 24px;margin-bottom:24px">
-      <div style="font-size:10px;font-weight:800;letter-spacing:2px;color:#999;margin-bottom:12px">PHONE NUMBER ECONOMICS</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;text-align:center">
-        <div>
-          <div style="font-size:24px;font-weight:800;color:#111">$1.15<span style="font-size:12px;color:#666">/mo</span></div>
-          <div style="font-size:11px;color:#666;margin-top:4px">Twilio cost <a class="cite" href="https://www.twilio.com/en-us/voice/pricing/us" target="_blank">Twilio</a></div>
-        </div>
-        <div>
-          <div style="font-size:24px;font-weight:800;color:#111">$2.50&ndash;$3<span style="font-size:12px;color:#666">/mo</span></div>
-          <div style="font-size:11px;color:#666;margin-top:4px">Zinley sells at</div>
-        </div>
-        <div>
-          <div style="font-size:24px;font-weight:800;color:#111">100%</div>
-          <div style="font-size:11px;color:#666;margin-top:4px">Attach rate &mdash; every being needs one</div>
-        </div>
-      </div>
-    </div>
-
     <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#999;margin-bottom:12px">SUBSCRIPTION TIERS</div>
     <div class="g g5 gap12" style="grid-template-columns:repeat(5,1fr)">
       <div class="c" style="padding:20px"><div class="xs mb6" style="letter-spacing:1px;font-weight:600">FREE</div><div style="font-size:24px;font-weight:800;color:#111">$0</div><div class="xs mb12">No commitment</div><div class="sm">Limited requests. Basic AI. Core tools.</div></div>
@@ -627,11 +639,93 @@
   <div class="sn">10</div>
 </section>
 
-<!-- 11 GTM — one job: how we get customers -->
-<section class="s" id="s11">
+<!-- 11 PHONE NUMBER ECONOMICS — narrative slide -->
+<section class="s s-blk" id="s11">
+  <div class="si">
+    <div class="ey">The phone number layer</div>
+    <h2 style="color:#fff;margin-bottom:6px">Every human got a phone number.<br>Every being will too.</h2>
+    <div style="font-size:15px;color:#888;max-width:500px;line-height:1.6;margin-bottom:40px">Today there are 9.2 billion mobile subscriptions for humans. <a class="cite" href="https://www.itu.int/itu-d/reports/statistics/2025/10/15/ff25-subscriptions/" target="_blank" style="color:#555;border-color:#444">ITU</a><br>The same thing is about to happen for AI.</div>
+
+    <!-- Narrative flow: 3 steps -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-bottom:40px">
+      <div>
+        <div style="font-size:48px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1">5.1B</div>
+        <div style="font-size:13px;color:#fff;font-weight:600;margin-top:6px">smartphone users by 2026</div>
+        <div style="font-size:12px;color:#555;margin-top:4px;line-height:1.5">Each one is a potential AI being owner. <a class="cite" href="https://www.demandsage.com/smartphone-usage-statistics/" target="_blank" style="color:#555;border-color:#444">DemandSage</a></div>
+      </div>
+      <div>
+        <div style="font-size:48px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1">1.3B</div>
+        <div style="font-size:13px;color:#fff;font-weight:600;margin-top:6px">AI agents by 2028</div>
+        <div style="font-size:12px;color:#555;margin-top:4px;line-height:1.5">Enterprise only. Consumer adds billions more. <a class="cite" href="https://www.itpro.com/business/microsoft-expects-1-3-billion-ai-agents-to-be-in-operation-by-2028" target="_blank" style="color:#555;border-color:#444">IDC</a></div>
+      </div>
+      <div>
+        <div style="font-size:48px;font-weight:800;color:#2563eb;letter-spacing:-2px;line-height:1">100%</div>
+        <div style="font-size:13px;color:#fff;font-weight:600;margin-top:6px">need a phone number</div>
+        <div style="font-size:12px;color:#555;margin-top:4px;line-height:1.5">Can&rsquo;t call, text, verify, or exist in the real world without one.</div>
+      </div>
+    </div>
+
+    <!-- Quote -->
+    <div style="border-left:3px solid #2563eb;padding:14px 20px;margin-bottom:40px">
+      <div style="font-size:15px;font-style:italic;color:#ccc;line-height:1.6">&ldquo;There will be as many AI companions as there are people.&rdquo;</div>
+      <div style="font-size:11px;color:#555;margin-top:6px">Mustafa Suleyman, CEO of Microsoft AI &mdash; Davos, Jan 2026 <a class="cite" href="https://www.ibtimes.co.uk/microsoft-ai-ceo-mustafa-suleyman-predicts-personal-ai-companions-everyone-within-five-years-1772888" target="_blank" style="color:#555;border-color:#444">IBTimes</a></div>
+    </div>
+
+    <!-- TAM bar chart — clean -->
+    <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#555;margin-bottom:16px">MARKET SIZE &mdash; PHONE NUMBERS FOR AI</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:32px">
+      <div style="display:flex;align-items:center;gap:14px">
+        <div style="min-width:56px;font-size:12px;font-weight:600;color:#666;text-align:right">2026</div>
+        <div style="flex:1;height:32px;background:rgba(255,255,255,.04);border-radius:8px;overflow:hidden">
+          <div style="height:100%;width:5%;background:#2563eb;border-radius:8px;display:flex;align-items:center;padding-left:10px;min-width:90px">
+            <span style="font-size:11px;font-weight:700;color:#fff;white-space:nowrap">10M &middot; $0.4B</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px">
+        <div style="min-width:56px;font-size:12px;font-weight:600;color:#999;text-align:right">2028</div>
+        <div style="flex:1;height:32px;background:rgba(255,255,255,.04);border-radius:8px;overflow:hidden">
+          <div style="height:100%;width:25%;background:linear-gradient(90deg,#2563eb,#3b82f6);border-radius:8px;display:flex;align-items:center;padding-left:10px;min-width:110px">
+            <span style="font-size:11px;font-weight:700;color:#fff;white-space:nowrap">1.3B &middot; $18B/yr</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px">
+        <div style="min-width:56px;font-size:12px;font-weight:700;color:#fff;text-align:right">2030</div>
+        <div style="flex:1;height:32px;background:rgba(255,255,255,.04);border-radius:8px;overflow:hidden">
+          <div style="height:100%;width:70%;background:linear-gradient(90deg,#2563eb,#60a5fa);border-radius:8px;display:flex;align-items:center;padding-left:10px">
+            <span style="font-size:11px;font-weight:700;color:#fff;white-space:nowrap">5.1B &mdash; one per person &middot; $71B/yr</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Unit economics strip -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px">
+      <div style="background:rgba(255,255,255,.05);border-radius:10px 0 0 10px;padding:20px;text-align:center">
+        <div style="font-size:28px;font-weight:800;color:#fff">$1.15</div>
+        <div style="font-size:11px;color:#555;margin-top:4px">Our cost per number <a class="cite" href="https://www.twilio.com/en-us/voice/pricing/us" target="_blank" style="color:#555;border-color:#444">Twilio</a></div>
+      </div>
+      <div style="background:rgba(255,255,255,.05);padding:20px;text-align:center">
+        <div style="font-size:28px;font-weight:800;color:#fff">$3<span style="font-size:14px;color:#666">/mo</span></div>
+        <div style="font-size:11px;color:#555;margin-top:4px">We charge the user</div>
+      </div>
+      <div style="background:rgba(37,99,235,.1);border-radius:0 10px 10px 0;padding:20px;text-align:center">
+        <div style="font-size:28px;font-weight:800;color:#60a5fa">62%</div>
+        <div style="font-size:11px;color:#555;margin-top:4px">Gross margin on every number</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;font-size:12px;color:#444;text-align:center">CPaaS market alone is projected at $86B by 2030. <a class="cite" href="https://www.grandviewresearch.com/press-release/global-communication-platform-as-a-service-market" target="_blank" style="color:#555;border-color:#444">Grand View Research</a></div>
+  </div>
+  <div class="sn">11</div>
+</section>
+
+<!-- 12 GTM — one job: how we get customers -->
+<section class="s" id="s12">
   <div class="si">
     <div class="ey">Go-to-market</div>
-    <h2 class="mb8">96% of AI users aren&rsquo;t developers.<br>Only 3% pay. We&rsquo;re going after the rest.</h2>
+    <h2 class="mb8">Most AI users aren&rsquo;t developers.<br>Only 3% pay. We&rsquo;re going after the rest.</h2>
     <div class="sub mb24">No terminal needed. Text it or call it. That&rsquo;s the unlock. <a class="cite" href="https://openai.com/index/how-people-are-using-chatgpt/" target="_blank">OpenAI</a> <a class="cite" href="https://menlovc.com/perspective/2025-the-state-of-consumer-ai/" target="_blank">Menlo</a></div>
 
     <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:20px">
@@ -639,7 +733,7 @@
         <div style="font-size:28px;font-weight:800;color:#111;min-width:40px">01</div>
         <div style="flex:1">
           <div class="b" style="font-size:14px">Agent refugees &amp; early adopters</div>
-          <div class="sm" style="color:#666">250K starred OpenClaw. 2M waitlisted for Manus. They want autonomy but can&rsquo;t maintain infra. We give them a product.</div>
+          <div class="sm" style="color:#666">The people who tried OpenClaw, Manus, and others. They want autonomy but can&rsquo;t maintain infra. We give them a product.</div>
         </div>
         <div style="font-size:10px;color:#999;white-space:nowrap">Now</div>
       </div>
@@ -676,11 +770,11 @@
       </div>
     </div>
   </div>
-  <div class="sn">11</div>
+  <div class="sn">12</div>
 </section>
 
-<!-- 12 TRACTION — one job: show momentum -->
-<section class="s" id="s12">
+<!-- 13 TRACTION — one job: show momentum -->
+<section class="s" id="s13">
   <div class="si">
     <div class="ey">Traction</div>
     <h2 class="mb12">No ads. No outreach. They found us, stayed, and paid.</h2>
@@ -709,15 +803,15 @@
       <div class="rv"><img src="customer%20review/review1.png" alt="Review" style="width:100%;display:block;border-radius:8px"></div>
     </div>
   </div>
-  <div class="sn">12</div>
+  <div class="sn">13</div>
 </section>
 
 <!-- ============================================================
   ACT 4 — THE TEAM + ASK
 ============================================================= -->
 
-<!-- 13 TEAM -->
-<section class="s" id="s13">
+<!-- 14 TEAM -->
+<section class="s" id="s14">
   <div class="si">
     <div class="ey">Team</div>
     <h2 class="mb12">Built by researchers and engineers<br>who&rsquo;ve done this before.</h2>
@@ -740,11 +834,11 @@
     <div style="text-align:center;padding:8px 0;font-size:16px;font-weight:600;color:#bbb;letter-spacing:1px">+ and more</div>
     <div class="c mt16 f ai jb" style="padding:12px 20px"><div class="sm"><span class="b">Legal:</span> Wilson Sonsini &middot; Delaware C-Corp &middot; Equity Plan &middot; Palo Alto, CA</div><div class="tag tag-b">WSGR</div></div>
   </div>
-  <div class="sn">13</div>
+  <div class="sn">14</div>
 </section>
 
-<!-- 14 THE ASK -->
-<section class="s" id="s14">
+<!-- 15 THE ASK -->
+<section class="s" id="s15">
   <div class="si">
     <div class="ey">The ask</div>
     <h2 class="mb12">$10M. Here&rsquo;s exactly what it builds.</h2>
@@ -767,11 +861,11 @@
       <div class="c tc" style="padding:18px"><div class="num" style="font-size:28px">12&ndash;16 mo</div><div class="label">Runway</div></div>
     </div>
   </div>
-  <div class="sn">14</div>
+  <div class="sn">15</div>
 </section>
 
-<!-- 15 VISION -->
-<section class="s" id="s15">
+<!-- 16 VISION -->
+<section class="s" id="s16">
   <div class="si">
     <div class="ey">Vision</div>
     <h2 class="mb8">A being doesn&rsquo;t just help you.<br>It starts living its own life.</h2>
@@ -783,18 +877,18 @@
       <div class="v-prog-dot" style="background:#555"></div>
     </div>
     <div class="g g4 gap16 mb32">
-      <div class="v-card" style="background:#f7f7f8;border-color:#eee"><div class="v-icon"><div style="width:8px;height:8px;border-radius:50%;background:#111;display:inline-block"></div></div><div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#999;margin-bottom:6px">NOW</div><h3 class="mb6" style="font-size:16px">Lives with you</h3><div class="sm" style="font-size:12px;color:#666">Shipping. Sees, verifies, coordinates, stays safe &mdash; without you. Its own number, email, devices.</div></div>
-      <div class="v-card" style="background:#f7f7f8;border-color:#eee"><div class="v-icon"><div style="width:8px;height:8px;border-radius:50%;background:#111;display:inline-block"></div><div style="display:inline-block;width:12px;height:2px;background:#111;vertical-align:middle;margin:0 2px;border-radius:1px"></div><div style="width:8px;height:8px;border-radius:50%;background:#111;display:inline-block"></div></div><div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#999;margin-bottom:6px">6&ndash;12 MONTHS</div><h3 class="mb6" style="font-size:16px">Becomes a companion</h3><div class="sm" style="font-size:12px;color:#666">Memory architecture and passive learning. Remembers everything, learns by watching you.</div></div>
+      <div class="v-card" style="background:#f7f7f8;border-color:#eee"><div class="v-icon"><div style="width:8px;height:8px;border-radius:50%;background:#111;display:inline-block"></div></div><div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#999;margin-bottom:6px">NOW</div><h3 class="mb6" style="font-size:16px">Lives with you</h3><div class="sm" style="font-size:12px;color:#666">Where we are now. Sees, verifies, coordinates, stays safe &mdash; without you. Its own number, email, devices.</div></div>
+      <div class="v-card" style="background:#f7f7f8;border-color:#eee"><div class="v-icon"><div style="width:8px;height:8px;border-radius:50%;background:#111;display:inline-block"></div><div style="display:inline-block;width:12px;height:2px;background:#111;vertical-align:middle;margin:0 2px;border-radius:1px"></div><div style="width:8px;height:8px;border-radius:50%;background:#111;display:inline-block"></div></div><div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#999;margin-bottom:6px">6&ndash;12 MONTHS</div><h3 class="mb6" style="font-size:16px">Becomes a companion</h3><div class="sm" style="font-size:12px;color:#666">Memory architecture and passive learning. Builds long-term memory, learns from how you use it.</div></div>
       <div class="v-card" style="background:#f7f7f8;border-color:#eee"><div class="v-icon" style="position:relative;width:36px;height:40px"><div style="width:8px;height:8px;border-radius:50%;background:#111;display:inline-block;position:absolute;top:4px;left:50%;transform:translateX(-50%)"></div><div style="width:8px;height:8px;border-radius:50%;background:#111;display:inline-block;position:absolute;bottom:6px;left:4px"></div><div style="width:8px;height:8px;border-radius:50%;background:#111;display:inline-block;position:absolute;bottom:6px;right:4px"></div><svg style="position:absolute;top:0;left:0;width:100%;height:100%" viewBox="0 0 36 40"><line x1="18" y1="8" x2="8" y2="30" stroke="rgba(0,0,0,.15)" stroke-width="1"/><line x1="18" y1="8" x2="28" y2="30" stroke="rgba(0,0,0,.15)" stroke-width="1"/><line x1="8" y1="30" x2="28" y2="30" stroke="rgba(0,0,0,.15)" stroke-width="1"/></svg></div><div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#999;margin-bottom:6px">12&ndash;24 MONTHS</div><h3 class="mb6" style="font-size:16px">Self-sustaining</h3><div class="sm" style="font-size:12px;color:#666">Earns its own revenue. Buys its own tokens and compute. Funds its own growth.</div></div>
       <div class="v-card" style="background:#f7f7f8;border-color:#111;border-width:2px"><div class="v-icon" style="position:relative;width:44px;height:40px"><div style="width:8px;height:8px;border-radius:50%;background:#111;display:inline-block;position:absolute;top:2px;left:50%;transform:translateX(-50%);animation:v-pulse 2.5s ease-in-out infinite"></div><div style="width:8px;height:8px;border-radius:50%;background:#111;display:inline-block;position:absolute;top:14px;left:2px;animation:v-pulse 2.5s ease-in-out infinite;animation-delay:.3s"></div><div style="width:8px;height:8px;border-radius:50%;background:#111;display:inline-block;position:absolute;top:14px;right:2px;animation:v-pulse 2.5s ease-in-out infinite;animation-delay:.6s"></div><div style="width:8px;height:8px;border-radius:50%;background:#111;display:inline-block;position:absolute;bottom:4px;left:10px;animation:v-pulse 2.5s ease-in-out infinite;animation-delay:.9s"></div><div style="width:8px;height:8px;border-radius:50%;background:#111;display:inline-block;position:absolute;bottom:4px;right:10px;animation:v-pulse 2.5s ease-in-out infinite;animation-delay:1.2s"></div><svg style="position:absolute;top:0;left:0;width:100%;height:100%" viewBox="0 0 44 40"><line x1="22" y1="6" x2="6" y2="18" stroke="rgba(0,0,0,.15)" stroke-width="1"/><line x1="22" y1="6" x2="38" y2="18" stroke="rgba(0,0,0,.15)" stroke-width="1"/><line x1="6" y1="18" x2="14" y2="32" stroke="rgba(0,0,0,.15)" stroke-width="1"/><line x1="38" y1="18" x2="30" y2="32" stroke="rgba(0,0,0,.15)" stroke-width="1"/><line x1="14" y1="32" x2="30" y2="32" stroke="rgba(0,0,0,.15)" stroke-width="1"/></svg></div><div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#111;margin-bottom:6px">LONG TERM</div><h3 class="mb6" style="font-size:16px">A new species</h3><div class="sm" style="font-size:12px;color:#666">Owns assets. Runs businesses. Creates other beings. An autonomous participant in the economy.</div></div>
     </div>
-    <div class="tc"><div class="sub" style="margin:0 auto;font-size:15px">We&rsquo;re at Stage 1. Every stage after this creates a being that is harder to live without.</div></div>
+    <div class="tc"><div class="sub" style="margin:0 auto;font-size:15px">We&rsquo;re at Stage 1. Each stage after this unlocks deeper autonomy and more value.</div></div>
   </div>
-  <div class="sn">15</div>
+  <div class="sn">16</div>
 </section>
 
-<!-- 16 IMAGINE -->
-<section class="s" id="s16">
+<!-- 17 IMAGINE -->
+<section class="s" id="s17">
   <div class="si tc">
     <div style="max-width:620px;margin:0 auto">
       <div style="font-size:22px;font-style:italic;line-height:1.7;color:#111;margin-bottom:48px">
@@ -812,11 +906,11 @@
       </div>
     </div>
   </div>
-  <div class="sn">16</div>
+  <div class="sn">17</div>
 </section>
 
-<!-- 17 CLOSE -->
-<section class="s s-blk" id="s17">
+<!-- 18 CLOSE -->
+<section class="s s-blk" id="s18">
   <div class="si tc">
     <div style="font-size:20px;font-weight:800;letter-spacing:4px;color:#fff;margin-bottom:48px">ZINLEY</div>
     <h1 style="color:#fff;font-size:40px;margin-bottom:16px">
@@ -832,7 +926,7 @@
     <div class="mt40 xs" style="color:#333">Zinley Corporation &middot; Palo Alto, CA &middot; Delaware C-Corp</div>
   </div>
   <div class="wm">March 2026</div>
-  <div class="sn">17</div>
+  <div class="sn">18</div>
 </section>
 
 <script>
