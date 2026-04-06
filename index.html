@@ -28,10 +28,10 @@
       background: var(--black); 
       color: var(--white); 
       -webkit-font-smoothing: antialiased;
-      font-size: 16px;
+      font-size: 18px;
       line-height: 1.5;
     }
-    
+
     /* Slides */
     .slide {
       min-height: 100vh;
@@ -44,12 +44,12 @@
     }
     .slide.white { background: var(--white); color: var(--black); }
     .slide.light { background: var(--gray-50); color: var(--black); }
-    
-    .inner { max-width: 1100px; width: 100%; }
-    
+
+    .inner { max-width: 1200px; width: 100%; }
+
     /* Typography */
     .eyebrow {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -57,31 +57,31 @@
       margin-bottom: 24px;
     }
     h1 {
-      font-size: 72px;
+      font-size: 76px;
       font-weight: 700;
       line-height: 1.05;
       letter-spacing: -0.03em;
     }
     h2 {
-      font-size: 52px;
+      font-size: 56px;
       font-weight: 700;
       line-height: 1.1;
       letter-spacing: -0.02em;
     }
     h3 {
-      font-size: 32px;
+      font-size: 36px;
       font-weight: 600;
       line-height: 1.2;
       letter-spacing: -0.01em;
     }
     .lead {
-      font-size: 24px;
+      font-size: 26px;
       line-height: 1.5;
       font-weight: 400;
       opacity: 0.7;
     }
     .body-lg {
-      font-size: 18px;
+      font-size: 20px;
       line-height: 1.6;
       opacity: 0.7;
     }
@@ -126,13 +126,13 @@
     
     /* Stats */
     .stat-value {
-      font-size: 56px;
+      font-size: 60px;
       font-weight: 800;
       letter-spacing: -0.02em;
       line-height: 1;
     }
     .stat-label {
-      font-size: 14px;
+      font-size: 16px;
       opacity: 0.5;
       margin-top: 8px;
     }
@@ -265,27 +265,134 @@
     
     /* Quote */
     .quote {
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 500;
       line-height: 1.4;
       font-style: italic;
     }
-    
+
     /* Responsive */
     @media (max-width: 1024px) {
       .slide { padding: 60px 40px; }
-      h1 { font-size: 48px; }
-      h2 { font-size: 36px; }
-      h3 { font-size: 24px; }
-      .lead { font-size: 20px; }
-      .stat-value { font-size: 40px; }
+      h1 { font-size: 52px; }
+      h2 { font-size: 40px; }
+      h3 { font-size: 28px; }
+      .lead { font-size: 22px; }
+      .stat-value { font-size: 44px; }
       .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
       .research-row { grid-template-columns: 1fr; }
       .research-solution { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); }
     }
+    /* Email Gate */
+    #email-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #email-gate.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .gate-card {
+      text-align: center;
+      max-width: 420px;
+      width: 100%;
+      padding: 0 24px;
+    }
+    .gate-logo {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.35;
+      margin-bottom: 48px;
+    }
+    .gate-title {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .gate-sub {
+      font-size: 15px;
+      color: var(--gray-500);
+      margin-bottom: 40px;
+    }
+    .gate-input-wrap {
+      position: relative;
+      margin-bottom: 16px;
+    }
+    .gate-input {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .gate-input::placeholder { color: var(--gray-600); }
+    .gate-input:focus {
+      border-color: rgba(255,255,255,0.25);
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.04);
+    }
+    .gate-input.error {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+    }
+    .gate-error {
+      font-size: 13px;
+      color: var(--red);
+      margin-top: 8px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .gate-error.show { opacity: 1; }
+    .gate-btn {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.1s ease;
+      margin-top: 8px;
+    }
+    .gate-btn:hover { opacity: 0.9; }
+    .gate-btn:active { transform: scale(0.98); }
+    .gate-btn:disabled { opacity: 0.4; cursor: not-allowed; }
   </style>
 </head>
 <body>
+
+<!-- Email Gate -->
+<div id="email-gate">
+  <div class="gate-card">
+    <div class="gate-logo">Zinley</div>
+    <div class="gate-title">Thanks for your interest in<br>the Orion deck.</div>
+    <div class="gate-sub">Enter your email to continue reading.</div>
+    <div class="gate-input-wrap">
+      <input class="gate-input" id="gate-email" type="email" placeholder="you@company.com" autocomplete="email" autofocus>
+      <div class="gate-error" id="gate-error">Please enter a valid email address.</div>
+    </div>
+    <button class="gate-btn" id="gate-btn">Continue</button>
+  </div>
+</div>
 <nav class="nav" id="nav"></nav>
 
 <!-- ============================================== -->
@@ -338,22 +445,22 @@
         <p style="color:var(--gray-500);font-weight:600;font-size:12px;letter-spacing:0.08em;margin-bottom:20px">WHY 97% DON'T PAY</p>
         <div style="display:flex;flex-direction:column;gap:1px;border-radius:12px;overflow:hidden">
           <div style="background:var(--gray-50);padding:16px 20px;display:flex;justify-content:space-between;align-items:center">
-            <span style="font-size:14px;color:var(--gray-700)">Don't see a need — tools haven't shown value</span>
+            <span style="font-size:15px;color:var(--gray-700)">Don't see a need — tools haven't shown value</span>
             <span style="font-size:20px;font-weight:700;color:var(--red)">63%</span>
           </div>
           <div style="background:var(--gray-50);padding:16px 20px;display:flex;justify-content:space-between;align-items:center">
-            <span style="font-size:14px;color:var(--gray-700)">Don't know how to use AI tools</span>
+            <span style="font-size:15px;color:var(--gray-700)">Don't know how to use AI tools</span>
             <span style="font-size:20px;font-weight:700;color:var(--red)">48%</span>
           </div>
           <div style="background:var(--gray-50);padding:16px 20px;display:flex;justify-content:space-between;align-items:center">
-            <span style="font-size:14px;color:var(--gray-700)">Don't trust AI with privacy and data</span>
+            <span style="font-size:15px;color:var(--gray-700)">Don't trust AI with privacy and data</span>
             <span style="font-size:20px;font-weight:700;color:var(--red)">71%</span>
           </div>
         </div>
         <a href="https://menlovc.com/perspective/2025-the-state-of-consumer-ai/" target="_blank" style="font-size:11px;color:var(--gray-400);text-decoration:none;display:block;margin-top:12px">Menlo Ventures / Morning Consult 2025 (n=5,031) →</a>
 
         <div style="margin-top:28px;padding:16px 20px;background:var(--gray-50);border-radius:12px">
-          <p style="font-size:13px;color:var(--gray-600);line-height:1.6">The most accessible option? OpenClaw: 135K instances exposed to the internet. 1,184 malicious skills on its marketplace.</p>
+          <p style="font-size:14px;color:var(--gray-600);line-height:1.6">The most accessible option? OpenClaw: 135K instances exposed to the internet. 1,184 malicious skills on its marketplace.</p>
           <a href="https://securityscorecard.com/blog/how-exposed-openclaw-deployments-turn-agentic-ai-into-an-attack-surface/" target="_blank" style="font-size:11px;color:var(--gray-400);text-decoration:none;display:block;margin-top:6px">SecurityScorecard 2026 →</a>
         </div>
       </div>
@@ -387,7 +494,7 @@
             <a href="https://openclawvps.io/blog/openclaw-statistics" target="_blank" style="font-size:10px;color:var(--gray-400);text-decoration:none;display:block;margin-top:4px">OpenClaw Stats 2026 + The Register Feb 2026 →</a>
           </div>
         </div>
-        <p style="font-size:14px;font-weight:600;color:var(--black);margin-top:20px">$12B market. 97% free. No one has converted them.</p>
+        <p style="font-size:15px;font-weight:600;color:var(--black);margin-top:20px">$12B market. 97% free. No one has converted them.</p>
         <a href="https://menlovc.com/perspective/2025-the-state-of-consumer-ai/" target="_blank" style="font-size:10px;color:var(--gray-400);text-decoration:none;display:block;margin-top:4px">Menlo Ventures 2025 →</a>
       </div>
     </div>
@@ -445,35 +552,35 @@
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3b5bdb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16.5" r="1.5"/></svg>
         </div>
         <h3 style="font-size:18px;margin-bottom:10px">Security</h3>
-        <p class="body-lg" style="font-size:14px">Your data stays yours. End-to-end encrypted. No one sees what you see — not even us.</p>
+        <p class="body-lg" style="font-size:16px">Your data stays yours. End-to-end encrypted. No one sees what you see — not even us.</p>
       </div>
       <div class="card center" style="padding:32px 20px">
         <div style="width:56px;height:56px;border-radius:14px;background:#eef7ee;display:inline-flex;align-items:center;justify-content:center;margin-bottom:20px">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2b8a3e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
         <h3 style="font-size:18px;margin-bottom:10px">Reliability</h3>
-        <p class="body-lg" style="font-size:14px">Self-audits every action. Catches mistakes before they reach you. It just works — every time.</p>
+        <p class="body-lg" style="font-size:16px">Self-audits every action. Catches mistakes before they reach you. It just works — every time.</p>
       </div>
       <div class="card center" style="padding:32px 20px">
         <div style="width:56px;height:56px;border-radius:14px;background:#fdf2f8;display:inline-flex;align-items:center;justify-content:center;margin-bottom:20px">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c2255c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
         <h3 style="font-size:18px;margin-bottom:10px">Personalization</h3>
-        <p class="body-lg" style="font-size:14px">Learns your habits, your preferences, your voice. Gets better every day. Feels like yours.</p>
+        <p class="body-lg" style="font-size:16px">Learns your habits, your preferences, your voice. Gets better every day. Feels like yours.</p>
       </div>
       <div class="card center" style="padding:32px 20px">
         <div style="width:56px;height:56px;border-radius:14px;background:#fff8e1;display:inline-flex;align-items:center;justify-content:center;margin-bottom:20px">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e8590c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
         </div>
         <h3 style="font-size:18px;margin-bottom:10px">Extremely<br>easy to use</h3>
-        <p class="body-lg" style="font-size:14px">No setup. No config. No technical skills. Download, open, done.</p>
+        <p class="body-lg" style="font-size:16px">No setup. No config. No technical skills. Download, open, done.</p>
       </div>
       <div class="card center" style="padding:32px 20px">
         <div style="width:56px;height:56px;border-radius:14px;background:#f3f0ff;display:inline-flex;align-items:center;justify-content:center;margin-bottom:20px">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7048e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         </div>
         <h3 style="font-size:18px;margin-bottom:10px">Accessible<br>regardless</h3>
-        <p class="body-lg" style="font-size:14px">No wifi? No laptop? Disability? Call, text, or speak. It's always there for everyone.</p>
+        <p class="body-lg" style="font-size:16px">No wifi? No laptop? Disability? Call, text, or speak. It's always there for everyone.</p>
       </div>
     </div>
 
@@ -571,28 +678,25 @@
 </section>
 
 <!-- ============================================== -->
-<!-- SLIDE 8: DEMOS -->
+<!-- SLIDE 8: PHILOSOPHY -->
 <!-- ============================================== -->
-<section class="slide light" id="s8">
+<section class="slide" id="s8">
   <div class="inner">
-    <p class="eyebrow">Real demos</p>
-    <h3 class="mb-48">Orion making real phone calls. Right now.</h3>
-    
-    <div class="grid grid-3 gap-24">
-      <div class="card">
-        <p style="font-size:12px;font-weight:600;letter-spacing:0.05em;color:var(--gray-500);margin-bottom:12px">RESTAURANT RESERVATION</p>
-        <p style="font-size:14px;color:var(--gray-600);margin-bottom:20px">Orion calls a restaurant to book dinner. No human involved.</p>
-        <audio controls><source src="orion-restaurant-demo.wav" type="audio/wav"></audio>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+      <div style="padding-top:16px">
+        <p class="eyebrow">Our philosophy</p>
+        <div style="border-left:3px solid var(--green);padding-left:24px;margin-bottom:28px">
+          <h3 style="line-height:1.35;font-style:italic">"Technology alone is not enough. It's technology married with liberal arts, married with the humanities, that yields us the result that makes our hearts sing."</h3>
+        </div>
+        <p style="font-size:15px;opacity:0.3;margin-bottom:40px">— Steve Jobs</p>
+        <p style="font-size:16px;opacity:0.5;line-height:1.7">We don't build for engineers. We build for people. Every decision — from how Orion speaks, to how it remembers, to how it protects you — starts with empathy, not architecture.</p>
+        <div style="margin-top:40px">
+          <img src="img/current-product.png" alt="Orion product" style="width:100%;border-radius:16px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 16px 48px rgba(0,0,0,0.3)">
+        </div>
+        <p style="font-size:12px;opacity:0.2;margin-top:10px">Orion Desktop — real product, today</p>
       </div>
-      <div class="card">
-        <p style="font-size:12px;font-weight:600;letter-spacing:0.05em;color:var(--gray-500);margin-bottom:12px">CALLING A FRIEND</p>
-        <p style="font-size:14px;color:var(--gray-600);margin-bottom:20px">Orion calls your friend to invite them to dinner on your behalf.</p>
-        <audio controls><source src="orion-hotpot-demo.wav" type="audio/wav"></audio>
-      </div>
-      <div class="card">
-        <p style="font-size:12px;font-weight:600;letter-spacing:0.05em;color:var(--gray-500);margin-bottom:12px">SELF-AWARENESS</p>
-        <p style="font-size:14px;color:var(--gray-600);margin-bottom:20px">Mid-call, Orion realizes it's talking to its creator.</p>
-        <audio controls><source src="orion-self-awareness-demo.wav" type="audio/wav"></audio>
+      <div>
+        <img src="philosophy.png" alt="Not a tool. A being." style="width:100%;display:block;border-radius:16px">
       </div>
     </div>
   </div>
@@ -600,9 +704,38 @@
 </section>
 
 <!-- ============================================== -->
-<!-- SLIDE 9: SOCIAL PROOF -->
+<!-- SLIDE 9: DEMOS -->
 <!-- ============================================== -->
-<section class="slide white" id="s9">
+<section class="slide light" id="s9">
+  <div class="inner">
+    <p class="eyebrow">Real demos</p>
+    <h3 class="mb-48">Orion making real phone calls. Right now.</h3>
+    
+    <div class="grid grid-3 gap-24">
+      <div class="card">
+        <p style="font-size:12px;font-weight:600;letter-spacing:0.05em;color:var(--gray-500);margin-bottom:12px">RESTAURANT RESERVATION</p>
+        <p style="font-size:15px;color:var(--gray-600);margin-bottom:20px">Orion calls a restaurant to book dinner. No human involved.</p>
+        <audio controls><source src="orion-restaurant-demo.wav" type="audio/wav"></audio>
+      </div>
+      <div class="card">
+        <p style="font-size:12px;font-weight:600;letter-spacing:0.05em;color:var(--gray-500);margin-bottom:12px">CALLING A FRIEND</p>
+        <p style="font-size:15px;color:var(--gray-600);margin-bottom:20px">Orion calls your friend to invite them to dinner on your behalf.</p>
+        <audio controls><source src="orion-hotpot-demo.wav" type="audio/wav"></audio>
+      </div>
+      <div class="card">
+        <p style="font-size:12px;font-weight:600;letter-spacing:0.05em;color:var(--gray-500);margin-bottom:12px">SELF-AWARENESS</p>
+        <p style="font-size:15px;color:var(--gray-600);margin-bottom:20px">Mid-call, Orion realizes it's talking to its creator.</p>
+        <audio controls><source src="orion-self-awareness-demo.wav" type="audio/wav"></audio>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">09</div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 10: SOCIAL PROOF -->
+<!-- ============================================== -->
+<section class="slide white" id="s10">
   <div class="inner">
     <div class="grid grid-2 gap-48" style="align-items:center">
       <div>
@@ -617,16 +750,16 @@
       </div>
     </div>
   </div>
-  <div class="slide-num">09</div>
+  <div class="slide-num">10</div>
 </section>
 
 <!-- ============================================== -->
-<!-- SLIDE 10: CUSTOMER FEEDBACK -->
+<!-- SLIDE 11: CUSTOMER FEEDBACK -->
 <!-- ============================================== -->
-<section class="slide light" id="s10">
+<section class="slide light" id="s11">
   <div class="inner">
     <p class="eyebrow">Real users</p>
-    <h3 class="mb-48">42% are non-technical professionals paying $200/month.</h3>
+    <h3 class="mb-48">Non-technical professionals paying $200/month.</h3>
     
     <div style="display:flex;gap:10px;align-items:flex-start">
       <!-- Col 1: ~682px equivalent height -->
@@ -652,13 +785,13 @@
       </div>
     </div>
   </div>
-  <div class="slide-num">10</div>
+  <div class="slide-num">11</div>
 </section>
 
 <!-- ============================================== -->
-<!-- SLIDE 11: RESEARCH -->
+<!-- SLIDE 12: RESEARCH -->
 <!-- ============================================== -->
-<section class="slide" id="s11">
+<section class="slide" id="s12">
   <div class="inner">
     <p class="eyebrow">Our research</p>
     <h2 class="mb-16">Research → Product.</h2>
@@ -715,16 +848,16 @@
       </div>
     </div>
   </div>
-  <div class="slide-num">11</div>
+  <div class="slide-num">12</div>
 </section>
 
 <!-- ============================================== -->
-<!-- SLIDE 12: TRACTION -->
+<!-- SLIDE 13: TRACTION -->
 <!-- ============================================== -->
-<section class="slide white" id="s12">
+<section class="slide white" id="s13">
   <div class="inner center">
     <p class="eyebrow">Traction</p>
-    <h2 class="mb-48">Early validation, no ads.</h2>
+    <h2 class="mb-48">Early validation, 0 marketing spending.</h2>
     
     <div class="grid grid-3 gap-24" style="max-width:800px;margin:0 auto">
       <div class="card center">
@@ -733,7 +866,7 @@
       </div>
       <div class="card center">
         <div class="stat-value" style="color:var(--black)">$200</div>
-        <p class="stat-label">Users already paid</p>
+        <p class="stat-label">/month/user already paid</p>
       </div>
       <div class="card center">
         <div class="stat-value" style="color:var(--black)">100%</div>
@@ -748,13 +881,13 @@
       <div class="img-container"><img src="finding/finding2.png" alt="Organic discovery"></div>
     </div>
   </div>
-  <div class="slide-num">12</div>
+  <div class="slide-num">13</div>
 </section>
 
 <!-- ============================================== -->
-<!-- SLIDE 13: LANDSCAPE -->
+<!-- SLIDE 14: LANDSCAPE -->
 <!-- ============================================== -->
-<section class="slide" id="s13">
+<section class="slide" id="s14">
   <div class="inner">
     <p class="eyebrow">The landscape</p>
     <h2 class="mb-48">Everyone builds tools.<br>We're building the Apple of AI agents.</h2>
@@ -764,104 +897,104 @@
       <!-- Header row -->
       <div style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.08)">
         <div style="padding:20px"></div>
-        <div style="padding:20px;text-align:center;opacity:0.5;font-size:13px;font-weight:600">OpenClaw</div>
-        <div style="padding:20px;text-align:center;opacity:0.5;font-size:13px;font-weight:600">Genspark Claw</div>
-        <div style="padding:20px;text-align:center;opacity:0.5;font-size:13px;font-weight:600">Claude Cowork</div>
-        <div style="padding:20px;text-align:center;opacity:0.5;font-size:13px;font-weight:600">Perplexity Computer</div>
-        <div style="padding:20px;text-align:center;font-size:13px;font-weight:600;color:var(--green)">Orion</div>
+        <div style="padding:20px;text-align:center;opacity:0.5;font-size:15px;font-weight:600">OpenClaw</div>
+        <div style="padding:20px;text-align:center;opacity:0.5;font-size:15px;font-weight:600">Genspark Claw</div>
+        <div style="padding:20px;text-align:center;opacity:0.5;font-size:15px;font-weight:600">Claude Cowork</div>
+        <div style="padding:20px;text-align:center;opacity:0.5;font-size:15px;font-weight:600">Perplexity Computer</div>
+        <div style="padding:20px;text-align:center;font-size:15px;font-weight:600;color:var(--green)">Orion</div>
       </div>
       <!-- Type -->
       <div style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div style="padding:14px 20px;font-size:13px;opacity:0.4">Type</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Open source agent (self-hosted)</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Cloud AI employee</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Desktop agent</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Cloud-local hybrid (Mac Mini)</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green)">Local + cloud hybrid (adaptive on task)</div>
+        <div style="padding:14px 20px;font-size:15px;opacity:0.4">Type</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Open source agent (self-hosted)</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Cloud AI employee</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Desktop agent</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Cloud-local hybrid (Mac Mini)</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;color:var(--green)">Local + cloud hybrid (adaptive on task)</div>
       </div>
       <!-- Non-technical friendly -->
       <div style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div style="padding:14px 20px;font-size:13px;opacity:0.4">Non-technical friendly</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.3">No (requires DevOps)</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Yes, one-click</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Friendly UI, needs connectors + permissions</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Partial (hardware setup)</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green)">Yes, zero config</div>
+        <div style="padding:14px 20px;font-size:15px;opacity:0.4">Non-technical friendly</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.3">No (requires DevOps)</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Yes, one-click</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Friendly UI, needs connectors + permissions</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Partial (hardware setup)</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;color:var(--green)">Yes, zero config</div>
       </div>
       <!-- Sees your screen -->
       <div style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div style="padding:14px 20px;font-size:13px;opacity:0.4">Sees your screen</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Yes (via skills, needs setup)</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Cloud screen only</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Yes (Mac only)</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Yes (Mac Mini screen)</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green)">Yes (your actual screen)</div>
+        <div style="padding:14px 20px;font-size:15px;opacity:0.4">Sees your screen</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Yes (via skills, needs setup)</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Cloud screen only</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Yes (Mac only)</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Yes (Mac Mini screen)</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;color:var(--green)">Yes (your actual screen)</div>
       </div>
       <!-- Makes phone calls -->
       <div style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div style="padding:14px 20px;font-size:13px;opacity:0.4">Makes phone calls</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Via plugin (Twilio)</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Yes (Call For Me)</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.3">No</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.3">No</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green)">Yes (native)</div>
+        <div style="padding:14px 20px;font-size:15px;opacity:0.4">Makes phone calls</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Via plugin (Twilio)</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Yes (Call For Me)</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.3">No</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.3">No</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;color:var(--green)">Yes (native)</div>
       </div>
       <!-- Persistent memory -->
       <div style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div style="padding:14px 20px;font-size:13px;opacity:0.4">Persistent memory</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Yes (local Markdown)</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Yes (3-layer, cross-channel)</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Yes (project-scoped, local only)</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Yes (cross-session)</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green)">Yes</div>
+        <div style="padding:14px 20px;font-size:15px;opacity:0.4">Persistent memory</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Yes (local Markdown)</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Yes (3-layer, cross-channel)</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Yes (project-scoped, local only)</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Yes (cross-session)</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;color:var(--green)">Yes</div>
       </div>
       <!-- Multi-surface -->
       <div style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div style="padding:14px 20px;font-size:13px;opacity:0.4">Multi-surface</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">25+ channels (needs config)</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">9 channels + email</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Mac + Windows + phone (Dispatch)</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Web, iOS, Mac Mini, Slack</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green)">5 surfaces</div>
+        <div style="padding:14px 20px;font-size:15px;opacity:0.4">Multi-surface</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">25+ channels (needs config)</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">9 channels + email</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Mac + Windows + phone (Dispatch)</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Web, iOS, Mac Mini, Slack</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;color:var(--green)">5 surfaces</div>
       </div>
       <!-- Agent per device -->
       <div style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div style="padding:14px 20px;font-size:13px;opacity:0.4">Agent per device</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.3">No — one central Gateway, devices are clients</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.3">No — one cloud VM, channels are thin pipes</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.3">No — cloud brain, isolated local body, no inter-device talk</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.3">No — one cloud orchestrator, surfaces are clients</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green)">Yes — each device is its own agent</div>
+        <div style="padding:14px 20px;font-size:15px;opacity:0.4">Agent per device</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.3">No — one central Gateway, devices are clients</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.3">No — one cloud VM, channels are thin pipes</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.3">No — cloud brain, isolated local body, no inter-device talk</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.3">No — one cloud orchestrator, surfaces are clients</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;color:var(--green)">Yes — each device is its own agent</div>
       </div>
       <!-- Reachable without internet -->
       <div style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div style="padding:14px 20px;font-size:13px;opacity:0.4">Reachable without internet</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.3">No</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.3">No</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.3">No</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.3">No</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green)">Inbound call or SMS</div>
+        <div style="padding:14px 20px;font-size:15px;opacity:0.4">Reachable without internet</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.3">No</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.3">No</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.3">No</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.3">No</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;color:var(--green)">Inbound call or SMS</div>
       </div>
       <!-- Security -->
       <div style="display:grid;grid-template-columns:180px repeat(5,1fr)">
-        <div style="padding:14px 20px;font-size:13px;opacity:0.4">Security</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.3;color:var(--red)">166 advisories, 820+ malicious skills</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Per-user cloud isolation</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Sandboxed VM (screen control unsandboxed)</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Firecracker microVM, SOC 2</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green)">E2E encrypted</div>
+        <div style="padding:14px 20px;font-size:15px;opacity:0.4">Security</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.3;color:var(--red)">166 advisories, 820+ malicious skills</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Per-user cloud isolation</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Sandboxed VM (screen control unsandboxed)</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;opacity:0.5">Firecracker microVM, SOC 2</div>
+        <div style="padding:14px 20px;text-align:center;font-size:14px;color:var(--green)">E2E encrypted</div>
       </div>
     </div>
 
     <p class="lead mt-48" style="opacity:0.4">Integrated. Secure. Works everywhere. No setup.</p>
   </div>
-  <div class="slide-num">13</div>
+  <div class="slide-num">14</div>
 </section>
 
 <!-- ============================================== -->
-<!-- SLIDE 14: TEAM -->
+<!-- SLIDE 15: TEAM -->
 <!-- ============================================== -->
-<section class="slide light" id="s14">
+<section class="slide light" id="s15">
   <div class="inner">
     <p class="eyebrow center">Team</p>
     <h3 class="center mb-16">Stanford. Google. Meta. Netflix. Oxford. Cambridge.</h3>
@@ -872,19 +1005,19 @@
         <img src="img/khoi-nguyen.jpeg" class="avatar" style="margin-bottom:16px">
         <p style="font-size:16px;font-weight:600;margin-bottom:4px">Khoi Nguyen</p>
         <p style="font-size:12px;color:var(--gray-500);margin-bottom:12px">CEO</p>
-        <p style="font-size:13px;color:var(--gray-600)">Orion creator. Stanford MS dropout. Former researcher at Stanford STAIR Lab — AI treatment simulation for congenital pediatric conditions with Stanford Medicine. Ex-Google. Co-founded Campus Connect (scaled to 7 schools) and uEAT (campus delivery).</p>
+        <p style="font-size:14px;color:var(--gray-600)">Orion creator. Stanford MS dropout. Former researcher at Stanford STAIR Lab — AI treatment simulation for congenital pediatric conditions with Stanford Medicine. Ex-Google. Co-founded Campus Connect (scaled to 7 schools) and uEAT (campus delivery).</p>
       </div>
       <div class="card center">
         <img src="img/peter-bakas.jpeg" class="avatar" style="margin-bottom:16px">
         <p style="font-size:16px;font-weight:600;margin-bottom:4px">Peter Bakas</p>
         <p style="font-size:12px;color:var(--gray-500);margin-bottom:12px">COO & Investor</p>
-        <p style="font-size:13px;color:var(--gray-600)">Director of Engineering at Netflix — built Keystone, processing 700B+ events/day. Co-Founded DataScale (acquired by DataStax). CISO at Ooyala (acquired by Telstra). Head of Engineering at Yahoo. Head of Site Engineering at PayPal. Principal Architect at Bank of America.</p>
+        <p style="font-size:14px;color:var(--gray-600)">Director of Engineering at Netflix — built Keystone, processing 700B+ events/day. Co-Founded DataScale (acquired by DataStax). CISO at Ooyala (acquired by Telstra). Head of Engineering at Yahoo. Head of Site Engineering at PayPal. Principal Architect at Bank of America.</p>
       </div>
       <div class="card center">
         <img src="img/minh-le.jpeg" class="avatar" style="margin-bottom:16px">
         <p style="font-size:16px;font-weight:600;margin-bottom:4px">Minh Le</p>
         <p style="font-size:12px;color:var(--gray-500);margin-bottom:12px">CTO</p>
-        <p style="font-size:13px;color:var(--gray-600)">Oxford BA & MSc (CS). Senior Quant Technologist at QRT — built firm-wide real-time monitoring across 3,000+ HFT strategies and 2B+ daily orders (EMEA, AMER, APAC, Crypto). NLP & federated learning research at Oxford-Man Institute. Ex-Meta & Amazon. Thatcher Scholar. Founded Tram Uoc Foundation.</p>
+        <p style="font-size:14px;color:var(--gray-600)">Oxford BA & MSc (CS). Senior Quant Technologist at QRT — built firm-wide real-time monitoring across 3,000+ HFT strategies and 2B+ daily orders (EMEA, AMER, APAC, Crypto). NLP & federated learning research at Oxford-Man Institute. Ex-Meta & Amazon. Thatcher Scholar. Founded Tram Uoc Foundation.</p>
       </div>
     </div>
 
@@ -893,19 +1026,19 @@
         <img src="img/jason-chen.jpeg" class="avatar" style="margin-bottom:16px">
         <p style="font-size:16px;font-weight:600;margin-bottom:4px">Jason Chen</p>
         <p style="font-size:12px;color:var(--gray-500);margin-bottom:12px">Founding Member</p>
-        <p style="font-size:13px;color:var(--gray-600)">UCSD BS (CS), Georgia Tech MS (AI). 6 yrs Apple CoreOS — led kernel CI infrastructure & built hardware test labs across Darwin teams. Built a 5-year RuneScape automation system (Arduino + OpenCV + Python) — ranked Top 10 globally. Ex-Northrop Grumman. Founding engineer at Relvino.</p>
+        <p style="font-size:14px;color:var(--gray-600)">UCSD BS (CS), Georgia Tech MS (AI). 6 yrs Apple CoreOS — led kernel CI infrastructure & built hardware test labs across Darwin teams. Built a 5-year RuneScape automation system (Arduino + OpenCV + Python) — ranked Top 10 globally. Ex-Northrop Grumman. Founding engineer at Relvino.</p>
       </div>
       <div class="card center">
         <img src="img/steve-hong.jpeg" class="avatar" style="margin-bottom:16px">
         <p style="font-size:16px;font-weight:600;margin-bottom:4px">Steve Hong</p>
         <p style="font-size:12px;color:var(--gray-500);margin-bottom:12px">Founding Member</p>
-        <p style="font-size:13px;color:var(--gray-600)">Cambridge MPhil (Machine Learning). Quant Trader at DV Trading. Ex-J.P. Morgan (Data Science). ICML-published researcher — graph generation with next-scale prediction, advised by Petar Velickovic (Google DeepMind). 2 NeurIPS papers on influence functions & multi-scale AR models. UCL First-Class Honours, Best Dissertation Award.</p>
+        <p style="font-size:14px;color:var(--gray-600)">Cambridge MPhil (Machine Learning). Quant Trader at DV Trading. Ex-J.P. Morgan (Data Science). ICML-published researcher — graph generation with next-scale prediction, advised by Petar Velickovic (Google DeepMind). 2 NeurIPS papers on influence functions & multi-scale AR models. UCL First-Class Honours, Best Dissertation Award.</p>
       </div>
       <div class="card center">
         <img src="img/hoang-tan.jpeg" class="avatar" style="margin-bottom:16px">
         <p style="font-size:16px;font-weight:600;margin-bottom:4px">Hoang Trong Tan</p>
         <p style="font-size:12px;color:var(--gray-500);margin-bottom:12px">Founding Member</p>
-        <p style="font-size:13px;color:var(--gray-600)">Production Engineer at Meta — AI/HPC infrastructure, NCCL, CUDA, RDMA across Ads, Recommendation & GenAI workloads supporting ~50K daily jobs. Ex-TikTok & Polybee. NUS Computer Engineering, First-Class Honours. Built compilers, time-series engines & drone navigation systems.</p>
+        <p style="font-size:14px;color:var(--gray-600)">Production Engineer at Meta — AI/HPC infrastructure, NCCL, CUDA, RDMA across Ads, Recommendation & GenAI workloads supporting ~50K daily jobs. Ex-TikTok & Polybee. NUS Computer Engineering, First-Class Honours. Built compilers, time-series engines & drone navigation systems.</p>
       </div>
     </div>
     
@@ -922,18 +1055,18 @@
         <img src="img/lawrence-lou.jpeg" class="avatar-sm">
         <div>
           <p style="font-size:15px;font-weight:600">Lawrence Lou</p>
-          <p style="font-size:12px;color:var(--gray-500)">Llama Venture. Early OpenAI, Anthropic, xAI investor.</p>
+          <p style="font-size:12px;color:var(--gray-500)">Llama Venture. Early OpenAI, Anthropic, xAI investor. Ex-PM Lead at Airbnb (AI Agent). Ex-Senior PM Manager Lead at Microsoft (5 yrs).</p>
         </div>
       </div>
     </div>
   </div>
-  <div class="slide-num">14</div>
+  <div class="slide-num">15</div>
 </section>
 
 <!-- ============================================== -->
-<!-- SLIDE 15: VISION -->
+<!-- SLIDE 16: VISION -->
 <!-- ============================================== -->
-<section class="slide" id="s15">
+<section class="slide" id="s16">
   <div class="inner center">
     <p class="eyebrow">Vision</p>
     <h2 class="mb-64">The evolution of AI in the human world.</h2>
@@ -976,13 +1109,13 @@
       </div>
     </div>
   </div>
-  <div class="slide-num">15</div>
+  <div class="slide-num">16</div>
 </section>
 
 <!-- ============================================== -->
-<!-- SLIDE 16: THE ASK -->
+<!-- SLIDE 17: THE ASK -->
 <!-- ============================================== -->
-<section class="slide white" id="s16">
+<section class="slide white" id="s17">
   <div class="inner center">
     <p class="eyebrow">The ask</p>
     <h2 class="mb-16" style="color:var(--black)">$10M seed.</h2>
@@ -991,37 +1124,37 @@
     <div class="grid grid-4 gap-16 mb-32">
       <div class="card center">
         <p style="font-size:11px;font-weight:600;letter-spacing:0.05em;color:var(--blue);margin-bottom:8px">RESEARCH 35%</p>
-        <p style="font-size:13px;color:var(--gray-600)">GPU, training, fine-tuning</p>
+        <p style="font-size:14px;color:var(--gray-600)">GPU, training, fine-tuning</p>
       </div>
       <div class="card center">
         <p style="font-size:11px;font-weight:600;letter-spacing:0.05em;color:var(--green);margin-bottom:8px">TEAM 30%</p>
-        <p style="font-size:13px;color:var(--gray-600)">Engineers and researchers</p>
+        <p style="font-size:14px;color:var(--gray-600)">Engineers and researchers</p>
       </div>
       <div class="card center">
         <p style="font-size:11px;font-weight:600;letter-spacing:0.05em;color:var(--black);margin-bottom:8px">HIRING 15%</p>
-        <p style="font-size:13px;color:var(--gray-600)">Scale to 25-30 people</p>
+        <p style="font-size:14px;color:var(--gray-600)">Scale to 25-30 people</p>
       </div>
       <div class="card center">
         <p style="font-size:11px;font-weight:600;letter-spacing:0.05em;color:#f59e0b;margin-bottom:8px">OPS 20%</p>
-        <p style="font-size:13px;color:var(--gray-600)">Legal, SOC 2, GTM</p>
+        <p style="font-size:14px;color:var(--gray-600)">Legal, SOC 2, GTM</p>
       </div>
     </div>
     
     
-    <p style="margin-top:32px;font-size:13px;color:var(--gray-400)">Wilson Sonsini · Delaware C-Corp · Palo Alto, CA</p>
+    <p style="margin-top:32px;font-size:14px;color:var(--gray-400)">Wilson Sonsini · Delaware C-Corp · Palo Alto, CA</p>
   </div>
-  <div class="slide-num">16</div>
+  <div class="slide-num">17</div>
 </section>
 
 <!-- ============================================== -->
-<!-- SLIDE 17: CLOSE -->
+<!-- SLIDE 18: CLOSE -->
 <!-- ============================================== -->
-<section class="slide" id="s17">
+<section class="slide" id="s18">
   <div class="inner center">
     <img src="Untitled design-4_compressed.png" alt="Orion" style="width:72px;height:72px;margin-bottom:40px;opacity:0.8">
     <h1>The world will have AI beings.</h1>
     <p class="lead mt-24" style="opacity:0.5">We're building the Apple for that world.</p>
-    
+
     <div style="margin-top:80px;display:flex;gap:64px;justify-content:center;font-size:15px">
       <div>
         <p style="font-size:11px;opacity:0.3;margin-bottom:6px">Lab</p>
@@ -1036,10 +1169,10 @@
         <p style="font-weight:600">khoi@zinley.com</p>
       </div>
     </div>
-    
+
     <p style="margin-top:64px;font-size:11px;opacity:0.15">Zinley Corporation · Palo Alto, CA</p>
   </div>
-  <div class="slide-num">17</div>
+  <div class="slide-num">18</div>
 </section>
 
 <script>
@@ -1072,6 +1205,57 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.5 });
 slides.forEach(s => observer.observe(s));
+
+// Email Gate
+(function() {
+  const gate = document.getElementById('email-gate');
+  if (localStorage.getItem('orion_deck_email')) {
+    gate.classList.add('hidden');
+    return;
+  }
+  document.documentElement.style.overflow = 'hidden';
+  const input = document.getElementById('gate-email');
+  const btn = document.getElementById('gate-btn');
+  const err = document.getElementById('gate-error');
+
+  function validateEmail(email) {
+    const trimmed = email.trim();
+    const at = trimmed.indexOf('@');
+    const dot = trimmed.lastIndexOf('.');
+    return at > 0 && dot > at + 1 && dot < trimmed.length - 1;
+  }
+
+  function submit() {
+    const email = input.value.trim();
+    if (!validateEmail(email)) {
+      input.classList.add('error');
+      err.classList.add('show');
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Please wait...';
+    fetch('https://snowx.ai/api-beta/api/deck/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    }).catch(function() {}).finally(function() {
+      localStorage.setItem('orion_deck_email', email);
+      document.documentElement.style.overflow = '';
+      gate.classList.add('hidden');
+    });
+  }
+
+  input.addEventListener('input', function() {
+    input.classList.remove('error');
+    err.classList.remove('show');
+  });
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') submit();
+  });
+
+  btn.addEventListener('click', submit);
+})();
 </script>
 </body>
 </html>
