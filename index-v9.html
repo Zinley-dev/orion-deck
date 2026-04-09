@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -361,7 +361,162 @@
     .gate-btn:hover { opacity: 0.9; }
     .gate-btn:active { transform: scale(0.98); }
     .gate-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* Source links */
+    .source-link { color: rgba(255,255,255,0.35); text-decoration: none; }
+    .source-link:hover { color: rgba(255,255,255,0.6); }
+
+    /* ===== THEME SYSTEM ===== */
+    .theme-toggle {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 10001;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(128,128,128,0.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+    .theme-toggle:hover { background: rgba(128,128,128,0.3); }
+    [data-theme="dark"] .theme-toggle::after { content: '🔆'; font-size: 24px; }
+    [data-theme="light"] .theme-toggle::after { content: '\263E'; font-size: 24px; color: #0a0a0a; }
+
+    /* Slide dividers */
+    .slide + .slide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 8%;
+      right: 8%;
+      height: 3px;
+    }
+    [data-theme="dark"] .slide + .slide::before { background: #ffffff; }
+    [data-theme="light"] .slide + .slide::before { background: #0a0a0a; }
+
+    /* === DARK MODE: unify white/light slides to dark === */
+    [data-theme="dark"] .slide.white,
+    [data-theme="dark"] .slide.light {
+      background: #0a0a0a !important;
+      color: #ffffff !important;
+    }
+    [data-theme="dark"] .slide.white .card,
+    [data-theme="dark"] .slide.light .card {
+      background: rgba(255,255,255,0.03) !important;
+      border-color: rgba(255,255,255,0.06) !important;
+    }
+    [data-theme="dark"] .slide.white .img-container,
+    [data-theme="dark"] .slide.light .img-container {
+      background: #27272a !important;
+    }
+    [data-theme="dark"] .slide.white a.link,
+    [data-theme="dark"] .slide.light a.link {
+      color: #6ea8fe !important;
+    }
+    [data-theme="dark"] .slide.white audio,
+    [data-theme="dark"] .slide.light audio {
+      filter: invert(1);
+    }
+    /* Remap gray variables inside white/light slides for dark mode */
+    [data-theme="dark"] .slide.white,
+    [data-theme="dark"] .slide.light {
+      --black: #ffffff;
+      --gray-800: #d4d4d8;
+      --gray-700: #a1a1aa;
+      --gray-600: #a1a1aa;
+      --gray-500: #a1a1aa;
+      --gray-400: #a1a1aa;
+      --gray-200: rgba(255,255,255,0.08);
+      --gray-100: rgba(255,255,255,0.06);
+      --gray-50: rgba(255,255,255,0.04);
+    }
+
+    /* === LIGHT MODE === */
+    /* Consolidate to 2 grays: black #0a0a0a, medium #52525b */
+    [data-theme="light"] :root {
+      --gray-800: #0a0a0a;
+      --gray-700: #0a0a0a;
+      --gray-600: #52525b;
+      --gray-500: #52525b;
+      --gray-400: #52525b;
+    }
+    [data-theme="light"] body { background: #ffffff; }
+    [data-theme="light"] .slide {
+      background: #ffffff !important;
+      color: #0a0a0a !important;
+    }
+    [data-theme="light"] .slide .card {
+      background: #f7f7f5 !important;
+      border: 1px solid #e4e4e7 !important;
+    }
+    [data-theme="light"] .slide h1,
+    [data-theme="light"] .slide h2,
+    [data-theme="light"] .slide h3 {
+      color: #0a0a0a !important;
+    }
+    [data-theme="light"] .slide .lead {
+      color: #52525b !important;
+      opacity: 1 !important;
+    }
+    [data-theme="light"] .slide .body-lg {
+      color: #52525b !important;
+      opacity: 1 !important;
+    }
+    [data-theme="light"] .slide .eyebrow {
+      color: #52525b !important;
+      opacity: 0.8 !important;
+    }
+    /* Remove inline opacity in light mode so text stays readable */
+    [data-theme="light"] .slide p,
+    [data-theme="light"] .slide div,
+    [data-theme="light"] .slide span {
+      opacity: unset !important;
+    }
+    [data-theme="light"] .slide .research-label { opacity: 0.6 !important; }
+    [data-theme="light"] .slide .stat-value { color: #0a0a0a !important; }
+    [data-theme="light"] .slide .stat-label { color: #52525b !important; opacity: 1 !important; }
+    [data-theme="light"] .slide-num { color: #52525b !important; opacity: 0.7 !important; }
+    [data-theme="dark"] .slide-num { color: #ffffff !important; opacity: 0.5 !important; }
+    [data-theme="dark"] .nav a { background: rgba(255,255,255,0.2) !important; }
+    [data-theme="dark"] .nav a.active { background: #ffffff !important; }
+    [data-theme="light"] .nav a { background: rgba(0,0,0,0.15) !important; }
+    [data-theme="light"] .nav a.active { background: #0a0a0a !important; }
+    [data-theme="light"] .slide .img-container { background: #f4f4f5 !important; }
+    [data-theme="light"] .research-row { border-bottom-color: #e4e4e7 !important; }
+    [data-theme="light"] .research-solution { border-left-color: #e4e4e7 !important; }
+    [data-theme="light"] .research-section { border-top-color: #e4e4e7 !important; }
+    [data-theme="light"] .research-title { color: #0a0a0a !important; }
+    [data-theme="light"] .research-desc { color: #52525b !important; }
+    [data-theme="light"] .slide .quote { color: #0a0a0a !important; }
+    [data-theme="light"] .slide a.link { color: #1d4ed8 !important; opacity: 1 !important; font-weight: 700 !important; }
+    [data-theme="light"] .source-link { color: #2563eb !important; font-weight: 700 !important; }
+    [data-theme="light"] .source-link:hover { color: #1d4ed8 !important; }
+    [data-theme="light"] .arch-diagram { background: #fafafa !important; border-color: #e4e4e7 !important; }
+    [data-theme="light"] .arch-device { background: #ffffff !important; border-color: #e4e4e7 !important; }
+    [data-theme="light"] .arch-tool { background: #f4f4f5 !important; border-color: #e4e4e7 !important; color: #52525b !important; }
+    [data-theme="light"] .landscape-table { border-color: #e4e4e7 !important; }
+    [data-theme="light"] .landscape-row { border-bottom-color: #e4e4e7 !important; }
+    [data-theme="light"] .landscape-table [style*="color:var(--red)"] { color: var(--red) !important; }
+    [data-theme="light"] #email-gate { background: #ffffff !important; }
+    [data-theme="light"] .gate-title,
+    [data-theme="light"] .gate-logo { color: #0a0a0a !important; }
+    [data-theme="light"] .gate-sub { color: #52525b !important; }
+    [data-theme="light"] .gate-input {
+      background: #f4f4f5 !important;
+      border-color: #e4e4e7 !important;
+      color: #0a0a0a !important;
+    }
+    [data-theme="light"] .gate-input::placeholder { color: #52525b !important; }
+    [data-theme="light"] .gate-btn { background: #0a0a0a !important; color: #ffffff !important; }
   </style>
+  <script>(function(){var t=localStorage.getItem('orion_deck_theme');if(t)document.documentElement.setAttribute('data-theme',t)})();</script>
 </head>
 <body>
 
@@ -378,6 +533,7 @@
     <button class="gate-btn" id="gate-btn">Continue</button>
   </div>
 </div>
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"></button>
 <nav class="nav" id="nav"></nav>
 
 <!-- ============================================== -->
@@ -388,17 +544,17 @@
   <div class="inner center">
     <h1 class="mb-32" style="color:var(--black)">Every AI agent is an island.</h1>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px;margin:0 auto">
-      <div style="padding:24px;background:var(--white);border:1px solid var(--gray-200);border-radius:16px;text-align:center">
+      <div class="card" style="padding:24px;background:var(--white);border:1px solid var(--gray-200);border-radius:16px;text-align:center">
         <div style="font-size:40px;margin-bottom:12px">&#128187;</div>
         <p style="font-size:18px;font-weight:600;margin-bottom:6px;color:var(--gray-700)">One device</p>
         <p style="font-size:14px;color:var(--gray-500)">Your laptop agent has no idea what's on your phone.</p>
       </div>
-      <div style="padding:24px;background:var(--white);border:1px solid var(--gray-200);border-radius:16px;text-align:center">
+      <div class="card" style="padding:24px;background:var(--white);border:1px solid var(--gray-200);border-radius:16px;text-align:center">
         <div style="font-size:40px;margin-bottom:12px">&#128683;</div>
         <p style="font-size:18px;font-weight:600;margin-bottom:6px;color:var(--gray-700)">One session</p>
         <p style="font-size:14px;color:var(--gray-500)">Close the tab, everything is gone.</p>
       </div>
-      <div style="padding:24px;background:var(--white);border:1px solid var(--gray-200);border-radius:16px;text-align:center">
+      <div class="card" style="padding:24px;background:var(--white);border:1px solid var(--gray-200);border-radius:16px;text-align:center">
         <div style="font-size:40px;margin-bottom:12px">&#128272;</div>
         <p style="font-size:18px;font-weight:600;margin-bottom:6px;color:var(--gray-700)">Built for one</p>
         <p style="font-size:14px;color:var(--gray-500)">Every framework is optimized for a single device. Better models don't change that.</p>
@@ -495,11 +651,11 @@
         </div>
 
         <!-- Chi Wang -->
-        <div style="padding:16px 20px;background:var(--white);border:1px solid var(--gray-200);border-radius:12px;display:flex;align-items:center;gap:16px">
+        <div class="card" style="padding:16px 20px;border-radius:12px;display:flex;align-items:center;gap:16px">
           <img src="img/chi-wang.jpeg" alt="Chi Wang" class="avatar" style="width:52px;height:52px">
           <div>
-            <p style="font-size:14px;font-weight:500;font-style:italic;color:var(--gray-800);line-height:1.4">"Orion attended a Google Meet for me. Asked follow-ups, took notes, sent the summary. I never joined."</p>
-            <p style="font-size:11px;color:var(--gray-500);margin-top:4px"><strong>Chi Wang</strong> &mdash; Creator of AutoGen, Google DeepMind <a href="https://x.com/Chi_Wang_/status/2019484565631561919" target="_blank" class="link" style="font-size:11px">View &rarr;</a></p>
+            <p style="font-size:14px;font-weight:500;font-style:italic;line-height:1.4">"Orion attended a Google Meet for me. Asked follow-ups, took notes, sent the summary. I never joined."</p>
+            <p style="font-size:11px;color:#71717a;margin-top:4px"><strong>Chi Wang</strong> &mdash; Creator of AutoGen, Google DeepMind <a href="https://x.com/Chi_Wang_/status/2019484565631561919" target="_blank" class="link" style="font-size:11px;color:#3b82f6">View &rarr;</a></p>
           </div>
         </div>
       </div>
@@ -519,7 +675,7 @@
     <div class="grid grid-2 gap-32" style="align-items:start">
       <!-- Left: architecture visual -->
       <div>
-        <div style="position:relative;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:32px 24px">
+        <div class="arch-diagram" style="position:relative;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:32px 24px">
           <!-- Center hub -->
           <div style="text-align:center;margin-bottom:24px">
             <div style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,rgba(34,197,94,0.25),rgba(34,197,94,0.05));border:2px solid var(--green)">
@@ -529,31 +685,31 @@
           </div>
           <!-- Devices: Orion system agent → tool agents -->
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-            <div style="padding:14px 8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px">
+            <div class="arch-device" style="padding:14px 8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px">
               <div style="text-align:center;font-size:22px;margin-bottom:4px">&#128187;</div>
               <p style="text-align:center;font-size:11px;font-weight:700;color:var(--green);margin-bottom:6px">Orion &middot; Desktop</p>
               <div style="display:flex;flex-direction:column;gap:3px">
-                <div style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Screen tool</div>
-                <div style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Browser tool</div>
-                <div style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">File tool</div>
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Screen tool</div>
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Browser tool</div>
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">File tool</div>
               </div>
             </div>
-            <div style="padding:14px 8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px">
+            <div class="arch-device" style="padding:14px 8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px">
               <div style="text-align:center;font-size:22px;margin-bottom:4px">&#128241;</div>
               <p style="text-align:center;font-size:11px;font-weight:700;color:var(--green);margin-bottom:6px">Orion &middot; Phone</p>
               <div style="display:flex;flex-direction:column;gap:3px">
-                <div style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Voice tool</div>
-                <div style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">SMS tool</div>
-                <div style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Calendar tool</div>
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Voice tool</div>
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">SMS tool</div>
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Calendar tool</div>
               </div>
             </div>
-            <div style="padding:14px 8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px">
+            <div class="arch-device" style="padding:14px 8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px">
               <div style="text-align:center;font-size:22px;margin-bottom:4px">&#128268;</div>
               <p style="text-align:center;font-size:11px;font-weight:700;color:var(--green);margin-bottom:6px">Orion &middot; Home</p>
               <div style="display:flex;flex-direction:column;gap:3px">
-                <div style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Climate tool</div>
-                <div style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Security tool</div>
-                <div style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Lighting tool</div>
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Climate tool</div>
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Security tool</div>
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Lighting tool</div>
               </div>
             </div>
           </div>
@@ -614,60 +770,60 @@
     <p class="eyebrow">The landscape</p>
     <h2 class="mb-48">Everyone builds tools.<br>We build the ecosystem.</h2>
 
-    <div style="border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden">
+    <div class="landscape-table" style="border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden">
       <!-- Header -->
-      <div style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.08)">
+      <div class="landscape-row" style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.08)">
         <div style="padding:20px"></div>
-        <div style="padding:20px;text-align:center;opacity:0.5;font-size:14px;font-weight:600">OpenClaw</div>
-        <div style="padding:20px;text-align:center;opacity:0.5;font-size:14px;font-weight:600">Genspark Claw</div>
-        <div style="padding:20px;text-align:center;opacity:0.5;font-size:14px;font-weight:600">Claude Cowork</div>
-        <div style="padding:20px;text-align:center;opacity:0.5;font-size:14px;font-weight:600">Perplexity Computer</div>
+        <div style="padding:20px;text-align:center;opacity:0.7;font-size:14px;font-weight:600">OpenClaw</div>
+        <div style="padding:20px;text-align:center;opacity:0.7;font-size:14px;font-weight:600">Genspark Claw</div>
+        <div style="padding:20px;text-align:center;opacity:0.7;font-size:14px;font-weight:600">Claude Cowork</div>
+        <div style="padding:20px;text-align:center;opacity:0.7;font-size:14px;font-weight:600">Perplexity Computer</div>
         <div style="padding:20px;text-align:center;font-size:14px;font-weight:600;color:var(--green)">Orion</div>
       </div>
       <!-- Architecture -->
-      <div style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div style="padding:14px 20px;font-size:14px;opacity:0.4">Architecture</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.4">Central gateway</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.4">One cloud VM</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.4">Cloud brain, local body</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.4">Cloud orchestrator</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green);font-weight:500">Interconnected personal agents, encrypted mesh</div>
+      <div class="landscape-row" style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
+        <div style="padding:14px 20px;font-size:14px;opacity:0.7;font-weight:600">Architecture</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Central gateway</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">One cloud VM</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Cloud brain, local body</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Cloud orchestrator</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green);font-weight:500;opacity:0.85">Interconnected personal agents, encrypted mesh</div>
       </div>
       <!-- Multi-device -->
-      <div style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div style="padding:14px 20px;font-size:14px;opacity:0.4">Multi-device</div>
-        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.3">&times;</div>
-        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.3">&times;</div>
-        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.3">&times;</div>
-        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.3">&times;</div>
-        <div style="padding:14px 20px;text-align:center;font-size:20px;color:var(--green)">&check;</div>
+      <div class="landscape-row" style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
+        <div style="padding:14px 20px;font-size:14px;opacity:0.7;font-weight:600">Multi-device</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;color:var(--green);opacity:0.85">&check;</div>
       </div>
       <!-- Without internet -->
-      <div style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div style="padding:14px 20px;font-size:14px;opacity:0.4">Works without internet</div>
-        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.3">&times;</div>
-        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.3">&times;</div>
-        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.3">&times;</div>
-        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.3">&times;</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green);font-weight:500">Call or SMS</div>
+      <div class="landscape-row" style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
+        <div style="padding:14px 20px;font-size:14px;opacity:0.7;font-weight:600">Works without internet</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green);font-weight:500;opacity:0.85">Call or SMS</div>
       </div>
       <!-- Zero config -->
-      <div style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div style="padding:14px 20px;font-size:14px;opacity:0.4">Zero config</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.3">Requires DevOps</div>
+      <div class="landscape-row" style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
+        <div style="padding:14px 20px;font-size:14px;opacity:0.7;font-weight:600">Zero config</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Requires DevOps</div>
         <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Yes</div>
         <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Needs connectors</div>
         <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Hardware setup</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green);font-weight:500">Yes</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green);font-weight:500;opacity:0.85">Yes</div>
       </div>
       <!-- Security -->
-      <div style="display:grid;grid-template-columns:180px repeat(5,1fr)">
-        <div style="padding:14px 20px;font-size:14px;opacity:0.4">Security</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.3;color:var(--red)">166 advisories, 820+ malicious</div>
+      <div class="landscape-row" style="display:grid;grid-template-columns:180px repeat(5,1fr)">
+        <div style="padding:14px 20px;font-size:14px;opacity:0.7;font-weight:600">Security</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5;color:var(--red)">166 advisories, 820+ malicious</div>
         <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Cloud isolation</div>
         <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Sandboxed VM</div>
         <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Firecracker, SOC 2</div>
-        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green);font-weight:500">E2E encrypted</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green);font-weight:500;opacity:0.85">E2E encrypted</div>
       </div>
     </div>
   </div>
@@ -1192,6 +1348,17 @@ slides.forEach(s => observer.observe(s));
   });
 
   btn.addEventListener('click', submit);
+})();
+
+// Theme toggle
+(function() {
+  var toggle = document.getElementById('theme-toggle');
+  toggle.addEventListener('click', function() {
+    var current = document.documentElement.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('orion_deck_theme', next);
+  });
 })();
 </script>
 </body>
