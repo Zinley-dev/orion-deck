@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zinley - Orion - Deck</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --gray-50: #fafafa;
+      --gray-100: #f4f4f5;
+      --gray-200: #e4e4e7;
+      --gray-400: #a1a1aa;
+      --gray-500: #71717a;
+      --gray-600: #52525b;
+      --gray-700: #3f3f46;
+      --gray-800: #27272a;
+      --green: #22c55e;
+      --red: #ef4444;
+      --blue: #3b82f6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    /* Slides */
+    .slide {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 120px;
+      position: relative;
+    }
+    .slide.white { background: var(--white); color: var(--black); }
+    .slide.light { background: var(--gray-50); color: var(--black); }
+
+    .inner { max-width: 1200px; width: 100%; }
+
+    /* Typography */
+    .eyebrow {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.4;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: 76px;
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    h2 {
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    h3 {
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    .lead {
+      font-size: 26px;
+      line-height: 1.5;
+      font-weight: 400;
+      opacity: 0.7;
+    }
+    .body-lg {
+      font-size: 20px;
+      line-height: 1.6;
+      opacity: 0.7;
+    }
+
+    /* Layout */
+    .center { text-align: center; }
+    .max-w-lg { max-width: 720px; }
+    .max-w-md { max-width: 560px; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .mt-16 { margin-top: 16px; }
+    .mt-24 { margin-top: 24px; }
+    .mt-32 { margin-top: 32px; }
+    .mt-48 { margin-top: 48px; }
+    .mt-64 { margin-top: 64px; }
+    .mb-8 { margin-bottom: 8px; }
+    .mb-16 { margin-bottom: 16px; }
+    .mb-24 { margin-bottom: 24px; }
+    .mb-32 { margin-bottom: 32px; }
+    .mb-48 { margin-bottom: 48px; }
+
+    /* Grid */
+    .grid { display: grid; gap: 24px; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-5 { grid-template-columns: repeat(5, 1fr); }
+    .gap-16 { gap: 16px; }
+    .gap-32 { gap: 32px; }
+    .gap-48 { gap: 48px; }
+
+    /* Cards */
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 32px;
+    }
+    .slide.white .card, .slide.light .card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+    }
+
+    /* Stats */
+    .stat-value {
+      font-size: 60px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 16px;
+      opacity: 0.5;
+      margin-top: 8px;
+    }
+
+    /* Avatar */
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .avatar-sm { width: 48px; height: 48px; }
+    .avatar-lg { width: 80px; height: 80px; }
+
+    /* Tags */
+    .tag {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .tag-green { background: rgba(34,197,94,0.15); color: var(--green); }
+    .tag-red { background: rgba(239,68,68,0.15); color: var(--red); }
+
+    /* Links */
+    a.link {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a.link:hover { text-decoration: underline; }
+    .slide.white a.link, .slide.light a.link { color: var(--blue); }
+
+    /* Audio */
+    audio { width: 100%; height: 40px; border-radius: 20px; }
+
+    /* Image container */
+    .img-container {
+      background: var(--gray-800);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .img-container img { width: 100%; display: block; }
+    .slide.white .img-container, .slide.light .img-container {
+      background: var(--gray-100);
+    }
+
+    /* Slide number */
+    .slide-num {
+      position: absolute;
+      bottom: 32px;
+      right: 48px;
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0.2;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .nav a {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: block;
+      transition: all 0.2s;
+    }
+    .nav a.active {
+      background: var(--white);
+      transform: scale(1.25);
+    }
+
+    /* Research row */
+    .research-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .research-row:last-child { border-bottom: none; }
+    .research-problem {
+      padding: 28px 28px 28px 0;
+    }
+    .research-solution {
+      padding: 28px;
+      border-left: 1px solid rgba(255,255,255,0.08);
+    }
+    .research-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .research-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .research-desc {
+      font-size: 14px;
+      opacity: 0.6;
+      line-height: 1.5;
+    }
+
+    /* Quote */
+    .quote {
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 1.4;
+      font-style: italic;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .slide { padding: 60px 40px; }
+      h1 { font-size: 52px; }
+      h2 { font-size: 40px; }
+      h3 { font-size: 28px; }
+      .lead { font-size: 22px; }
+      .stat-value { font-size: 44px; }
+      .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+      .research-row { grid-template-columns: 1fr; }
+      .research-solution { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); }
+    }
+
+    /* Email Gate */
+    #email-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #email-gate.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .gate-card {
+      text-align: center;
+      max-width: 420px;
+      width: 100%;
+      padding: 0 24px;
+    }
+    .gate-logo {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.35;
+      margin-bottom: 48px;
+    }
+    .gate-title {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .gate-sub {
+      font-size: 15px;
+      color: var(--gray-500);
+      margin-bottom: 40px;
+    }
+    .gate-input-wrap {
+      position: relative;
+      margin-bottom: 16px;
+    }
+    .gate-input {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .gate-input::placeholder { color: var(--gray-600); }
+    .gate-input:focus {
+      border-color: rgba(255,255,255,0.25);
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.04);
+    }
+    .gate-input.error {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+    }
+    .gate-error {
+      font-size: 13px;
+      color: var(--red);
+      margin-top: 8px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .gate-error.show { opacity: 1; }
+    .gate-btn {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.1s ease;
+      margin-top: 8px;
+    }
+    .gate-btn:hover { opacity: 0.9; }
+    .gate-btn:active { transform: scale(0.98); }
+    .gate-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* Source links */
+    .source-link { color: rgba(255,255,255,0.35); text-decoration: none; }
+    .source-link:hover { color: rgba(255,255,255,0.6); }
+
+    /* ===== THEME SYSTEM ===== */
+    .theme-toggle {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 10001;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(128,128,128,0.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+    .theme-toggle:hover { background: rgba(128,128,128,0.3); }
+    [data-theme="dark"] .theme-toggle::after { content: '🔆'; font-size: 24px; }
+    [data-theme="light"] .theme-toggle::after { content: '\263E'; font-size: 24px; color: #0a0a0a; }
+
+    /* Slide dividers */
+    .slide + .slide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 8%;
+      right: 8%;
+      height: 3px;
+    }
+    [data-theme="dark"] .slide + .slide::before { background: #ffffff; }
+    [data-theme="light"] .slide + .slide::before { background: #0a0a0a; }
+
+    /* === DARK MODE: unify white/light slides to dark === */
+    [data-theme="dark"] .slide.white,
+    [data-theme="dark"] .slide.light {
+      background: #0a0a0a !important;
+      color: #ffffff !important;
+    }
+    [data-theme="dark"] .slide.white .card,
+    [data-theme="dark"] .slide.light .card {
+      background: rgba(255,255,255,0.03) !important;
+      border-color: rgba(255,255,255,0.06) !important;
+    }
+    [data-theme="dark"] .slide.white .img-container,
+    [data-theme="dark"] .slide.light .img-container {
+      background: #27272a !important;
+    }
+    [data-theme="dark"] .slide.white a.link,
+    [data-theme="dark"] .slide.light a.link {
+      color: #6ea8fe !important;
+    }
+    [data-theme="dark"] .slide.white audio,
+    [data-theme="dark"] .slide.light audio {
+      filter: invert(1);
+    }
+    /* Remap gray variables inside white/light slides for dark mode */
+    [data-theme="dark"] .slide.white,
+    [data-theme="dark"] .slide.light {
+      --black: #ffffff;
+      --gray-800: #d4d4d8;
+      --gray-700: #a1a1aa;
+      --gray-600: #a1a1aa;
+      --gray-500: #a1a1aa;
+      --gray-400: #a1a1aa;
+      --gray-200: rgba(255,255,255,0.08);
+      --gray-100: rgba(255,255,255,0.06);
+      --gray-50: rgba(255,255,255,0.04);
+    }
+
+    /* === LIGHT MODE === */
+    /* Consolidate to 2 grays: black #0a0a0a, medium #52525b */
+    [data-theme="light"] :root {
+      --gray-800: #0a0a0a;
+      --gray-700: #0a0a0a;
+      --gray-600: #52525b;
+      --gray-500: #52525b;
+      --gray-400: #52525b;
+    }
+    [data-theme="light"] body { background: #ffffff; }
+    [data-theme="light"] .slide {
+      background: #ffffff !important;
+      color: #0a0a0a !important;
+    }
+    [data-theme="light"] .slide .card {
+      background: #f7f7f5 !important;
+      border: 1px solid #e4e4e7 !important;
+    }
+    [data-theme="light"] .slide h1,
+    [data-theme="light"] .slide h2,
+    [data-theme="light"] .slide h3 {
+      color: #0a0a0a !important;
+    }
+    [data-theme="light"] .slide .lead {
+      color: #52525b !important;
+      opacity: 1 !important;
+    }
+    [data-theme="light"] .slide .body-lg {
+      color: #52525b !important;
+      opacity: 1 !important;
+    }
+    [data-theme="light"] .slide .eyebrow {
+      color: #52525b !important;
+      opacity: 0.8 !important;
+    }
+    /* Remove inline opacity in light mode so text stays readable */
+    [data-theme="light"] .slide p,
+    [data-theme="light"] .slide div,
+    [data-theme="light"] .slide span {
+      opacity: unset !important;
+    }
+    [data-theme="light"] .slide .research-label { opacity: 0.6 !important; }
+    [data-theme="light"] .slide .stat-value { color: #0a0a0a !important; }
+    [data-theme="light"] .slide .stat-label { color: #52525b !important; opacity: 1 !important; }
+    [data-theme="light"] .slide-num { color: #52525b !important; opacity: 0.7 !important; }
+    [data-theme="dark"] .slide-num { color: #ffffff !important; opacity: 0.5 !important; }
+    [data-theme="dark"] .nav a { background: rgba(255,255,255,0.2) !important; }
+    [data-theme="dark"] .nav a.active { background: #ffffff !important; }
+    [data-theme="light"] .nav a { background: rgba(0,0,0,0.15) !important; }
+    [data-theme="light"] .nav a.active { background: #0a0a0a !important; }
+    [data-theme="light"] .slide .img-container { background: #f4f4f5 !important; }
+    [data-theme="light"] .research-row { border-bottom-color: #e4e4e7 !important; }
+    [data-theme="light"] .research-solution { border-left-color: #e4e4e7 !important; }
+    [data-theme="light"] .research-section { border-top-color: #e4e4e7 !important; }
+    [data-theme="light"] .research-title { color: #0a0a0a !important; }
+    [data-theme="light"] .research-desc { color: #52525b !important; }
+    [data-theme="light"] .slide .quote { color: #0a0a0a !important; }
+    [data-theme="light"] .slide a.link { color: #1d4ed8 !important; opacity: 1 !important; font-weight: 700 !important; }
+    [data-theme="light"] .source-link { color: #2563eb !important; font-weight: 700 !important; }
+    [data-theme="light"] .source-link:hover { color: #1d4ed8 !important; }
+    [data-theme="light"] .arch-diagram { background: #fafafa !important; border-color: #e4e4e7 !important; }
+    [data-theme="light"] .arch-device { background: #ffffff !important; border-color: #e4e4e7 !important; }
+    [data-theme="light"] .arch-tool { background: #f4f4f5 !important; border-color: #e4e4e7 !important; color: #52525b !important; }
+    [data-theme="light"] .landscape-table { border-color: #e4e4e7 !important; }
+    [data-theme="light"] .landscape-row { border-bottom-color: #e4e4e7 !important; }
+    [data-theme="light"] .landscape-table [style*="color:var(--red)"] { color: var(--red) !important; }
+    [data-theme="light"] #email-gate { background: #ffffff !important; }
+    [data-theme="light"] .gate-title,
+    [data-theme="light"] .gate-logo { color: #0a0a0a !important; }
+    [data-theme="light"] .gate-sub { color: #52525b !important; }
+    [data-theme="light"] .gate-input {
+      background: #f4f4f5 !important;
+      border-color: #e4e4e7 !important;
+      color: #0a0a0a !important;
+    }
+    [data-theme="light"] .gate-input::placeholder { color: #52525b !important; }
+    [data-theme="light"] .gate-btn { background: #0a0a0a !important; color: #ffffff !important; }
+  </style>
+  <script>(function(){var t=localStorage.getItem('orion_deck_theme');if(t)document.documentElement.setAttribute('data-theme',t)})();</script>
+</head>
+<body>
+
+<!-- Email Gate -->
+<div id="email-gate">
+  <div class="gate-card">
+    <div class="gate-logo">Zinley</div>
+    <div class="gate-title">Thanks for your interest in<br>the Orion deck.</div>
+    <div class="gate-sub">Enter your email to continue reading.</div>
+    <div class="gate-input-wrap">
+      <input class="gate-input" id="gate-email" type="email" placeholder="you@company.com" autocomplete="email" autofocus>
+      <div class="gate-error" id="gate-error">Please enter a valid email address.</div>
+    </div>
+    <button class="gate-btn" id="gate-btn">Continue</button>
+  </div>
+</div>
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"></button>
+<nav class="nav" id="nav"></nav>
+
+<!-- ============================================== -->
+<!-- SLIDE 1: THE PROBLEM -->
+<!-- ============================================== -->
+<section class="slide light" id="s1">
+  <div class="inner center">
+    <h1 class="mb-32" style="color:var(--black)">Your AI assistant is stuck in a chat window.</h1>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px;margin:0 auto">
+      <div class="card" style="padding:24px;background:var(--white);border:1px solid var(--gray-200);border-radius:16px;text-align:center">
+        <div style="font-size:40px;margin-bottom:12px">&#128172;</div>
+        <p style="font-size:18px;font-weight:600;margin-bottom:6px;color:var(--gray-700)">One app</p>
+        <p style="font-size:14px;color:var(--gray-500)">Your assistant lives in a chat window. It can't touch your real life.</p>
+      </div>
+      <div class="card" style="padding:24px;background:var(--white);border:1px solid var(--gray-200);border-radius:16px;text-align:center">
+        <div style="font-size:40px;margin-bottom:12px">&#128683;</div>
+        <p style="font-size:18px;font-weight:600;margin-bottom:6px;color:var(--gray-700)">One session</p>
+        <p style="font-size:14px;color:var(--gray-500)">Close the tab, it forgets everything about you.</p>
+      </div>
+      <div class="card" style="padding:24px;background:var(--white);border:1px solid var(--gray-200);border-radius:16px;text-align:center">
+        <div style="font-size:40px;margin-bottom:12px">&#128225;</div>
+        <p style="font-size:18px;font-weight:600;margin-bottom:6px;color:var(--gray-700)">No reach</p>
+        <p style="font-size:14px;color:var(--gray-500)">It can't make calls, control your devices, or act on your behalf without you clicking buttons.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">01</div>
+</section>
+
+<!-- SLIDE 2: THE SOLUTION -->
+<section class="slide" id="s2">
+  <div class="inner center">
+    <p class="eyebrow" style="opacity:0.3">Introducing</p>
+    <img src="Untitled design-4_compressed.png" alt="Orion" style="width:80px;height:80px;margin-bottom:24px">
+    <h1 class="mb-24">Orion.</h1>
+    <p class="lead mx-auto" style="max-width:700px;opacity:0.5">Your AI assistant &mdash; everywhere. One command, and Orion handles the rest across every device you own. It makes calls, controls your computer, manages your schedule, and coordinates your entire life.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px;max-width:1000px;margin-left:auto;margin-right:auto">
+      <div>
+        <div style="font-size:40px;margin-bottom:12px">&#9889;</div>
+        <p style="font-size:16px;font-weight:600;margin-bottom:6px">Zero setup</p>
+        <p style="font-size:14px;opacity:0.4">Download. Open. Done.</p>
+      </div>
+      <div>
+        <div style="font-size:40px;margin-bottom:12px">&#127758;</div>
+        <p style="font-size:16px;font-weight:600;margin-bottom:6px">Always with you</p>
+        <p style="font-size:14px;opacity:0.4">Laptop, phone, home. Orion is wherever you are.</p>
+      </div>
+      <div>
+        <div style="font-size:40px;margin-bottom:12px">&#128225;</div>
+        <p style="font-size:16px;font-weight:600;margin-bottom:6px">Always reachable</p>
+        <p style="font-size:14px;opacity:0.4">Call or text Orion, even without internet.</p>
+      </div>
+      <div>
+        <div style="font-size:40px;margin-bottom:12px">&#128279;</div>
+        <p style="font-size:16px;font-weight:600;margin-bottom:6px">One command, everything handled</p>
+        <p style="font-size:14px;opacity:0.4">Orion figures out the plan and executes across your life.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">02</div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 3: DEMOS + CHI WANG -->
+<!-- ============================================== -->
+<section class="slide light" id="s3">
+  <div class="inner">
+    <p class="eyebrow">See it working</p>
+    <h3 class="mb-32">See what your assistant can do.</h3>
+
+    <div class="grid grid-2 gap-32" style="align-items:start">
+      <!-- Left: hero video -->
+      <div>
+        <div style="border-radius:16px;overflow:hidden;border:1px solid var(--gray-200)">
+          <div style="padding:12px 16px;background:var(--white);display:flex;align-items:center;gap:10px">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite"></div>
+            <p style="font-size:11px;font-weight:600;letter-spacing:0.05em;color:var(--gray-500)">LIVE CROSS-DEVICE DEMO</p>
+          </div>
+          <video controls playsinline style="width:100%;display:block;background:var(--black)">
+            <source src="orion-remote-screen-demo.mov" type="video/quicktime">
+            <source src="orion-remote-screen-demo.mov" type="video/mp4">
+          </video>
+        </div>
+        <p style="font-size:12px;color:var(--gray-400);margin-top:8px">Orion working on a remote machine while you watch from another device.</p>
+        <style>@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}</style>
+      </div>
+
+      <!-- Right: voice demos + Chi Wang -->
+      <div>
+        <p style="font-size:11px;font-weight:600;letter-spacing:0.05em;color:var(--gray-400);margin-bottom:12px">ORION MAKING REAL PHONE CALLS</p>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px">
+          <div class="card" style="padding:16px 20px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+              <p style="font-size:13px;font-weight:600;color:var(--gray-700)">Books a restaurant</p>
+              <p style="font-size:11px;color:var(--gray-400)">No human involved</p>
+            </div>
+            <audio controls style="height:36px"><source src="orion-restaurant-demo.wav" type="audio/wav"></audio>
+          </div>
+          <div class="card" style="padding:16px 20px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+              <p style="font-size:13px;font-weight:600;color:var(--gray-700)">Calls a friend</p>
+              <p style="font-size:11px;color:var(--gray-400)">Invites them to dinner</p>
+            </div>
+            <audio controls style="height:36px"><source src="orion-hotpot-demo.wav" type="audio/wav"></audio>
+          </div>
+          <div class="card" style="padding:16px 20px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+              <p style="font-size:13px;font-weight:600;color:var(--gray-700)">Joins a Google Meet</p>
+              <p style="font-size:11px;color:var(--gray-400)">Takes notes, sends summary</p>
+            </div>
+            <audio controls style="height:36px"><source src="orion-self-awareness-demo.wav" type="audio/wav"></audio>
+          </div>
+        </div>
+
+        <!-- Chi Wang -->
+        <div class="card" style="padding:16px 20px;border-radius:12px;display:flex;align-items:center;gap:16px">
+          <img src="img/chi-wang.jpeg" alt="Chi Wang" class="avatar" style="width:52px;height:52px">
+          <div>
+            <p style="font-size:14px;font-weight:500;font-style:italic;line-height:1.4">"Orion attended a Google Meet for me. Asked follow-ups, took notes, sent the summary. I never joined."</p>
+            <p style="font-size:11px;color:#71717a;margin-top:4px"><strong>Chi Wang</strong> &mdash; Creator of AutoGen, Google DeepMind <a href="https://x.com/Chi_Wang_/status/2019484565631561919" target="_blank" class="link" style="font-size:11px;color:#3b82f6">View &rarr;</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">03</div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 4: HOW IT WORKS -->
+<!-- ============================================== -->
+<section class="slide" id="s4">
+  <div class="inner">
+    <p class="eyebrow" style="color:var(--green);opacity:0.8">How it works</p>
+    <h2 class="mb-16">One assistant. Every device.<br>One shared mind.</h2>
+    <p class="lead max-w-lg mb-48">Tell Orion what you need. It figures out the best plan, coordinates across your devices, and handles everything &mdash; simultaneously.</p>
+
+    <div class="grid grid-2 gap-32" style="align-items:start">
+      <!-- Left: architecture visual (how we deliver this) -->
+      <div>
+        <p style="font-size:11px;font-weight:600;letter-spacing:0.08em;opacity:0.3;margin-bottom:16px">HOW WE DELIVER THIS</p>
+        <div class="arch-diagram" style="position:relative;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:32px 24px">
+          <!-- Center hub -->
+          <div style="text-align:center;margin-bottom:24px">
+            <div style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,rgba(34,197,94,0.25),rgba(34,197,94,0.05));border:2px solid var(--green)">
+              <span style="font-size:22px">&#128279;</span>
+            </div>
+            <p style="font-size:12px;font-weight:600;color:var(--green);margin-top:8px">Encrypted Mesh</p>
+          </div>
+          <!-- Devices -->
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+            <div class="arch-device" style="padding:14px 8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px">
+              <div style="text-align:center;font-size:22px;margin-bottom:4px">&#128187;</div>
+              <p style="text-align:center;font-size:11px;font-weight:700;color:var(--green);margin-bottom:6px">Orion &middot; Desktop</p>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Screen</div>
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Browser</div>
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Files</div>
+              </div>
+            </div>
+            <div class="arch-device" style="padding:14px 8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px">
+              <div style="text-align:center;font-size:22px;margin-bottom:4px">&#128241;</div>
+              <p style="text-align:center;font-size:11px;font-weight:700;color:var(--green);margin-bottom:6px">Orion &middot; Phone</p>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Voice</div>
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">SMS</div>
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Calendar</div>
+              </div>
+            </div>
+            <div class="arch-device" style="padding:14px 8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px">
+              <div style="text-align:center;font-size:22px;margin-bottom:4px">&#128268;</div>
+              <p style="text-align:center;font-size:11px;font-weight:700;color:var(--green);margin-bottom:6px">Orion &middot; Home</p>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Climate</div>
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Security</div>
+                <div class="arch-tool" style="font-size:9px;padding:3px 6px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:5px;opacity:0.5">Lighting</div>
+              </div>
+            </div>
+          </div>
+          <div style="text-align:center;margin-top:12px">
+            <p style="font-size:9px;opacity:0.2;letter-spacing:0.1em">&#9588;&#9472;&#9472; ALL DEVICES SHARE ONE MIND &#9472;&#9472;&#9588;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: what this means for you -->
+      <div>
+        <p style="font-size:11px;font-weight:600;letter-spacing:0.08em;opacity:0.3;margin-bottom:16px">WHAT THIS MEANS FOR YOU</p>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+              <div style="width:28px;height:28px;border-radius:7px;background:rgba(34,197,94,0.15);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">&#129520;</div>
+              <p style="font-size:16px;font-weight:600">It knows your whole life</p>
+            </div>
+            <p style="font-size:14px;opacity:0.5;line-height:1.5;padding-left:38px">Orion on your laptop knows what Orion on your phone knows. Same memory, same context, everywhere.</p>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+              <div style="width:28px;height:28px;border-radius:7px;background:rgba(34,197,94,0.15);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">&#128274;</div>
+              <p style="font-size:16px;font-weight:600">It acts, not just answers</p>
+            </div>
+            <p style="font-size:14px;opacity:0.5;line-height:1.5;padding-left:38px">Orion doesn't just tell you what to do. It makes the call, books the flight, reschedules the meeting &mdash; on the right device, at the right time.</p>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+              <div style="width:28px;height:28px;border-radius:7px;background:rgba(34,197,94,0.15);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">&#127760;</div>
+              <p style="font-size:16px;font-weight:600">Everything is encrypted</p>
+            </div>
+            <p style="font-size:14px;opacity:0.5;line-height:1.5;padding-left:38px">Your devices communicate through an encrypted mesh. No cloud dependency. Your data stays yours.</p>
+          </div>
+        </div>
+
+        <!-- Example commands -->
+        <div style="margin-top:24px;display:flex;flex-direction:column;gap:8px">
+          <div style="padding:12px 16px;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.12);border-radius:10px">
+            <p style="font-size:12px;font-weight:600;color:var(--green)">"I'm running late."</p>
+            <p style="font-size:11px;opacity:0.5">Orion calls the restaurant. Desktop reschedules your meeting. Three devices, one command.</p>
+          </div>
+          <div style="padding:12px 16px;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.12);border-radius:10px">
+            <p style="font-size:12px;font-weight:600;color:var(--green)">"Prepare for my trip tomorrow."</p>
+            <p style="font-size:11px;opacity:0.5">Desktop books the flight. Phone sets alarms. Home adjusts thermostat. All at once.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">04</div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 5: COMPETITIVE LANDSCAPE -->
+<!-- ============================================== -->
+<section class="slide" id="s5">
+  <div class="inner">
+    <p class="eyebrow">The landscape</p>
+    <h2 class="mb-48">Everyone builds chat.<br>We built an assistant that lives across your life.</h2>
+
+    <div class="landscape-table" style="border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden">
+      <!-- Header -->
+      <div class="landscape-row" style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.08)">
+        <div style="padding:20px"></div>
+        <div style="padding:20px;text-align:center;opacity:0.7;font-size:14px;font-weight:600">Siri</div>
+        <div style="padding:20px;text-align:center;opacity:0.7;font-size:14px;font-weight:600">Google Assistant</div>
+        <div style="padding:20px;text-align:center;opacity:0.7;font-size:14px;font-weight:600">ChatGPT</div>
+        <div style="padding:20px;text-align:center;opacity:0.7;font-size:14px;font-weight:600">Rabbit R1</div>
+        <div style="padding:20px;text-align:center;font-size:14px;font-weight:600;color:var(--green)">Orion</div>
+      </div>
+      <!-- Cross-platform -->
+      <div class="landscape-row" style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
+        <div style="padding:14px 20px;font-size:14px;opacity:0.7;font-weight:600">Works across all devices</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Apple only</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Google only</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Chat window only</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Dedicated hardware</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green);font-weight:500;opacity:0.85">Any device, any OS</div>
+      </div>
+      <!-- Acts across devices simultaneously -->
+      <div class="landscape-row" style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
+        <div style="padding:14px 20px;font-size:14px;opacity:0.7;font-weight:600">Acts across devices simultaneously</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;color:var(--green);opacity:0.85">&check;</div>
+      </div>
+      <!-- Makes real phone calls -->
+      <div class="landscape-row" style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
+        <div style="padding:14px 20px;font-size:14px;opacity:0.7;font-weight:600">Makes real phone calls</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;color:var(--green);opacity:0.85">&check;</div>
+      </div>
+      <!-- Controls your computer -->
+      <div class="landscape-row" style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
+        <div style="padding:14px 20px;font-size:14px;opacity:0.7;font-weight:600">Controls your computer</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;color:var(--green);opacity:0.85">&check;</div>
+      </div>
+      <!-- Learns you over time -->
+      <div class="landscape-row" style="display:grid;grid-template-columns:180px repeat(5,1fr);border-bottom:1px solid rgba(255,255,255,0.06)">
+        <div style="padding:14px 20px;font-size:14px;opacity:0.7;font-weight:600">Learns you over time</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Limited</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Limited</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;opacity:0.5">Per-session memory</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green);font-weight:500;opacity:0.85">Deep personalization across all devices</div>
+      </div>
+      <!-- Works without internet -->
+      <div class="landscape-row" style="display:grid;grid-template-columns:180px repeat(5,1fr)">
+        <div style="padding:14px 20px;font-size:14px;opacity:0.7;font-weight:600">Reachable without internet</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:20px;opacity:0.7">&times;</div>
+        <div style="padding:14px 20px;text-align:center;font-size:13px;color:var(--green);font-weight:500;opacity:0.85">Call or SMS</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">05</div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 6: WHY DEFENSIBLE -->
+<!-- ============================================== -->
+<section class="slide white" id="s6">
+  <div class="inner">
+    <p class="eyebrow">Why defensible</p>
+    <h2 class="mb-48">The more you use it, the harder it is to leave.</h2>
+
+    <div class="grid grid-2 gap-24">
+      <div class="card">
+        <div style="font-size:32px;margin-bottom:16px">&#128200;</div>
+        <h3 style="font-size:20px;margin-bottom:8px">Better with every device</h3>
+        <p style="font-size:15px;color:var(--gray-600);line-height:1.6">Each device you add makes Orion smarter and more capable. Your phone, laptop, and home work together &mdash; not in isolation.</p>
+      </div>
+      <div class="card">
+        <div style="font-size:32px;margin-bottom:16px">&#128272;</div>
+        <h3 style="font-size:20px;margin-bottom:8px">Private by design</h3>
+        <p style="font-size:15px;color:var(--gray-600);line-height:1.6">End-to-end encrypted communication between your devices. Your data never touches a central server. Your life stays yours.</p>
+      </div>
+      <div class="card">
+        <div style="font-size:32px;margin-bottom:16px">&#128208;</div>
+        <h3 style="font-size:20px;margin-bottom:8px">The longer you use it, the more it knows you</h3>
+        <p style="font-size:15px;color:var(--gray-600);line-height:1.6">Orion learns your preferences, routines, and patterns across every device. No competitor can replicate months of personal context.</p>
+      </div>
+      <div class="card">
+        <div style="font-size:32px;margin-bottom:16px">&#127759;</div>
+        <h3 style="font-size:20px;margin-bottom:8px">Works on everything</h3>
+        <p style="font-size:15px;color:var(--gray-600);line-height:1.6">Unlike Siri or Google, Orion works on any computer, any phone. No ecosystem lock-in.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">06</div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 7: RESEARCH -->
+<!-- ============================================== -->
+<section class="slide" id="s7">
+  <div class="inner">
+    <p class="eyebrow">Research</p>
+    <h2 class="mb-48">Every capability backed by original research.</h2>
+
+    <div style="border-top:1px solid rgba(255,255,255,0.08)">
+      <div class="research-row">
+        <div class="research-problem">
+          <p class="research-label" style="opacity:0.4">The gap</p>
+          <p class="research-title">Assistants can't see or hear</p>
+          <p class="research-desc">They don't know what's on your screen or what's happening around you.</p>
+        </div>
+        <div class="research-solution">
+          <p class="research-label"><a href="https://hiorion.ai/orion-sensor" target="_blank" class="link" style="font-size:11px">Read the paper &rarr;</a></p>
+          <p class="research-title">Orion Sensor</p>
+          <p class="research-desc">Sees your screen, hears your world, understands context &mdash; and steps in when you need it.</p>
+        </div>
+      </div>
+      <div class="research-row">
+        <div class="research-problem">
+          <p class="research-label" style="opacity:0.4">The gap</p>
+          <p class="research-title">Assistants fail silently</p>
+          <p class="research-desc">One mistake compounds into total failure. No self-correction.</p>
+        </div>
+        <div class="research-solution">
+          <p class="research-label"><a href="https://hiorion.ai/self-audit" target="_blank" class="link" style="font-size:11px">Read the paper &rarr;</a></p>
+          <p class="research-title">Multi-Agent Self-Audit</p>
+          <p class="research-desc">A separate model reviews every action before it ships. Built-in quality control.</p>
+        </div>
+      </div>
+      <div class="research-row">
+        <div class="research-problem">
+          <p class="research-label" style="opacity:0.4">The gap</p>
+          <p class="research-title">Stuck on one device</p>
+          <p class="research-desc">Close the laptop, your assistant is gone. No continuity.</p>
+        </div>
+        <div class="research-solution">
+          <p class="research-label"><a href="https://hiorion.ai/communication" target="_blank" class="link" style="font-size:11px">Read the paper &rarr;</a></p>
+          <p class="research-title">Cross-Device Communication</p>
+          <p class="research-desc">Orion on every device talks to each other. Encrypted, instant, no cloud dependency.</p>
+        </div>
+      </div>
+      <div class="research-row">
+        <div class="research-problem">
+          <p class="research-label" style="opacity:0.4">The gap</p>
+          <p class="research-title">Privacy is an afterthought</p>
+          <p class="research-desc">Your personal data routed through someone else's servers.</p>
+        </div>
+        <div class="research-solution">
+          <p class="research-label"><a href="https://hiorion.ai/orion-safety" target="_blank" class="link" style="font-size:11px">Read the paper &rarr;</a></p>
+          <p class="research-title">Deep Personalization & Safety</p>
+          <p class="research-desc">Security and personalization built in from day one. Learns you, protects you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">07</div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 8: TRACTION -->
+<!-- ============================================== -->
+<section class="slide white" id="s8">
+  <div class="inner center">
+    <p class="eyebrow">Early signal</p>
+    <h2 class="mb-48">Supply-constrained, not demand-constrained.</h2>
+
+    <div class="grid grid-4 gap-24" style="max-width:1000px;margin:0 auto">
+      <div class="card center">
+        <div class="stat-value" style="color:var(--black)">~8h</div>
+        <p class="stat-label">Peak daily usage per user</p>
+      </div>
+      <div class="card center">
+        <div class="stat-value" style="color:var(--black)">$200+</div>
+        <p class="stat-label">Users paying per month</p>
+      </div>
+      <div class="card center">
+        <div class="stat-value" style="color:var(--black)">$0</div>
+        <p class="stat-label">Marketing spend</p>
+      </div>
+      <div class="card center">
+        <div class="stat-value" style="color:var(--black)">Gated</div>
+        <p class="stat-label">Signups capped for quality</p>
+      </div>
+    </div>
+
+    <p class="body-lg mt-32" style="color:var(--gray-500);max-width:600px;margin-left:auto;margin-right:auto">Every user found Orion organically. We gate access because demand exceeds what we can serve at our quality bar.</p>
+
+    <div class="grid grid-2 gap-16 mt-32" style="max-width:800px;margin-left:auto;margin-right:auto">
+      <div class="img-container"><img src="finding/finding1.png" alt="Organic discovery"></div>
+      <div class="img-container"><img src="finding/finding2.png" alt="Organic discovery"></div>
+    </div>
+  </div>
+  <div class="slide-num">08</div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 9: CUSTOMER REVIEWS -->
+<!-- ============================================== -->
+<section class="slide" id="s9">
+  <div class="inner">
+    <p class="eyebrow">Real users</p>
+    <h3 class="mb-48">Non-technical people paying $200+/month for a personal AI assistant.</h3>
+
+    <div style="display:flex;gap:10px;align-items:flex-start">
+      <div style="flex:1;display:flex;flex-direction:column;gap:10px">
+        <img src="customer%20review/review5.png" alt="Review" style="width:100%;display:block;border-radius:10px">
+        <img src="customer%20review/review6.png" alt="Review" style="width:100%;display:block;border-radius:10px">
+        <img src="customer%20review/review10.png" alt="Review" style="width:100%;display:block;border-radius:10px">
+        <img src="customer%20review/review9.png" alt="Review" style="width:100%;display:block;border-radius:10px">
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:10px">
+        <img src="customer%20review/review1.png" alt="Review" style="width:100%;display:block;border-radius:10px">
+        <img src="customer%20review/review3.png" alt="Review" style="width:100%;display:block;border-radius:10px">
+        <img src="customer%20review/review4.png" alt="Review" style="width:100%;display:block;border-radius:10px">
+        <img src="customer%20review/review7.png" alt="Review" style="width:100%;display:block;border-radius:10px">
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:10px">
+        <img src="customer%20review/review12.png" alt="Review" style="width:100%;display:block;border-radius:10px">
+        <img src="customer%20review/review8.png" alt="Review" style="width:100%;display:block;border-radius:10px">
+        <img src="customer%20review/review2.png" alt="Review" style="width:100%;display:block;border-radius:10px">
+        <img src="customer%20review/review11.png" alt="Review" style="width:100%;display:block;border-radius:10px">
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">09</div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 10: TEAM -->
+<!-- ============================================== -->
+<section class="slide light" id="s10">
+  <div class="inner">
+    <p class="eyebrow center">Team</p>
+    <h3 class="center mb-48">Stanford. Apple. Google. Meta. Netflix. Oxford. Cambridge.</h3>
+
+    <div class="grid grid-3 gap-16 mb-24">
+      <div class="card center">
+        <img src="img/khoi-nguyen.jpeg" class="avatar" style="margin-bottom:16px">
+        <p style="font-size:16px;font-weight:600;margin-bottom:4px">Khoi Nguyen</p>
+        <p style="font-size:12px;color:var(--gray-500);margin-bottom:12px">CEO</p>
+        <p style="font-size:14px;color:var(--gray-600)">Stanford MS dropout. Stanford STAIR Lab &mdash; AI for pediatric medicine with Stanford Medicine. Ex-Google. Co-founded Campus Connect (7 schools) and uEAT.</p>
+      </div>
+      <div class="card center">
+        <img src="img/peter-bakas.jpeg" class="avatar" style="margin-bottom:16px">
+        <p style="font-size:16px;font-weight:600;margin-bottom:4px">Peter Bakas</p>
+        <p style="font-size:12px;color:var(--gray-500);margin-bottom:12px">COO & Investor</p>
+        <p style="font-size:14px;color:var(--gray-600)">Dir. of Eng at Netflix &mdash; Keystone, 700B+ events/day. Co-Founded DataScale (acq. DataStax). CISO at Ooyala (acq. Telstra). Head of Eng at Yahoo. Head of Site Eng at PayPal.</p>
+      </div>
+      <div class="card center">
+        <img src="img/minh-le.jpeg" class="avatar" style="margin-bottom:16px">
+        <p style="font-size:16px;font-weight:600;margin-bottom:4px">Minh Le</p>
+        <p style="font-size:12px;color:var(--gray-500);margin-bottom:12px">CTO</p>
+        <p style="font-size:14px;color:var(--gray-600)">Oxford BA & MSc. Sr. Quant Tech at QRT &mdash; real-time monitoring, 3,000+ HFT strategies, 2B+ daily orders. NLP research at Oxford-Man Institute. Ex-Meta & Amazon. Thatcher Scholar.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-3 gap-16 mb-32">
+      <div class="card center">
+        <img src="img/jason-chen.jpeg" class="avatar" style="margin-bottom:16px">
+        <p style="font-size:16px;font-weight:600;margin-bottom:4px">Jason Chen</p>
+        <p style="font-size:12px;color:var(--gray-500);margin-bottom:12px">CPO</p>
+        <p style="font-size:14px;color:var(--gray-600)">Former Apple CoreOS &mdash; tech lead, Darwin Kernel cloud infra. 5 years building automation and cloud systems. Ex-Northrop Grumman. UCSD BS, Georgia Tech MS (CS/AI).</p>
+      </div>
+      <div class="card center">
+        <img src="img/steve-hong.jpeg" class="avatar" style="margin-bottom:16px">
+        <p style="font-size:16px;font-weight:600;margin-bottom:4px">Steve Hong</p>
+        <p style="font-size:12px;color:var(--gray-500);margin-bottom:12px">Founding Member</p>
+        <p style="font-size:14px;color:var(--gray-600)">Cambridge MPhil (ML). Quant Trader at DV Trading. Ex-J.P. Morgan. ICML + 2 NeurIPS papers. UCL First-Class, Best Dissertation Award.</p>
+      </div>
+      <div class="card center">
+        <img src="img/hoang-tan.jpeg" class="avatar" style="margin-bottom:16px">
+        <p style="font-size:16px;font-weight:600;margin-bottom:4px">Hoang Trong Tan</p>
+        <p style="font-size:12px;color:var(--gray-500);margin-bottom:12px">Founding Member</p>
+        <p style="font-size:14px;color:var(--gray-600)">Production Eng at Meta &mdash; AI/HPC infra, NCCL, CUDA across ~50K daily jobs. Ex-TikTok. NUS Computer Eng, First-Class Honours.</p>
+      </div>
+    </div>
+
+    <p style="font-size:11px;font-weight:600;letter-spacing:0.05em;color:var(--gray-400);margin-bottom:16px">BACKED BY</p>
+    <div class="grid grid-2 gap-16">
+      <div class="card" style="display:flex;align-items:center;gap:16px;padding:20px">
+        <img src="img/chi-wang.jpeg" class="avatar-sm">
+        <div>
+          <p style="font-size:15px;font-weight:600">Chi Wang, PhD</p>
+          <p style="font-size:12px;color:var(--gray-500)">Google DeepMind. Creator of AutoGen. ~16K citations.</p>
+        </div>
+      </div>
+      <div class="card" style="display:flex;align-items:center;gap:16px;padding:20px">
+        <img src="img/lawrence-lou.jpeg" class="avatar-sm">
+        <div>
+          <p style="font-size:15px;font-weight:600">Lawrence Lou</p>
+          <p style="font-size:12px;color:var(--gray-500)">Llama Venture. Early OpenAI, Anthropic, xAI investor. Ex-PM Lead at Airbnb (AI Agent). Ex-Senior PM at Microsoft.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">10</div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 11: VISION + ROADMAP -->
+<!-- ============================================== -->
+<section class="slide" id="s11">
+  <div class="inner center">
+    <p class="eyebrow">Vision</p>
+    <h2 class="mb-64">The evolution of the personal AI assistant.</h2>
+
+    <div style="display:flex;align-items:flex-start;gap:0;max-width:1100px;margin:0 auto;position:relative">
+      <div style="position:absolute;top:8px;left:40px;right:40px;height:2px;background:linear-gradient(to right,rgba(255,255,255,0.08),rgba(255,255,255,0.08) 20%,rgba(255,255,255,0.08) 40%,var(--green) 55%,rgba(255,255,255,0.15) 75%,rgba(255,255,255,0.06))"></div>
+
+      <div style="flex:1;text-align:center;padding:0 8px">
+        <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.15);margin:3px auto 24px;position:relative;z-index:1"></div>
+        <p style="font-size:15px;font-weight:600;margin-bottom:6px;opacity:0.25">Chatbots</p>
+        <p style="font-size:12px;opacity:0.2;line-height:1.5">Ask a question, get an answer. That's it.</p>
+      </div>
+      <div style="flex:1;text-align:center;padding:0 8px">
+        <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.15);margin:3px auto 24px;position:relative;z-index:1"></div>
+        <p style="font-size:15px;font-weight:600;margin-bottom:6px;opacity:0.25">Copilots</p>
+        <p style="font-size:12px;opacity:0.2;line-height:1.5">AI helps within one app. You still do the work.</p>
+      </div>
+      <div style="flex:1;text-align:center;padding:0 8px">
+        <div style="width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.4);margin:2px auto 24px;position:relative;z-index:1"></div>
+        <p style="font-size:15px;font-weight:600;margin-bottom:6px;opacity:0.45">Agents</p>
+        <p style="font-size:12px;opacity:0.3;line-height:1.5">AI acts on your behalf. One device at a time.</p>
+      </div>
+      <div style="flex:1.2;text-align:center;padding:0 8px">
+        <div style="width:16px;height:16px;border-radius:50%;background:var(--green);margin:0 auto 24px;position:relative;z-index:1;box-shadow:0 0 16px rgba(34,197,94,0.4)"></div>
+        <p style="font-size:18px;font-weight:700;margin-bottom:6px;color:var(--green)">Your Personal AI</p>
+        <p style="font-size:12px;opacity:0.5;line-height:1.5">One assistant across every device. Knows your life. Acts on your behalf. Private by design.</p>
+        <p style="font-size:10px;color:var(--green);margin-top:6px;opacity:0.7">Orion is here</p>
+      </div>
+      <div style="flex:1.2;text-align:center;padding:0 8px">
+        <div style="width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.08);margin:1px auto 24px;position:relative;z-index:1;border:1px solid rgba(255,255,255,0.15)"></div>
+        <p style="font-size:16px;font-weight:700;margin-bottom:6px;opacity:0.35">Universal AI Assistant</p>
+        <p style="font-size:12px;opacity:0.25;line-height:1.5">Every device, every surface, every moment &mdash; your AI handles it all.</p>
+      </div>
+    </div>
+
+    <!-- Roadmap -->
+    <div style="margin-top:80px;max-width:900px;margin-left:auto;margin-right:auto">
+      <p style="font-size:12px;font-weight:600;letter-spacing:0.08em;opacity:0.3;margin-bottom:24px">ROADMAP</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+        <div class="card" style="text-align:left">
+          <p style="font-size:11px;font-weight:600;color:var(--green);letter-spacing:0.05em;margin-bottom:8px">NOW</p>
+          <p style="font-size:16px;font-weight:600;margin-bottom:6px">Desktop + Phone + Messaging</p>
+          <p style="font-size:13px;opacity:0.4;line-height:1.5">Your assistant on laptop, phone, Telegram, Discord.</p>
+        </div>
+        <div class="card" style="text-align:left">
+          <p style="font-size:11px;font-weight:600;opacity:0.4;letter-spacing:0.05em;margin-bottom:8px">12 MONTHS</p>
+          <p style="font-size:16px;font-weight:600;margin-bottom:6px">Every Smart Device</p>
+          <p style="font-size:13px;opacity:0.4;line-height:1.5">Your car, home, wearable &mdash; Orion is on all of them.</p>
+        </div>
+        <div class="card" style="text-align:left">
+          <p style="font-size:11px;font-weight:600;opacity:0.25;letter-spacing:0.05em;margin-bottom:8px">24+ MONTHS</p>
+          <p style="font-size:16px;font-weight:600;margin-bottom:6px">Universal AI Assistant</p>
+          <p style="font-size:13px;opacity:0.4;line-height:1.5">The default personal AI that runs across every device and surface in your life.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">11</div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 12: BUSINESS MODEL -->
+<!-- ============================================== -->
+<section class="slide light" id="s12">
+  <div class="inner">
+    <p class="eyebrow">Business model</p>
+    <h2 class="mb-48">Freemium &rarr; Subscribe &rarr; Expand.</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px">
+      <div class="card" style="padding:32px 28px;text-align:center">
+        <div style="font-size:36px;margin-bottom:16px">&#127793;</div>
+        <p style="font-size:13px;font-weight:600;letter-spacing:0.05em;opacity:0.4;margin-bottom:12px">FREE</p>
+        <p style="font-size:17px;font-weight:700;margin-bottom:8px">Try Orion</p>
+        <p style="font-size:14px;opacity:0.5;line-height:1.6">Your assistant on one device. Enough to experience the magic.</p>
+      </div>
+      <div class="card" style="padding:32px 28px;text-align:center;border:2px solid var(--green);position:relative">
+        <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--green);color:white;font-size:10px;font-weight:700;padding:2px 10px;border-radius:100px;letter-spacing:0.03em">CORE</div>
+        <div style="font-size:36px;margin-bottom:16px">&#9889;</div>
+        <p style="font-size:13px;font-weight:600;letter-spacing:0.05em;color:var(--green);margin-bottom:12px">PAID</p>
+        <p style="font-size:17px;font-weight:700;margin-bottom:8px">Your full assistant</p>
+        <p style="font-size:14px;opacity:0.5;line-height:1.6">Orion on all your devices. Cross-device coordination, persistent memory, advanced capabilities.</p>
+      </div>
+      <div class="card" style="padding:32px 28px;text-align:center">
+        <div style="font-size:36px;margin-bottom:16px">&#127961;</div>
+        <p style="font-size:13px;font-weight:600;letter-spacing:0.05em;opacity:0.4;margin-bottom:12px">ENTERPRISE</p>
+        <p style="font-size:17px;font-weight:700;margin-bottom:8px">Teams & orgs</p>
+        <p style="font-size:14px;opacity:0.5;line-height:1.6">Shared assistant across a team's devices. Role-based access, audit trails, custom deployment.</p>
+      </div>
+    </div>
+
+    <p style="font-size:12px;font-weight:600;letter-spacing:0.05em;opacity:0.4;margin-bottom:16px">EXPANSION REVENUE</p>
+    <div class="grid grid-3 gap-16">
+      <div class="card" style="padding:20px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+          <span style="font-size:18px">&#9729;&#65039;</span>
+          <p style="font-size:16px;font-weight:600">Cloud Agents</p>
+        </div>
+        <p style="font-size:13px;opacity:0.5;line-height:1.5">Heavy-duty tasks on Orion cloud. Pay-as-you-go.</p>
+      </div>
+      <div class="card" style="padding:20px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+          <span style="font-size:18px">&#128279;</span>
+          <p style="font-size:16px;font-weight:600">More Devices</p>
+        </div>
+        <p style="font-size:13px;opacity:0.5;line-height:1.5">Each new device multiplies value. Natural upsell.</p>
+      </div>
+      <div class="card" style="padding:20px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+          <span style="font-size:18px">&#128268;</span>
+          <p style="font-size:16px;font-weight:600">Hardware Partnerships</p>
+        </div>
+        <p style="font-size:13px;opacity:0.5;line-height:1.5">Orion pre-installed on IoT, smart home, automotive. Revenue share per device.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">12</div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 13: THE ASK -->
+<!-- ============================================== -->
+<section class="slide white" id="s13">
+  <div class="inner center">
+    <p class="eyebrow">The ask</p>
+    <h2 class="mb-16" style="color:var(--black)">$10M seed.</h2>
+    <p class="lead max-w-md mx-auto mb-32" style="color:var(--gray-600)">Build the personal AI assistant for everyone. Scale team to 15-20. Series A in 14 months.</p>
+
+    <div class="grid grid-4 gap-16 mb-32">
+      <div class="card center">
+        <p style="font-size:16px;font-weight:600;letter-spacing:0.05em;color:var(--blue);margin-bottom:8px">RESEARCH 35%</p>
+        <p style="font-size:14px;color:var(--gray-600)">GPU, training, fine-tuning</p>
+      </div>
+      <div class="card center">
+        <p style="font-size:16px;font-weight:600;letter-spacing:0.05em;color:var(--green);margin-bottom:8px">TEAM 30%</p>
+        <p style="font-size:14px;color:var(--gray-600)">Engineers and researchers</p>
+      </div>
+      <div class="card center">
+        <p style="font-size:16px;font-weight:600;letter-spacing:0.05em;color:var(--black);margin-bottom:8px">HIRING 15%</p>
+        <p style="font-size:14px;color:var(--gray-600)">Scale to 15-20 people</p>
+      </div>
+      <div class="card center">
+        <p style="font-size:16px;font-weight:600;letter-spacing:0.05em;color:#f59e0b;margin-bottom:8px">OPS 20%</p>
+        <p style="font-size:14px;color:var(--gray-600)">Legal, SOC 2, GTM</p>
+      </div>
+    </div>
+
+    <!-- Series A milestones -->
+    <div style="max-width:700px;margin:0 auto">
+      <p class="eyebrow">SERIES A MILESTONES (14 MONTHS)</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <div class="card">
+          <div style="font-size:18px;font-weight:700;color:var(--black);margin-bottom:4px">Launch paid GTM</div>
+          <p style="font-size:12px;color:var(--gray-500)">First marketing spend, prove scalable acquisition</p>
+        </div>
+        <div class="card">
+          <div style="font-size:18px;font-weight:700;color:var(--black);margin-bottom:4px">Mobile + IoT</div>
+          <p style="font-size:12px;color:var(--gray-500)">Ship phone app &amp; first hardware integrations</p>
+        </div>
+        <div class="card">
+          <div style="font-size:18px;font-weight:700;color:var(--black);margin-bottom:4px">Enterprise pilot</div>
+          <p style="font-size:12px;color:var(--gray-500)">First team deployments with shared AI assistant</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:24px;font-size:16px;color:var(--gray-600)">Wilson Sonsini &middot; Delaware C-Corp &middot; Palo Alto, CA</p>
+  </div>
+  <div class="slide-num">13</div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 14: CLOSE -->
+<!-- ============================================== -->
+<section class="slide" id="s14">
+  <div class="inner center">
+    <img src="Untitled design-4_compressed.png" alt="Orion" style="width:72px;height:72px;margin-bottom:40px;opacity:0.8">
+    <h1>Everyone will have a personal AI<br>that lives across every device.</h1>
+    <p class="lead mt-24" style="opacity:0.5">We're building it.</p>
+
+    <div style="margin-top:80px;display:flex;gap:64px;justify-content:center;font-size:15px">
+      <div>
+        <p style="font-size:11px;opacity:0.3;margin-bottom:6px">Lab</p>
+        <p style="font-weight:600">zinley.com</p>
+      </div>
+      <div>
+        <p style="font-size:11px;opacity:0.3;margin-bottom:6px">Product</p>
+        <p style="font-weight:600">hiorion.ai</p>
+      </div>
+      <div>
+        <p style="font-size:11px;opacity:0.3;margin-bottom:6px">Email</p>
+        <p style="font-weight:600">khoi@zinley.com</p>
+      </div>
+    </div>
+
+    <p style="margin-top:64px;font-size:11px;opacity:0.15">Zinley Corporation &middot; Palo Alto, CA</p>
+  </div>
+  <div class="slide-num">14</div>
+</section>
+
+<script>
+// Navigation dots
+const slides = document.querySelectorAll('.slide');
+const nav = document.getElementById('nav');
+slides.forEach((_, i) => {
+  const a = document.createElement('a');
+  a.href = '#s' + (i + 1);
+  nav.appendChild(a);
+});
+
+// Track active slide
+const dots = nav.querySelectorAll('a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const i = [...slides].indexOf(e.target);
+      dots.forEach(d => d.classList.remove('active'));
+      if (dots[i]) dots[i].classList.add('active');
+
+      const isLight = e.target.classList.contains('white') || e.target.classList.contains('light');
+      document.querySelectorAll('.nav a').forEach(d => {
+        d.style.background = d.classList.contains('active')
+          ? (isLight ? 'var(--black)' : 'var(--white)')
+          : (isLight ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.2)');
+      });
+    }
+  });
+}, { threshold: 0.5 });
+slides.forEach(s => observer.observe(s));
+
+// Email Gate
+(function() {
+  const gate = document.getElementById('email-gate');
+  if (localStorage.getItem('orion_deck_email')) {
+    gate.classList.add('hidden');
+    return;
+  }
+  document.documentElement.style.overflow = 'hidden';
+  const input = document.getElementById('gate-email');
+  const btn = document.getElementById('gate-btn');
+  const err = document.getElementById('gate-error');
+
+  function validateEmail(email) {
+    const trimmed = email.trim();
+    const at = trimmed.indexOf('@');
+    const dot = trimmed.lastIndexOf('.');
+    return at > 0 && dot > at + 1 && dot < trimmed.length - 1;
+  }
+
+  function submit() {
+    const email = input.value.trim();
+    if (!validateEmail(email)) {
+      input.classList.add('error');
+      err.classList.add('show');
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Please wait...';
+    fetch('https://snowx.ai/api-beta/api/deck/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    }).catch(function() {}).finally(function() {
+      localStorage.setItem('orion_deck_email', email);
+      document.documentElement.style.overflow = '';
+      gate.classList.add('hidden');
+    });
+  }
+
+  input.addEventListener('input', function() {
+    input.classList.remove('error');
+    err.classList.remove('show');
+  });
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') submit();
+  });
+
+  btn.addEventListener('click', submit);
+})();
+
+// Theme toggle
+(function() {
+  var toggle = document.getElementById('theme-toggle');
+  toggle.addEventListener('click', function() {
+    var current = document.documentElement.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('orion_deck_theme', next);
+  });
+})();
+</script>
+</body>
+</html>
