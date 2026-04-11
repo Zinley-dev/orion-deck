@@ -720,6 +720,15 @@
         <p style="font-size:15px;opacity:0.5;line-height:1.55">One command. Orion decides which devices are needed, spins up agents on each, and they talk to each other directly across the mesh.</p>
       </div>
     </div>
+
+    <div class="reveal d3" style="margin-top:28px;max-width:900px;margin-left:auto;margin-right:auto;padding:24px 28px;background:rgba(34,197,94,0.03);border:1px solid rgba(34,197,94,0.12);border-radius:14px;display:flex;align-items:flex-start;gap:16px;text-align:left">
+      <div style="width:40px;height:40px;border-radius:10px;background:var(--green-dim);border:1px solid rgba(34,197,94,0.15);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;color:var(--green);font-weight:800;margin-top:2px">&#8644;</div>
+      <div>
+        <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:var(--green);margin-bottom:8px">WHAT MAKES BOTH POSSIBLE</p>
+        <p style="font-size:16px;font-weight:700;color:var(--green);margin-bottom:4px">Context flows live across the mesh.</p>
+        <p style="font-size:13px;opacity:0.45;line-height:1.55">Conversation state, memory, and task progress stream between devices in real time over an encrypted relay. Switch devices mid-thought &mdash; the agent already knows what happened.</p>
+      </div>
+    </div>
   </div>
   <div class="snum">04</div>
 </section>
@@ -916,52 +925,87 @@
     <p class="eyebrow green reveal">The landscape</p>
     <h2 class="reveal d1" style="margin-bottom:48px">They all build for one screen.<br>We build across all of them.</h2>
 
-    <div class="grid grid-3 reveal d2" style="gap:14px">
-      <div class="comp-card">
-        <p class="comp-name">ChatGPT Agent</p>
-        <p class="comp-co">OpenAI &middot; from $20/mo</p>
-        <p class="comp-desc">Cloud VM. No local desktop or file access.</p>
-        <span class="comp-tag">Cloud VM</span>
-      </div>
-      <div class="comp-card">
-        <p class="comp-name">Claude Cowork</p>
-        <p class="comp-co">Anthropic &middot; from $20/mo</p>
-        <p class="comp-desc">Controls one Mac or Windows. Single machine.</p>
-        <span class="comp-tag">Single device</span>
-      </div>
-      <div class="comp-card">
-        <p class="comp-name">Perplexity Computer</p>
-        <p class="comp-co">Perplexity &middot; $200/mo</p>
-        <p class="comp-desc">19 AI models on a dedicated Mac mini.</p>
-        <span class="comp-tag">One machine</span>
-      </div>
-      <div class="comp-card">
-        <p class="comp-name">Apple Intelligence</p>
-        <p class="comp-co">Apple &middot; Built-in</p>
-        <p class="comp-desc">Apple devices only. Agentic Siri delayed to 2026+.</p>
-        <span class="comp-tag">Apple-only</span>
-      </div>
-      <div class="comp-card">
-        <p class="comp-name">Google Gemini</p>
-        <p class="comp-co">Google &middot; Built-in</p>
-        <p class="comp-desc">Replaced Assistant. Android and Google ecosystem only.</p>
-        <span class="comp-tag">Google-only</span>
-      </div>
-      <div class="comp-card">
-        <p class="comp-name">OpenClaw</p>
-        <p class="comp-co">Open Source &middot; Free / $59</p>
-        <p class="comp-desc">Multi-agent via Telegram bots, all on one host. Agents don&rsquo;t share memory.</p>
-        <span class="comp-tag">One gateway</span>
-      </div>
+    <div class="reveal d2" style="border:1px solid var(--card-border);border-radius:16px;overflow:hidden">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;line-height:1.45">
+        <thead>
+          <tr style="border-bottom:1px solid var(--card-border)">
+            <th style="padding:18px 20px;text-align:left;font-size:11px;font-weight:600;opacity:0.25;letter-spacing:0.06em;width:15%"></th>
+            <th style="padding:18px 14px;text-align:center;font-weight:700;font-size:13px;opacity:0.75;width:17%">OpenClaw</th>
+            <th style="padding:18px 14px;text-align:center;font-weight:700;font-size:13px;opacity:0.75;width:17%">Genspark Claw</th>
+            <th style="padding:18px 14px;text-align:center;font-weight:700;font-size:13px;opacity:0.75;width:17%">Claude Cowork</th>
+            <th style="padding:18px 14px;text-align:center;font-weight:700;font-size:13px;opacity:0.75;width:17%">Perplexity Computer</th>
+            <th style="padding:18px 14px;text-align:center;font-weight:700;font-size:14px;color:var(--green);width:17%">Orion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Architecture -->
+          <tr style="border-bottom:1px solid var(--card-border)">
+            <td style="padding:16px 20px;font-weight:700;font-size:13px">Architecture</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.5">Self-hosted local gateway</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.5">One cloud VM per user</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.5">Cloud brain, local body</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.5">Cloud orchestrator, Firecracker VMs</td>
+            <td style="padding:16px 14px;text-align:center;color:var(--green);font-weight:600">Interconnected personal agents, encrypted mesh</td>
+          </tr>
+          <!-- Multi-device -->
+          <tr style="border-bottom:1px solid var(--card-border)">
+            <td style="padding:16px 20px;font-weight:700;font-size:13px">Multi-device</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
+            <td style="padding:16px 14px;text-align:center;color:var(--green);font-size:18px;font-weight:700">&check;</td>
+          </tr>
+          <!-- Context across devices -->
+          <tr style="border-bottom:1px solid var(--card-border)">
+            <td style="padding:16px 20px;font-weight:700;font-size:13px">Context flows<br>across devices</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
+            <td style="padding:16px 14px;text-align:center;color:var(--green);font-weight:600">Streams live</td>
+          </tr>
+          <!-- Works without internet -->
+          <tr style="border-bottom:1px solid var(--card-border)">
+            <td style="padding:16px 20px;font-weight:700;font-size:13px">Works without<br>internet</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
+            <td style="padding:16px 14px;text-align:center;color:var(--green);font-weight:600">Call or SMS</td>
+          </tr>
+          <!-- Local app access -->
+          <tr style="border-bottom:1px solid var(--card-border)">
+            <td style="padding:16px 20px;font-weight:700;font-size:13px">Local app access</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.5">Self-hosted only</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.5">Scoped folders</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
+            <td style="padding:16px 14px;text-align:center;color:var(--green);font-weight:600">Full native, every device</td>
+          </tr>
+          <!-- Zero config -->
+          <tr style="border-bottom:1px solid var(--card-border)">
+            <td style="padding:16px 20px;font-weight:700;font-size:13px">Zero config</td>
+            <td style="padding:16px 14px;text-align:center;color:var(--red);font-weight:500">Requires DevOps</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.5">Yes</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.5">Needs connectors</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.5">Hardware setup</td>
+            <td style="padding:16px 14px;text-align:center;color:var(--green);font-weight:600">Yes</td>
+          </tr>
+          <!-- Security -->
+          <tr>
+            <td style="padding:16px 20px;font-weight:700;font-size:13px">Security</td>
+            <td style="padding:16px 14px;text-align:center;color:var(--red);font-weight:500;font-size:12px">138+ CVEs, critical RCE</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.5">Cloud isolation</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.5">Sandboxed VM</td>
+            <td style="padding:16px 14px;text-align:center;opacity:0.5">Firecracker, SOC 2</td>
+            <td style="padding:16px 14px;text-align:center;color:var(--green);font-weight:600">E2E encrypted</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <div class="reveal d3" style="margin-top:14px;padding:20px 28px;background:rgba(34,197,94,0.03);border:1px solid rgba(34,197,94,0.12);border-radius:14px;display:flex;align-items:center;gap:16px">
-      <img src="img/Untitled design-4_compressed.png" alt="Orion" style="width:36px;height:36px;flex-shrink:0">
-      <div>
-        <p style="font-size:15px;font-weight:700;color:var(--green);margin-bottom:2px">Orion. The interconnected personal agent</p>
-        <p style="font-size:13px;opacity:0.45">One agent across every device. Context flows live. Not locked to any ecosystem.</p>
-      </div>
-    </div>
+    <p class="reveal d3" style="text-align:center;font-size:11px;opacity:0.2;margin-top:14px;letter-spacing:0.04em">Apple Intelligence and Google Gemini are ecosystem-locked to their own devices. Not included.</p>
   </div>
   <div class="snum">09</div>
 </section>
