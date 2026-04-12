@@ -1577,6 +1577,7 @@ document.addEventListener('keydown', e => {
       localStorage.setItem('orion_deck_email', email);
       document.documentElement.style.overflow = '';
       gate.classList.add('hidden');
+      if (window._engPing) window._engPing();
     });
   }
 
@@ -1592,9 +1593,6 @@ document.addEventListener('keydown', e => {
 
 // ── Engagement Tracking ──
 (function() {
-  var engEmail = localStorage.getItem('orion_deck_email');
-  if (!engEmail) return;
-
   var sessionId = crypto.randomUUID();
   var slideData = {};
   var currentSlideId = null;
@@ -1606,6 +1604,10 @@ document.addEventListener('keydown', e => {
   slides.forEach(function(s) {
     slideData[s.id] = { totalMs: 0, visits: 0 };
   });
+
+  function getEmail() {
+    return localStorage.getItem('orion_deck_email');
+  }
 
   function pauseTracking() {
     if (currentSlideId && slideEnterTime && !paused) {
@@ -1634,6 +1636,8 @@ document.addEventListener('keydown', e => {
   }
 
   function buildPayload() {
+    var email = getEmail();
+    if (!email) return null;
     var snap = {};
     for (var id in slideData) {
       var extra = (id === currentSlideId && slideEnterTime) ? Date.now() - slideEnterTime : 0;
@@ -1642,7 +1646,7 @@ document.addEventListener('keydown', e => {
     var totalMs = 0;
     for (var id in snap) totalMs += snap[id].totalMs;
     return {
-      email: engEmail,
+      email: email,
       sessionId: sessionId,
       slides: snap,
       furthestSlide: furthestSlide,
@@ -1654,15 +1658,19 @@ document.addEventListener('keydown', e => {
   var ENG_URL = 'https://snowx.ai/api-beta/api/deck/engagement';
 
   function sendHeartbeat() {
+    var payload = buildPayload();
+    if (!payload) return;
     fetch(ENG_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(buildPayload())
+      body: JSON.stringify(payload)
     }).catch(function() {});
   }
 
   function sendBeacon() {
-    navigator.sendBeacon(ENG_URL, new Blob([JSON.stringify(buildPayload())], { type: 'application/json' }));
+    var payload = buildPayload();
+    if (!payload || !navigator.sendBeacon) return;
+    navigator.sendBeacon(ENG_URL, new Blob([JSON.stringify(payload)], { type: 'application/json' }));
   }
 
   var engObserver = new IntersectionObserver(function(entries) {
@@ -1684,6 +1692,9 @@ document.addEventListener('keydown', e => {
     pauseTracking();
     sendBeacon();
   });
+
+  // Expose heartbeat so the gate can trigger it immediately after email capture
+  window._engPing = sendHeartbeat;
 
   setTimeout(sendHeartbeat, 3000);
   setInterval(sendHeartbeat, 30000);
