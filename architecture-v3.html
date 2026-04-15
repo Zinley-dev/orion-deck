@@ -159,7 +159,7 @@
         <span class="pill pill-acc">Agent Loop &amp; Tool Calling</span>
         <span class="pill pill-acc">Context Engine &amp; Compaction</span>
         <span class="pill pill-acc">Nudge System</span>
-        <span class="pill pill-acc">Device Mesh (Mode A + B)</span>
+        <span class="pill pill-acc">Device Coordination (Mode A + B)</span>
         <span class="pill pill-acc">Multi-Agent Spawn &amp; Broadcast</span>
         <span class="pill pill-acc">Provider Load Balancer</span>
         <span class="pill pill-acc">Sensors &amp; Circuit Breakers</span>
@@ -213,7 +213,7 @@
           <p style="font-size:10px;font-weight:700;color:#a1a1aa;margin-bottom:6px">COORDINATION</p>
           <div class="pills">
             <span class="pill pill-dark">Firebase Real-Time DB</span>
-            <span class="pill pill-dark">Hardware UUID</span>
+            <span class="pill pill-dark">Machine UUID (OS-bound)</span>
             <span class="pill pill-dark">Task Queue</span>
           </div>
         </div>
@@ -229,7 +229,7 @@
           </div>
         </div>
       </div>
-      <p style="font-size:10px;color:#52525b;margin-top:10px">TLS &middot; Firebase Auth &middot; device ownership checks &middot; tier-gated (Free / Plus / Pro / Max)</p>
+      <p style="font-size:10px;color:#52525b;margin-top:10px">TLS in-flight &middot; Firebase Auth &middot; device ownership checks &middot; tier-gated (Free / Plus / Pro / Max). Server-side LLM orchestration requires plaintext payload access; zero-knowledge payload channel is on the roadmap.</p>
     </div>
   </div>
   <p class="fig">Figure 1 &mdash; Layered architecture. Surfaces &rarr; Orchestrator &rarr; Tools + Intelligence &rarr; Infrastructure.</p>
@@ -330,13 +330,13 @@ Polls 250ms x 12 (3s max). No shared state — communication only via real-time 
   <!-- 2.3 Voice Systems -->
   <div class="sub">
     <p class="sub-t">2.3 &ensp; Voice Systems</p>
-    <p style="font-size:14px;margin-bottom:16px" class="dim">Two voice architectures. Both delegate to the device mesh asynchronously &mdash; the voice AI continues speaking while tasks execute in the background.</p>
+    <p style="font-size:14px;margin-bottom:16px" class="dim">Two voice architectures. Both delegate to the device coordination layer asynchronously &mdash; the voice AI continues speaking while tasks execute in the background.</p>
 
     <div class="fig-wrap">
       <table class="tbl" style="margin:0">
         <thead><tr><th>Mode</th><th>Path</th><th>Delegates To</th><th>Key Detail</th></tr></thead>
         <tbody>
-          <tr><td>Phone Calls</td><td>Telephony &rarr; Audio Bridge &rarr; Voice AI</td><td>Device Mesh (Mode A) + Memory Cortex</td><td>Async &mdash; caller never waits in silence</td></tr>
+          <tr><td>Phone Calls</td><td>Telephony &rarr; Audio Bridge &rarr; Voice AI</td><td>Device Coordination (Mode A) + Memory Cortex</td><td>Async &mdash; caller never waits in silence</td></tr>
           <tr><td>Device-to-Device</td><td>Wake signal &rarr; WebSocket &rarr; Shared Voice AI</td><td>Both devices&rsquo; tools accessible</td><td>Ring protocol, 30s timeout, 30 min session</td></tr>
         </tbody>
       </table>
