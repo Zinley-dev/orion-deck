@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orion. Interconnected Personal Intelligence.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f6f4;
+      --surface: #ffffff;
+      --ink: #0a0a0a;
+      --ink-2: #1f1f1f;
+      --muted: #6b6b6b;
+      --muted-2: #9a9a9a;
+      --line: #e2e2dd;
+      --line-strong: #c9c9c3;
+      --accent: #0a0a0a;
+      --live: #16a34a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-size: 17px;
+      line-height: 1.55;
+      font-feature-settings: "ss01", "cv11";
+    }
+
+    /* ── Top nav bar ── */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 22px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      background: rgba(246,246,244,0.72);
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s;
+    }
+    .topbar.scrolled { border-bottom-color: var(--line); }
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
+    }
+    .brand img { width: 22px; height: 22px; display: block; }
+    .topnav { display: flex; gap: 26px; font-size: 13px; color: var(--muted); }
+    .topnav a { color: inherit; text-decoration: none; transition: color .2s; }
+    .topnav a:hover { color: var(--ink); }
+
+    /* ── Section layout ── */
+    section {
+      padding: 140px 40px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+    section:last-of-type { border-bottom: none; }
+    .wrap { max-width: 1200px; margin: 0 auto; }
+    .narrow { max-width: 860px; margin: 0 auto; }
+
+    /* ── Section label ── */
+    .label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .label::before {
+      content: "";
+      display: inline-block;
+      width: 18px; height: 1px;
+      background: var(--muted-2);
+    }
+
+    /* ── Typography ── */
+    .display {
+      font-size: clamp(44px, 6.4vw, 92px);
+      font-weight: 600;
+      letter-spacing: -0.045em;
+      line-height: 1.00;
+      color: var(--ink);
+    }
+    .display-thin { font-weight: 400; }
+    h2.section-title {
+      font-size: clamp(36px, 4.2vw, 64px);
+      font-weight: 600;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      margin-bottom: 28px;
+      max-width: 980px;
+    }
+    h3.sub-title {
+      font-size: clamp(22px, 2vw, 28px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+    p.lede {
+      font-size: clamp(18px, 1.55vw, 22px);
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 760px;
+      font-weight: 400;
+    }
+    p.body {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+    strong { color: var(--ink); font-weight: 600; }
+    a { color: inherit; }
+
+    .dim { color: var(--muted); }
+    .dimmer { color: var(--muted-2); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 180px 40px 140px;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 40px;
+      letter-spacing: 0.02em;
+    }
+    .hero-eyebrow .dot {
+      display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--live); margin-right: 8px; vertical-align: middle;
+      box-shadow: 0 0 0 4px rgba(22,163,74,0.12);
+    }
+    .hero-sub {
+      margin-top: 36px;
+      font-size: clamp(19px, 1.7vw, 24px);
+      color: var(--muted);
+      max-width: 720px;
+      line-height: 1.45;
+    }
+    .hero-meta {
+      margin-top: 80px;
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .hero-meta b { color: var(--ink); font-weight: 600; }
+
+    /* ── Day-in-the-life strip ── */
+    .strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      margin-top: 72px;
+    }
+    .strip-item {
+      padding: 32px 28px 28px 0;
+      border-right: 1px solid var(--line);
+    }
+    .strip-item:last-child { border-right: none; padding-right: 0; }
+    .strip-item:not(:first-child) { padding-left: 28px; }
+    .strip-time {
+      font-size: 12px;
+      color: var(--muted-2);
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+    .strip-text {
+      font-size: 17px;
+      color: var(--ink);
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .strip-note { font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+    /* ── Two-column layout ── */
+    .cols-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .cols-2.tight { gap: 48px; }
+
+    /* ── Numbered list (belief section) ── */
+    .belief-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 40px;
+      padding: 36px 0;
+      border-top: 1px solid var(--line);
+      align-items: start;
+    }
+    .belief-row:last-child { border-bottom: 1px solid var(--line); }
+    .belief-num {
+      font-size: 14px;
+      color: var(--muted-2);
+      letter-spacing: 0.08em;
+      padding-top: 6px;
+    }
+    .belief-title {
+      font-size: clamp(22px, 1.9vw, 28px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .belief-body {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 640px;
+    }
+
+    /* ── Feature grid ── */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      margin-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .feat {
+      padding: 36px 28px 36px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .feat:nth-child(odd) { border-right: 1px solid var(--line); padding-right: 40px; }
+    .feat:nth-child(even) { padding-left: 40px; padding-right: 0; }
+    .feat:nth-last-child(-n+2) { border-bottom: none; }
+    .feat-kicker {
+      font-size: 12px;
+      color: var(--muted-2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .feat-title {
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .feat-body { font-size: 15px; color: var(--muted); line-height: 1.6; }
+
+    /* ── Modes (how it works) ── */
+    .mode {
+      padding: 44px 0;
+      border-top: 1px solid var(--line);
+    }
+    .mode:last-of-type { border-bottom: 1px solid var(--line); }
+    .mode-head {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 48px;
+      align-items: baseline;
+    }
+    .mode-tag {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      font-weight: 500;
+    }
+    .mode-title {
+      font-size: clamp(26px, 2.4vw, 36px);
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+    }
+    .mode-body {
+      margin-top: 18px;
+      grid-column: 2;
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 680px;
+      line-height: 1.6;
+    }
+
+    /* ── Video ── */
+    .video-frame {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      margin-top: 32px;
+    }
+    .video-bar {
+      padding: 10px 16px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted-2);
+      text-transform: uppercase;
+    }
+    .video-bar .pulse {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--live);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(22,163,74,0.45); }
+      50% { box-shadow: 0 0 0 6px rgba(22,163,74,0); }
+    }
+    .video-frame video { width: 100%; display: block; background: #000; }
+
+    /* ── Voice demos ── */
+    .voice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .voice-item {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+    }
+    .voice-title { font-size: 14px; font-weight: 600; margin-bottom: 14px; }
+    .voice-item audio { width: 100%; height: 32px; }
+    .voice-item audio::-webkit-media-controls-panel {
+      background: #f2f2ef;
+    }
+
+    /* ── Quote ── */
+    .quote {
+      margin-top: 56px;
+      padding: 36px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    .quote img {
+      width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
+    }
+    .quote p.q {
+      font-size: 20px;
+      font-style: italic;
+      color: var(--ink-2);
+      line-height: 1.4;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .quote p.attr { font-size: 13px; color: var(--muted); }
+    .quote p.attr a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line-strong); padding-bottom: 1px; }
+
+    /* ── Research rows ── */
+    .rr {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      gap: 40px;
+      padding: 36px 0;
+      border-top: 1px solid var(--line);
+      align-items: start;
+    }
+    .rr:last-child { border-bottom: 1px solid var(--line); }
+    .rr-kicker {
+      font-size: 12px;
+      color: var(--muted-2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .rr-title {
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .rr-body { font-size: 15px; color: var(--muted); line-height: 1.55; }
+    .rr-link { font-size: 13px; color: var(--ink); margin-top: 10px; display: inline-block; border-bottom: 1px solid var(--line-strong); }
+
+    /* ── Landscape table ── */
+    .cmp {
+      width: 100%;
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+      margin-top: 20px;
+    }
+    .cmp-row {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(5, 1fr);
+      border-bottom: 1px solid var(--line);
+      align-items: center;
+    }
+    .cmp-row > div { padding: 18px 14px; }
+    .cmp-row.head > div {
+      font-size: 12px;
+      color: var(--muted-2);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .cmp-row.head .us { color: var(--ink); }
+    .cmp-label { font-weight: 500; color: var(--ink); }
+    .cmp-x { color: var(--muted-2); text-align: center; }
+    .cmp-v { color: var(--ink); text-align: center; font-weight: 500; }
+    .cmp-cell { text-align: center; color: var(--muted); }
+    .us-col { background: #f0f0ec; }
+
+    /* ── Traction ── */
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin-top: 24px;
+    }
+    .metric {
+      padding: 48px 32px;
+      border-right: 1px solid var(--line);
+    }
+    .metric:last-child { border-right: none; }
+    .metric-val {
+      font-size: clamp(40px, 4vw, 56px);
+      font-weight: 500;
+      letter-spacing: -0.035em;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .metric-lbl { font-size: 14px; color: var(--muted); line-height: 1.4; }
+
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 44px;
+    }
+    .reviews > div { display: flex; flex-direction: column; gap: 12px; }
+    .reviews img {
+      width: 100%; display: block; border-radius: 8px;
+      border: 1px solid var(--line);
+    }
+
+    /* ── Team ── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px 40px;
+      margin-top: 20px;
+    }
+    .person img {
+      width: 72px; height: 72px; border-radius: 50%;
+      object-fit: cover; margin-bottom: 18px;
+      filter: grayscale(100%);
+      transition: filter .3s;
+    }
+    .person:hover img { filter: grayscale(0%); }
+    .person-name { font-size: 17px; font-weight: 600; margin-bottom: 2px; letter-spacing: -0.01em; }
+    .person-role { font-size: 13px; color: var(--muted-2); margin-bottom: 10px; letter-spacing: 0.02em; }
+    .person-bio { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+
+    .backers {
+      margin-top: 72px;
+      padding-top: 40px;
+      border-top: 1px solid var(--line);
+    }
+    .backers-label {
+      font-size: 12px;
+      color: var(--muted-2);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .backer-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .backer { display: flex; gap: 14px; align-items: center; }
+    .backer img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
+    .backer .bn { font-size: 14px; font-weight: 600; }
+    .backer .bd { font-size: 12px; color: var(--muted); }
+
+    /* ── Vision ── */
+    .evolution {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      margin-top: 60px;
+      border-top: 1px solid var(--line);
+    }
+    .evo {
+      padding: 32px 20px;
+      border-right: 1px solid var(--line);
+    }
+    .evo:last-child { border-right: none; }
+    .evo.now { background: #efefeb; }
+    .evo-stage {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 12px;
+    }
+    .evo.now .evo-stage { color: var(--ink); }
+    .evo-name {
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+    .evo-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .evo-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--muted-2);
+      margin-bottom: 20px;
+    }
+    .evo.now .evo-dot { background: var(--live); box-shadow: 0 0 0 4px rgba(22,163,74,0.15); }
+
+    /* ── Ask ── */
+    .alloc {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 40px;
+      border-top: 1px solid var(--line);
+    }
+    .alloc-item {
+      padding: 32px 24px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .alloc-item:last-child { border-right: none; }
+    .alloc-pct {
+      font-size: 40px;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .alloc-cat { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+    .alloc-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    .milestones {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 40px;
+      border-top: 1px solid var(--line);
+    }
+    .ms {
+      padding: 32px 24px 32px 0;
+      border-right: 1px solid var(--line);
+    }
+    .ms:nth-child(2) { padding-left: 24px; }
+    .ms:last-child { padding-left: 24px; border-right: none; }
+    .ms-num {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--muted-2);
+      margin-bottom: 14px;
+    }
+    .ms-title {
+      font-size: 17px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .ms-body { font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+    /* ── Close ── */
+    .close {
+      padding: 180px 40px;
+      text-align: left;
+    }
+    .close-links {
+      margin-top: 72px;
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 56px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    .close-link .k {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 8px;
+    }
+    .close-link .v {
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .fine {
+      margin-top: 80px;
+      font-size: 12px;
+      color: var(--muted-2);
+    }
+
+    /* ── Showcase (cinematic) ── */
+    .showcase {
+      padding: 40px 40px 140px;
+      border-bottom: 1px solid var(--line);
+    }
+    .showcase-wrap { max-width: 1400px; margin: 0 auto; }
+    .showcase-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      padding-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .showcase-kicker {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 14px;
+    }
+    .showcase-title {
+      font-size: clamp(26px, 2.6vw, 38px);
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      max-width: 680px;
+    }
+    .showcase-caption {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 320px;
+      line-height: 1.5;
+    }
+    .showcase-video {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000;
+      aspect-ratio: 16 / 9;
+      box-shadow: 0 24px 80px -32px rgba(0,0,0,0.25);
+    }
+    .showcase-video video {
+      width: 100%; height: 100%; display: block;
+      object-fit: cover;
+    }
+    .showcase-badge {
+      position: absolute;
+      top: 20px; left: 20px;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 14px;
+      background: rgba(10,10,10,0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #fff;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      z-index: 2;
+    }
+    .showcase-badge .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--live);
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.3);
+    }
+
+    /* ── Reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .8s cubic-bezier(0.2,0.8,0.2,1), transform .8s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.d1 { transition-delay: 0.06s; }
+    .reveal.d2 { transition-delay: 0.12s; }
+    .reveal.d3 { transition-delay: 0.18s; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      section { padding: 96px 24px; }
+      .hero { padding: 140px 24px 100px; }
+      .topbar { padding: 18px 24px; }
+      .topnav { display: none; }
+      .cols-2, .mode-head { grid-template-columns: 1fr; gap: 24px; }
+      .strip, .features, .voice-grid, .team-grid, .metrics, .alloc, .milestones, .backer-row, .evolution, .close-links { grid-template-columns: 1fr; }
+      .strip-item, .feat, .metric, .alloc-item, .ms, .evo { border-right: none !important; padding: 24px 0 !important; border-bottom: 1px solid var(--line); }
+      .cmp-row { grid-template-columns: 1fr; }
+      .belief-row { grid-template-columns: 1fr; gap: 12px; }
+      .reviews { grid-template-columns: 1fr 1fr; }
+      .rr { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Top bar ── -->
+<div class="topbar" id="topbar">
+  <div class="brand">
+    <img src="img/Untitled design-4_compressed.png" alt="">
+    Orion
+  </div>
+  <nav class="topnav">
+    <a href="#problem">Problem</a>
+    <a href="#product">Product</a>
+    <a href="#research">Research</a>
+    <a href="#team">Team</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</div>
+
+
+<!-- ══════════════════════════════ -->
+<!-- HERO -->
+<!-- ══════════════════════════════ -->
+<section class="hero">
+  <div class="wrap">
+    <p class="hero-eyebrow reveal"><span class="dot"></span>Zinley Corporation. Palo Alto, CA. Seed stage.</p>
+    <h1 class="display reveal d1">
+      We&rsquo;re building the universal layer<br>
+      <span class="dim">for personal intelligence.</span>
+    </h1>
+    <p class="hero-sub reveal d2">
+      AI is getting smarter every month. Your life spans nine devices. The missing piece is the layer that lets one agent follow you across all of them.
+    </p>
+    <div class="hero-meta reveal d3">
+      <div><b>Orion</b>. Interconnected personal intelligence.</div>
+      <div><b>Live product.</b> Users paying $200+ per month.</div>
+      <div><b>$10M seed</b>, open.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ -->
+<!-- SHOWCASE (cinematic) -->
+<!-- ══════════════════════════════ -->
+<section class="showcase">
+  <div class="showcase-wrap">
+    <div class="showcase-head">
+      <div class="reveal">
+        <p class="showcase-kicker">Introducing</p>
+        <p class="showcase-title">Meet Orion.</p>
+      </div>
+      <p class="showcase-caption reveal d1">One agent, every device you own. Context travels with you. Currently in production with a waitlist, users pay $200+ per month.</p>
+    </div>
+    <div class="showcase-video reveal d2">
+      <span class="showcase-badge"><span class="dot"></span>Live product</span>
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="videos/orion-intro.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ -->
+<!-- 01 / PROBLEM -->
+<!-- ══════════════════════════════ -->
+<section id="problem">
+  <div class="wrap">
+    <p class="label reveal">01 / The problem</p>
+
+    <h2 class="section-title reveal d1">
+      Your AI stops at the edge of each device.
+    </h2>
+    <p class="lede reveal d2">
+      Models keep getting smarter inside the box. Nothing is getting smarter between the boxes. A normal day looks like this.
+    </p>
+
+    <div class="strip reveal d3">
+      <div class="strip-item">
+        <p class="strip-time">09:00 / Laptop</p>
+        <p class="strip-text">You spend an hour briefing your AI on a project.</p>
+        <p class="strip-note">All of that context is locked to one device.</p>
+      </div>
+      <div class="strip-item">
+        <p class="strip-time">12:00 / Phone</p>
+        <p class="strip-text">You step out. Ask one quick question.</p>
+        <p class="strip-note">Different AI. Knows nothing about your morning. Start over.</p>
+      </div>
+      <div class="strip-item">
+        <p class="strip-time">19:00 / Home</p>
+        <p class="strip-text">You walk in. Try to keep going.</p>
+        <p class="strip-note">A third AI. Knows your name. Nothing about your day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ -->
+<!-- 02 / WHY IT'S STILL BROKEN -->
+<!-- ══════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <p class="label reveal">02 / Why it&rsquo;s still broken</p>
+
+    <div class="cols-2">
+      <h2 class="section-title reveal d1">
+        GPT, Claude, Gemini. Every new model lands on the same wall.
+      </h2>
+      <p class="body reveal d2">
+        The next upgrade is always about reasoning, context, speed. None of that crosses the device boundary. Your life spans a phone, a laptop, a watch, a car, a home. No single-device assistant can see across them, and the problem grows with every new device you add.
+      </p>
+    </div>
+
+    <div class="features">
+      <div class="feat">
+        <p class="feat-kicker">Your life spans</p>
+        <p class="feat-title">9+ connected devices per person.</p>
+        <p class="feat-body">Phone, laptop, watch, TV, car, thermostat. No single-device agent can see across them. Source: Deloitte, Parks Associates, 2024.</p>
+      </div>
+      <div class="feat">
+        <p class="feat-kicker">Context is fragmented</p>
+        <p class="feat-title">6h 51m of daily screen time, split across devices.</p>
+        <p class="feat-body">Each screen holds a slice of your day. No one agent sees the whole picture. Source: DataReportal, Backlinko, 2026.</p>
+      </div>
+      <div class="feat">
+        <p class="feat-kicker">New hardware can&rsquo;t fix it</p>
+        <p class="feat-title">$230M burned proving that.</p>
+        <p class="feat-body">Humane: dead in 10 months. Rabbit R1: 95% abandoned. A new gadget just adds a tenth device that doesn&rsquo;t talk to the other nine.</p>
+      </div>
+      <div class="feat">
+        <p class="feat-kicker">Apple proved the shape of the answer</p>
+        <p class="feat-title">Continuity works. It&rsquo;s just locked to one brand.</p>
+        <p class="feat-body">Handoff, AirDrop, Universal Clipboard. The experience works. The rest of your life needs the same thing, across every device you own.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ -->
+<!-- 03 / OUR BELIEF -->
+<!-- ══════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <p class="label reveal">03 / Our belief</p>
+
+    <h2 class="section-title reveal d1" style="max-width:1000px">
+      The next step change in AI isn&rsquo;t a bigger model. It&rsquo;s the layer that connects the ones you already have.
+    </h2>
+    <p class="lede reveal d2" style="margin-bottom:20px">
+      So we stopped trying to build a smarter assistant, and started building the missing tissue between devices.
+    </p>
+
+    <div style="margin-top:60px">
+      <div class="belief-row reveal">
+        <div class="belief-num">01</div>
+        <div>
+          <p class="belief-title">One agent, present on every device you own.</p>
+          <p class="belief-body">Not a cloud brain driving puppets. Each Orion runs natively on its device, with full local access to screen, files, voice, and tools. The intelligence is in the network between them.</p>
+        </div>
+      </div>
+      <div class="belief-row reveal d1">
+        <div class="belief-num">02</div>
+        <div>
+          <p class="belief-title">Context should follow you, not the device.</p>
+          <p class="belief-body">What you said to your phone in the morning is in your laptop&rsquo;s working memory by afternoon. You stop re-briefing. You stop being the connective tissue.</p>
+        </div>
+      </div>
+      <div class="belief-row reveal d2">
+        <div class="belief-num">03</div>
+        <div>
+          <p class="belief-title">You shouldn&rsquo;t pick the device. The agent should.</p>
+          <p class="belief-body">Tell Orion once. It chooses which device is best for the task, spins up agents there, and they coordinate directly. You stop being the scheduler.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ -->
+<!-- 04 / PRODUCT -->
+<!-- ══════════════════════════════ -->
+<section id="product">
+  <div class="wrap">
+    <p class="label reveal">04 / The product</p>
+
+    <h2 class="section-title reveal d1" style="max-width:1000px">
+      Orion. Interconnected personal intelligence.
+    </h2>
+    <p class="lede reveal d2">
+      Your life lives across every device you own. Now your AI does too. Tell any device. Any other device already knows. Close the laptop, the context doesn&rsquo;t die with it.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ -->
+<!-- 05 / HOW IT WORKS -->
+<!-- ══════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <p class="label reveal">05 / How it works</p>
+
+    <h2 class="section-title reveal d1">
+      Two modes. One layer underneath.
+    </h2>
+    <p class="lede reveal d2" style="margin-bottom:40px">
+      Orion works the way you expect an assistant to work, and the way you wish one could.
+    </p>
+
+    <div class="mode reveal">
+      <div class="mode-head">
+        <p class="mode-tag">Reactive</p>
+        <p class="mode-title">You pick a device and tell it what to do.</p>
+      </div>
+      <p class="mode-body">Message any device from any interface, see what it sees, and watch it act in real time. The same conversation can jump from phone to laptop without you restating anything.</p>
+    </div>
+
+    <div class="mode reveal d1">
+      <div class="mode-head">
+        <p class="mode-tag">Proactive</p>
+        <p class="mode-title">You tell Orion once. It picks the devices, spins up agents, and they coordinate themselves.</p>
+      </div>
+      <p class="mode-body">One command. Orion decides which devices are needed, starts the right agents on each, and they talk to each other through the mesh layer. You see the result.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ -->
+<!-- 06 / DEMO REACTIVE -->
+<!-- ══════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <p class="label reveal">06 / Live, reactive</p>
+    <h3 class="sub-title reveal d1" style="max-width:760px">
+      You tell one device what to do. It executes while you watch, on any screen.
+    </h3>
+    <div class="video-frame reveal d2">
+      <div class="video-bar"><span class="pulse"></span>Live cross-device demo</div>
+      <video controls playsinline preload="metadata">
+        <source src="videos/orion-remote-screen-demo.mp4" type="video/mp4">
+        <source src="videos/orion-remote-screen-demo.mov" type="video/quicktime">
+      </video>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ -->
+<!-- 07 / DEMO PROACTIVE -->
+<!-- ══════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <p class="label reveal">07 / Live, proactive</p>
+    <h3 class="sub-title reveal d1" style="max-width:760px">
+      Orion spins up agents on desktop and phone. They coordinate the task themselves.
+    </h3>
+    <div class="video-frame reveal d2">
+      <div class="video-bar"><span class="pulse"></span>Desktop to phone, agent to agent</div>
+      <video controls playsinline preload="metadata">
+        <source src="videos/orion-interconnected-demo.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ -->
+<!-- 08 / VOICE -->
+<!-- ══════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <p class="label reveal">08 / Hear it working</p>
+    <h3 class="sub-title reveal d1" style="max-width:720px">
+      Orion has its own number. People call it. It answers on your behalf and catches up with you later.
+    </h3>
+
+    <div class="voice-grid reveal d2">
+      <div class="voice-item">
+        <p class="voice-title">Restaurant booking</p>
+        <audio controls><source src="videos/orion-restaurant-demo.wav" type="audio/wav"></audio>
+      </div>
+      <div class="voice-item">
+        <p class="voice-title">Hotpot reservation</p>
+        <audio controls><source src="videos/orion-hotpot-demo.wav" type="audio/wav"></audio>
+      </div>
+      <div class="voice-item">
+        <p class="voice-title">Self-awareness</p>
+        <audio controls><source src="videos/orion-self-awareness-demo.wav" type="audio/wav"></audio>
+      </div>
+    </div>
+
+    <div class="quote reveal d3">
+      <img src="img/chi-wang.jpeg" alt="">
+      <div>
+        <p class="q">&ldquo;Orion attended a Google Meet for me. Asked follow-ups, took notes, sent the summary. I never joined.&rdquo;</p>
+        <p class="attr"><strong>Chi Wang</strong>, creator of AutoGen, Google DeepMind. <a href="https://x.com/Chi_Wang_/status/2019484565631561919" target="_blank">View on X</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ -->
+<!-- 09 / RESEARCH -->
+<!-- ══════════════════════════════ -->
+<section id="research">
+  <div class="wrap">
+    <p class="label reveal">09 / Research</p>
+    <h2 class="section-title reveal d1">Core capabilities, backed by original research.</h2>
+
+    <div style="margin-top:48px">
+      <div class="rr reveal">
+        <div>
+          <p class="rr-kicker">Problem</p>
+          <p class="rr-title">Agents have no senses.</p>
+          <p class="rr-body">Can&rsquo;t see your screen or hear what&rsquo;s happening around you.</p>
+        </div>
+        <div>
+          <p class="rr-kicker">Our answer</p>
+          <p class="rr-title">Orion Sensor.</p>
+          <p class="rr-body">Sees your screen, hears your world, steps in when you need it.</p>
+          <a class="rr-link" href="https://hiorion.ai/orion-sensor" target="_blank">Read the research</a>
+        </div>
+      </div>
+      <div class="rr reveal d1">
+        <div>
+          <p class="rr-kicker">Problem</p>
+          <p class="rr-title">Agents fail silently.</p>
+          <p class="rr-body">One small mistake compounds into a total failure.</p>
+        </div>
+        <div>
+          <p class="rr-kicker">Our answer</p>
+          <p class="rr-title">Multi-Agent Self-Audit.</p>
+          <p class="rr-body">A separate model reviews risky actions before execution.</p>
+          <a class="rr-link" href="https://hiorion.ai/self-audit" target="_blank">Read the research</a>
+        </div>
+      </div>
+      <div class="rr reveal d2">
+        <div>
+          <p class="rr-kicker">Problem</p>
+          <p class="rr-title">Context dies at the device boundary.</p>
+          <p class="rr-body">Close the laptop, the context is gone.</p>
+        </div>
+        <div>
+          <p class="rr-kicker">Our answer</p>
+          <p class="rr-title">Cross-Device Communication.</p>
+          <p class="rr-body">Orion instances stay in sync through a unified mesh, streaming context live across devices.</p>
+          <a class="rr-link" href="https://hiorion.ai/communication" target="_blank">Read the research</a>
+        </div>
+      </div>
+      <div class="rr reveal d2">
+        <div>
+          <p class="rr-kicker">Problem</p>
+          <p class="rr-title">Security is an afterthought.</p>
+          <p class="rr-body">No auth, prompt injection, cascading failures.</p>
+        </div>
+        <div>
+          <p class="rr-kicker">Our answer</p>
+          <p class="rr-title">Deep personalization and safety.</p>
+          <p class="rr-body">Encrypted transport, device-local tool execution, defense in depth at every layer.</p>
+          <a class="rr-link" href="https://hiorion.ai/orion-safety" target="_blank">Read the research</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ -->
+<!-- 11 / LANDSCAPE -->
+<!-- ══════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <p class="label reveal">10 / Landscape</p>
+    <h2 class="section-title reveal d1">Everyone else builds for one screen. We build across all of them.</h2>
+
+    <div class="cmp reveal d2">
+      <div class="cmp-row head">
+        <div></div>
+        <div>OpenClaw</div>
+        <div>Genspark Claw</div>
+        <div>Claude Cowork</div>
+        <div>Perplexity Computer</div>
+        <div class="us">Orion</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-label">Architecture</div>
+        <div class="cmp-cell">Self-hosted gateway</div>
+        <div class="cmp-cell">One cloud VM per user</div>
+        <div class="cmp-cell">Cloud brain, local body</div>
+        <div class="cmp-cell">Cloud orchestrator, Firecracker</div>
+        <div class="cmp-v us-col">Native agent on every device</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-label">Multi-device</div>
+        <div class="cmp-x">&mdash;</div>
+        <div class="cmp-x">&mdash;</div>
+        <div class="cmp-x">&mdash;</div>
+        <div class="cmp-x">&mdash;</div>
+        <div class="cmp-v us-col">Yes</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-label">Context flows across devices</div>
+        <div class="cmp-x">&mdash;</div>
+        <div class="cmp-x">&mdash;</div>
+        <div class="cmp-x">&mdash;</div>
+        <div class="cmp-x">&mdash;</div>
+        <div class="cmp-v us-col">Streams live</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-label">Works without internet</div>
+        <div class="cmp-x">&mdash;</div>
+        <div class="cmp-x">&mdash;</div>
+        <div class="cmp-x">&mdash;</div>
+        <div class="cmp-x">&mdash;</div>
+        <div class="cmp-v us-col">Call or SMS</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-label">Local app access</div>
+        <div class="cmp-cell">Self-hosted only</div>
+        <div class="cmp-x">&mdash;</div>
+        <div class="cmp-cell">Scoped folders</div>
+        <div class="cmp-x">&mdash;</div>
+        <div class="cmp-v us-col">Full native, every device</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-label">Zero config</div>
+        <div class="cmp-cell">Requires DevOps</div>
+        <div class="cmp-cell">Yes</div>
+        <div class="cmp-cell">Needs connectors</div>
+        <div class="cmp-cell">Hardware setup</div>
+        <div class="cmp-v us-col">Yes</div>
+      </div>
+    </div>
+    <p class="dimmer reveal d3" style="font-size:12px;margin-top:20px">Apple Intelligence and Google Gemini are ecosystem-locked to their own devices, not included above.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ -->
+<!-- 12 / TRACTION -->
+<!-- ══════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <p class="label reveal">11 / Early signal</p>
+
+    <div class="cols-2">
+      <h2 class="section-title reveal d1">Supply-constrained, not demand-constrained.</h2>
+      <p class="body reveal d2">Every user found Orion organically. No marketing spend. We&rsquo;ve capped access while we keep quality high. People are still paying.</p>
+    </div>
+
+    <div class="metrics reveal d3">
+      <div class="metric">
+        <p class="metric-val">8 hrs</p>
+        <p class="metric-lbl">Peak daily use per user</p>
+      </div>
+      <div class="metric">
+        <p class="metric-val">$200+</p>
+        <p class="metric-lbl">Revenue per user, per month</p>
+      </div>
+      <div class="metric">
+        <p class="metric-val">$0</p>
+        <p class="metric-lbl">Marketing spend to date</p>
+      </div>
+      <div class="metric">
+        <p class="metric-val">Gated</p>
+        <p class="metric-lbl">Access capped for quality</p>
+      </div>
+    </div>
+
+    <div class="reviews reveal">
+      <div>
+        <img src="img/customer-review/review5.png" alt="">
+        <img src="img/customer-review/review6.png" alt="">
+        <img src="img/customer-review/review10.png" alt="">
+      </div>
+      <div>
+        <img src="img/customer-review/review1.png" alt="">
+        <img src="img/customer-review/review3.png" alt="">
+        <img src="img/customer-review/review4.png" alt="">
+      </div>
+      <div>
+        <img src="img/customer-review/review12.png" alt="">
+        <img src="img/customer-review/review8.png" alt="">
+        <img src="img/customer-review/review2.png" alt="">
+      </div>
+    </div>
+    <p class="dimmer reveal" style="font-size:12px;margin-top:20px">Non-technical professionals paying $200+ per month.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ -->
+<!-- 13 / TEAM -->
+<!-- ══════════════════════════════ -->
+<section id="team">
+  <div class="wrap">
+    <p class="label reveal">12 / Team</p>
+    <h2 class="section-title reveal d1">Friends, colleagues, and yes, one is the other&rsquo;s landlord.</h2>
+
+    <div class="team-grid reveal d2">
+      <div class="person">
+        <img src="img/khoi-nguyen.jpeg" alt="">
+        <p class="person-name">Khoi Nguyen</p>
+        <p class="person-role">CEO</p>
+        <p class="person-bio">Stanford STAIR Lab. AI for pediatric medicine with Stanford Medicine. Ex-Google. Two-time founder.</p>
+      </div>
+      <div class="person">
+        <img src="img/minh-le.jpeg" alt="">
+        <p class="person-name">Minh Le</p>
+        <p class="person-role">CTO</p>
+        <p class="person-bio">Senior Quant Technologist at QRT. Real-time monitoring across 3,000+ HFT strategies, 2B+ daily orders. Ex-Meta and Amazon. Oxford BA &amp; MSc, Computer Science.</p>
+      </div>
+      <div class="person">
+        <img src="img/jason-chen.jpeg" alt="">
+        <p class="person-name">Jason Chen</p>
+        <p class="person-role">CPO</p>
+        <p class="person-bio">Apple CoreOS. Tech lead, Darwin Kernel cloud infrastructure. Ex-Northrop Grumman. Georgia Tech MS in CS &amp; AI.</p>
+      </div>
+      <div class="person">
+        <img src="img/peter-bakas.jpeg" alt="">
+        <p class="person-name">Peter Bakas</p>
+        <p class="person-role">COO &amp; Investor</p>
+        <p class="person-bio">Director of Engineering at Netflix. Keystone, 700B+ events per day. Co-founded DataScale (acquired by DataStax). Ex-Yahoo, PayPal.</p>
+      </div>
+      <div class="person">
+        <img src="img/steve-hong.jpeg" alt="">
+        <p class="person-name">Steve Hong</p>
+        <p class="person-role">Founding Member</p>
+        <p class="person-bio">Quant Trader at DV Trading. ICML and two NeurIPS papers. Ex-Data Scientist at J.P. Morgan. Cambridge MPhil in Machine Learning.</p>
+      </div>
+      <div class="person">
+        <img src="img/hoang-tan.jpeg" alt="">
+        <p class="person-name">Hoang Trong Tan</p>
+        <p class="person-role">Founding Member</p>
+        <p class="person-bio">Production Engineer at Meta. AI/HPC infra, NCCL, CUDA across ~50K daily jobs. Ex-SWE at TikTok. NUS BSc, First-Class.</p>
+      </div>
+    </div>
+
+    <div class="backers reveal">
+      <p class="backers-label">Backed by</p>
+      <div class="backer-row">
+        <div class="backer">
+          <img src="img/chi-wang.jpeg" alt="">
+          <div>
+            <p class="bn">Chi Wang, PhD</p>
+            <p class="bd">Google DeepMind. Creator of AutoGen. ~16K citations.</p>
+          </div>
+        </div>
+        <div class="backer">
+          <img src="img/lawrence-lou.jpeg" alt="">
+          <div>
+            <p class="bn">Lawrence Lou</p>
+            <p class="bd">Llama Venture. Early OpenAI, Anthropic, xAI investor. Ex-PM Lead at Airbnb (AI Agent).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ -->
+<!-- 14 / VISION -->
+<!-- ══════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <p class="label reveal">13 / Where this goes</p>
+    <h2 class="section-title reveal d1">Come for the tool. Stay for the network.</h2>
+    <p class="lede reveal d2">
+      Productivity is the wedge. The mesh between agents is the moat. The protocol is the endgame, the OS for the physical world.
+    </p>
+
+    <div class="evolution reveal d3">
+      <div class="evo">
+        <div class="evo-dot"></div>
+        <p class="evo-stage">Phase 0</p>
+        <p class="evo-name">Chatbots</p>
+        <p class="evo-desc">Q&amp;A. No memory.</p>
+      </div>
+      <div class="evo">
+        <div class="evo-dot"></div>
+        <p class="evo-stage">Phase 1</p>
+        <p class="evo-name">Copilots</p>
+        <p class="evo-desc">AI assists. You drive.</p>
+      </div>
+      <div class="evo">
+        <div class="evo-dot"></div>
+        <p class="evo-stage">Phase 2</p>
+        <p class="evo-name">Agents</p>
+        <p class="evo-desc">AI acts. Industry is here.</p>
+      </div>
+      <div class="evo now">
+        <div class="evo-dot"></div>
+        <p class="evo-stage">Now / Orion</p>
+        <p class="evo-name">Interconnected Personal Intelligence</p>
+        <p class="evo-desc">Your AI, across every device you use.</p>
+      </div>
+      <div class="evo">
+        <div class="evo-dot"></div>
+        <p class="evo-stage">Phase 4</p>
+        <p class="evo-name">The OS for the physical world</p>
+        <p class="evo-desc">Universal Agent Layer. Cars, IoT, tactical edge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ -->
+<!-- 15 / THE ASK -->
+<!-- ══════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <p class="label reveal">14 / The ask</p>
+
+    <div class="cols-2">
+      <h2 class="section-title reveal d1">$10M seed. 14 months to Series A.</h2>
+      <p class="body reveal d2">Hire 10 to 15 engineers, scale compute, and push Orion from a gated product into the default way people work across devices.</p>
+    </div>
+
+    <div class="alloc reveal">
+      <div class="alloc-item">
+        <p class="alloc-pct">45%</p>
+        <p class="alloc-cat">Engineering</p>
+        <p class="alloc-desc">10 to 15 engineers. Mesh, mobile, IoT.</p>
+      </div>
+      <div class="alloc-item">
+        <p class="alloc-pct">25%</p>
+        <p class="alloc-cat">Compute</p>
+        <p class="alloc-desc">GPU, training, inference.</p>
+      </div>
+      <div class="alloc-item">
+        <p class="alloc-pct">20%</p>
+        <p class="alloc-cat">Go to market</p>
+        <p class="alloc-desc">Sales, pilots, enterprise motion.</p>
+      </div>
+      <div class="alloc-item">
+        <p class="alloc-pct">10%</p>
+        <p class="alloc-cat">Ops</p>
+        <p class="alloc-desc">Legal, SOC 2, admin.</p>
+      </div>
+    </div>
+
+    <div class="milestones reveal">
+      <div class="ms">
+        <p class="ms-num">Milestone 01</p>
+        <p class="ms-title">Launch paid GTM.</p>
+        <p class="ms-body">First marketing spend. Prove scalable acquisition beyond organic.</p>
+      </div>
+      <div class="ms">
+        <p class="ms-num">Milestone 02</p>
+        <p class="ms-title">Scale mobile and IoT.</p>
+        <p class="ms-body">Public mobile app. Expanded hardware integrations.</p>
+      </div>
+      <div class="ms">
+        <p class="ms-num">Milestone 03</p>
+        <p class="ms-title">Enterprise pilots.</p>
+        <p class="ms-body">First team deployments on a shared agent mesh.</p>
+      </div>
+    </div>
+
+    <p class="dimmer reveal" style="font-size:12px;margin-top:40px">Wilson Sonsini. Delaware C-Corp. Palo Alto, CA.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ -->
+<!-- CLOSE -->
+<!-- ══════════════════════════════ -->
+<section class="close" id="contact">
+  <div class="wrap">
+    <p class="label reveal">In closing</p>
+    <h2 class="display reveal d1" style="max-width:1000px">
+      Your AI shouldn&rsquo;t stop<br>
+      <span class="dim">at the device boundary.</span>
+    </h2>
+    <p class="hero-sub reveal d2">Orion makes sure it doesn&rsquo;t.</p>
+
+    <div class="close-links reveal d3">
+      <div class="close-link">
+        <p class="k">Lab</p>
+        <p class="v">zinley.com</p>
+      </div>
+      <div class="close-link">
+        <p class="k">Product</p>
+        <p class="v">hiorion.ai</p>
+      </div>
+      <div class="close-link">
+        <p class="k">Email</p>
+        <p class="v">khoi.nguyen@zinley.com</p>
+      </div>
+    </div>
+
+    <p class="fine">&copy; Zinley Corporation. Palo Alto, CA.</p>
+  </div>
+</section>
+
+
+<script>
+  // Top bar shadow on scroll
+  const topbar = document.getElementById('topbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) topbar.classList.add('scrolled');
+    else topbar.classList.remove('scrolled');
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
