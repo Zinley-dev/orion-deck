@@ -3,1718 +3,1269 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Orion. Interconnected Personal Intelligence</title>
+  <title>Orion. Seed deck.</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #050505;
-      --text: #fafafa;
-      --text-dim: rgba(255,255,255,0.5);
-      --text-muted: rgba(255,255,255,0.3);
-      --green: #22c55e;
-      --green-glow: rgba(34,197,94,0.25);
-      --green-dim: rgba(34,197,94,0.08);
-      --blue: #3b82f6;
-      --red: #ef4444;
-      --amber: #f59e0b;
-      --card: rgba(255,255,255,0.03);
-      --card-border: rgba(255,255,255,0.06);
-      --card-hover: rgba(255,255,255,0.05);
-      --light: #fafafa;
-      --light-card: #ffffff;
-      --light-text: #09090b;
-      --light-dim: #71717a;
-      --light-border: #e4e4e7;
-      --radius: 16px;
+      --bg: #f6f6f4;
+      --surface: #ffffff;
+      --ink: #0a0a0a;
+      --ink-2: #1f1f1f;
+      --muted: #6b6b6b;
+      --muted-2: #9a9a9a;
+      --line: #e2e2dd;
+      --line-strong: #c9c9c3;
+      --live: #16a34a;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
-      color: var(--text);
+      color: var(--ink);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       font-size: 17px;
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+
+    /* ── Top bar ── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      background: rgba(246,246,244,0.72);
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s;
+    }
+    .topbar.scrolled { border-bottom-color: var(--line); }
+    .brand { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+    .brand img { width: 26px; height: 26px; display: block; }
+
+    /* ── Hero logo ── */
+    .hero-logo {
+      width: 88px; height: 88px;
+      display: block;
+      margin-bottom: 32px;
+    }
+    @media (min-width: 900px) {
+      .hero-logo { width: 104px; height: 104px; }
+    }
+    .progress { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
+
+    /* ── Slide ── */
+    .slide {
+      min-height: 100vh;
+      padding: 140px 48px 100px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    .slide:last-of-type { border-bottom: none; }
+    .wrap { max-width: 1180px; width: 100%; margin: 0 auto; }
+
+    /* ── Slide count in corner ── */
+    .slide-num {
+      position: absolute;
+      bottom: 28px; right: 40px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      color: var(--muted-2);
+    }
+
+    /* ── Section label ── */
+    .kicker {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 36px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .kicker::before {
+      content: ""; display: inline-block;
+      width: 18px; height: 1px; background: var(--muted-2);
+    }
+
+    /* ── Typography (YC: large, bold, high contrast) ── */
+    h1.title {
+      font-size: clamp(56px, 8vw, 128px);
+      font-weight: 600;
+      letter-spacing: -0.05em;
+      line-height: 0.95;
+    }
+    h2.headline {
+      font-size: clamp(40px, 5.4vw, 80px);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 1.02;
+      max-width: 1000px;
+      color: var(--ink);
+    }
+    p.sub {
+      font-size: clamp(19px, 1.7vw, 24px);
+      line-height: 1.5;
+      color: var(--muted);
+      max-width: 780px;
+      font-weight: 400;
+      margin-top: 32px;
+    }
+    strong { color: var(--ink); font-weight: 600; }
+    .dim { color: var(--muted); }
+
+    /* ── Title slide ── */
+    .hero-meta {
+      margin-top: 72px;
+      padding-top: 32px;
+      border-top: 1px solid var(--line);
+      display: flex; gap: 64px; flex-wrap: wrap;
+      font-size: 14px; color: var(--muted);
+    }
+    .hero-meta b { color: var(--ink); font-weight: 600; }
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 40px;
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+    .pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 3px rgba(22,163,74,0.15); }
+
+    /* ── Problem: big data row ── */
+    .data-row {
+      margin-top: 72px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .data-cell {
+      padding: 36px 32px 36px 0;
+      border-right: 1px solid var(--line);
+    }
+    .data-cell:nth-child(2) { padding-left: 32px; }
+    .data-cell:last-child { border-right: none; padding-left: 32px; padding-right: 0; }
+    .data-val {
+      font-size: clamp(44px, 4.8vw, 64px);
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .data-lbl {
+      font-size: 15px; font-weight: 500; margin-bottom: 6px; color: var(--ink);
+    }
+    .data-note { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .data-src { font-size: 11px; color: var(--muted-2); margin-top: 10px; letter-spacing: 0.04em; }
+
+    /* ── Solution video ── */
+    .solution-grid {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .video-frame {
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 20px 60px -24px rgba(0,0,0,0.25);
+      position: relative;
+      aspect-ratio: 16/9;
+    }
+    .video-frame video { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .video-badge {
+      position: absolute; top: 16px; left: 16px;
+      padding: 6px 12px;
+      background: rgba(10,10,10,0.6);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .video-badge .dot { width: 5px; height: 5px; background: var(--live); border-radius: 50%; }
+    .modes .mode { padding: 24px 0; border-bottom: 1px solid var(--line); }
+    .modes .mode:first-child { border-top: 1px solid var(--line); }
+    .modes .mode-tag { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 8px; }
+    .modes .mode-title { font-size: 19px; font-weight: 500; letter-spacing: -0.015em; line-height: 1.3; margin-bottom: 6px; }
+    .modes .mode-body { font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+    /* ── Traction ── */
+    .metrics {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .m {
+      padding: 40px 28px;
+      border-right: 1px solid var(--line);
+    }
+    .m:last-child { border-right: none; }
+    .m-val {
+      font-size: clamp(40px, 4.2vw, 56px);
+      font-weight: 500;
+      letter-spacing: -0.035em;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .m-lbl { font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+    .quote {
+      margin-top: 48px;
+      padding: 32px 0 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    .quote img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+    .quote .q { font-size: 20px; font-style: italic; line-height: 1.4; color: var(--ink-2); letter-spacing: -0.01em; margin-bottom: 10px; }
+    .quote .attr { font-size: 13px; color: var(--muted); }
+    .quote .attr b { color: var(--ink); }
+
+    /* ── Unique Advantage ── */
+    .pillars {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .pil {
+      padding: 36px 28px 36px 0;
+      border-right: 1px solid var(--line);
+    }
+    .pil:nth-child(2) { padding-left: 28px; }
+    .pil:last-child { border-right: none; padding-left: 28px; padding-right: 0; }
+    .pil-k { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 12px; }
+    .pil-t { font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 10px; }
+    .pil-b { font-size: 14.5px; color: var(--muted); line-height: 1.6; }
+
+    /* ── Comparison ── */
+    .cmp-note { font-size: 14px; color: var(--muted); margin-top: 40px; }
+    .cmp {
+      width: 100%; margin-top: 20px; font-size: 14px;
+      border-top: 1px solid var(--line);
+    }
+    .cmp-row {
+      display: grid;
+      grid-template-columns: 1.6fr repeat(5, 1fr);
+      border-bottom: 1px solid var(--line);
+      align-items: center;
+    }
+    .cmp-row > div { padding: 16px 12px; text-align: center; color: var(--muted); }
+    .cmp-row > div:first-child { text-align: left; color: var(--ink); font-weight: 500; }
+    .cmp-row.head > div {
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--muted-2); font-weight: 600; padding: 14px 12px;
+    }
+    .cmp-row.head .us { color: var(--ink); }
+    .v { color: var(--ink); font-weight: 500; }
+    .us-col { background: #efefeb; }
+
+    /* ── Business Model ── */
+    .phases { margin-top: 48px; }
+    .phase {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 48px;
+      padding: 32px 0;
+      border-top: 1px solid var(--line);
+      align-items: baseline;
+    }
+    .phase:last-child { border-bottom: 1px solid var(--line); }
+    .phase-label { font-size: 12px; letter-spacing: 0.14em; color: var(--muted-2); text-transform: uppercase; }
+    .phase-name {
+      font-size: clamp(32px, 3.6vw, 48px);
+      font-weight: 400;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-top: 8px;
+    }
+    .phase-body h4 { font-size: 17px; font-weight: 500; margin-bottom: 6px; letter-spacing: -0.01em; }
+    .phase-body p { font-size: 15px; color: var(--muted); line-height: 1.55; max-width: 640px; }
+    .phase-sub {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; margin-top: 16px;
+      padding-top: 16px; border-top: 1px solid var(--line);
+    }
+    .phase-sub .sub-h { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+    .phase-sub .sub-p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+    /* ── Market ── */
+    .tam-grid {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .tam {
+      padding: 40px 28px 40px 0;
+      border-right: 1px solid var(--line);
+    }
+    .tam:nth-child(2) { padding-left: 28px; }
+    .tam:last-child { padding-left: 28px; padding-right: 0; border-right: none; }
+    .tam-stage { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 14px; }
+    .tam-val { font-size: clamp(38px, 4vw, 52px); font-weight: 500; letter-spacing: -0.035em; line-height: 1; margin-bottom: 14px; }
+    .tam-desc { font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+    /* ── Team ── */
+    .team {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px 40px;
+    }
+    .person img {
+      width: 72px; height: 72px; border-radius: 50%;
+      object-fit: cover; margin-bottom: 18px;
+    }
+    .person-name { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 2px; }
+    .person-role { font-size: 13px; color: var(--muted-2); margin-bottom: 10px; }
+    .person-bio { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+
+    .backers {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--line);
+    }
+    .backers-l { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 20px; }
+    .backer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .backer { display: flex; gap: 14px; align-items: center; }
+    .backer img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
+    .backer .bn { font-size: 14px; font-weight: 600; }
+    .backer .bd { font-size: 12px; color: var(--muted); }
+
+    /* ── Ask ── */
+    .ask-grid {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .alloc { padding: 32px 24px; border-right: 1px solid var(--line); }
+    .alloc:last-child { border-right: none; }
+    .alloc-pct { font-size: 40px; font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin-bottom: 10px; }
+    .alloc-cat { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+    .alloc-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    .milestones { margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .ms-num { font-size: 11px; letter-spacing: 0.14em; color: var(--muted-2); margin-bottom: 14px; }
+    .ms-title { font-size: 17px; font-weight: 500; margin-bottom: 6px; letter-spacing: -0.01em; }
+    .ms-body { font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+    /* ── Close ── */
+    .close-links {
+      margin-top: 72px;
+      padding-top: 32px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 56px;
+    }
+    .close-link .k { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 8px; }
+    .close-link .v { font-size: 17px; font-weight: 500; }
+
+    /* ── Impact grid ── */
+    .impact-grid {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .impact {
+      padding: 32px 28px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .impact-k {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 12px;
+    }
+    .impact-t {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .impact-b {
+      font-size: 14.5px;
+      color: var(--muted);
       line-height: 1.6;
     }
 
-    /* ── Progress Bar ── */
-    #progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 2px;
-      background: var(--green);
-      z-index: 1000;
-      transition: width 0.15s ease;
+    /* ── Category criteria (three non-negotiables) ── */
+    .criteria {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
-
-    /* ── Slides ── */
-    .slide {
-      min-height: 100vh;
-      scroll-snap-align: start;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 80px 100px;
-      position: relative;
-      overflow: hidden;
-      background: var(--bg);
+    .crit {
+      padding: 36px 28px 36px 0;
+      border-right: 1px solid var(--line);
     }
-    .slide.light { background: var(--light); color: var(--light-text); }
-    .slide.white { background: #fff; color: var(--light-text); }
-    .inner { max-width: 1140px; width: 100%; }
-    .center { text-align: center; }
-
-    /* ── Typography ── */
-    h1 {
-      font-size: 68px;
-      font-weight: 800;
-      letter-spacing: -0.035em;
-      line-height: 1.05;
-    }
-    h2 {
-      font-size: 48px;
+    .crit:not(:first-child) { padding-left: 28px; }
+    .crit:last-child { padding-right: 0; border-right: none; }
+    .crit-num {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--live);
       font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
+      margin-bottom: 18px;
+      display: flex; align-items: center; gap: 10px;
     }
-    h3 {
-      font-size: 32px;
-      font-weight: 700;
+    .crit-num::before {
+      content: "";
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--live);
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.18);
+    }
+    .crit-pain {
+      font-size: 13px;
+      color: var(--muted-2);
+      margin-bottom: 10px;
+      font-style: italic;
+      line-height: 1.45;
+    }
+    .crit-title {
+      font-size: 22px;
+      font-weight: 600;
       letter-spacing: -0.02em;
       line-height: 1.25;
-    }
-    .eyebrow {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      opacity: 0.35;
-      margin-bottom: 16px;
-    }
-    .eyebrow.green { color: var(--green); opacity: 0.8; }
-    .lead {
-      font-size: 22px;
-      font-weight: 400;
-      line-height: 1.55;
-      opacity: 0.5;
-    }
-    .stat-val {
-      font-size: 52px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 13px;
-      font-weight: 500;
-      opacity: 0.5;
-      margin-top: 8px;
-    }
-
-    /* ── Cards ── */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: 28px;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .card:hover { background: var(--card-hover); transform: translateY(-1px); }
-    .slide.light .card, .slide.white .card {
-      background: var(--light-card);
-      border-color: var(--light-border);
-    }
-    .slide.light .card:hover, .slide.white .card:hover {
-      box-shadow: 0 4px 24px rgba(0,0,0,0.04);
-    }
-
-    /* ── Grid ── */
-    .grid { display: grid; gap: 20px; }
-    .grid-2 { grid-template-columns: repeat(2,1fr); }
-    .grid-3 { grid-template-columns: repeat(3,1fr); }
-    .grid-4 { grid-template-columns: repeat(4,1fr); }
-
-    /* ── Avatar ── */
-    .avatar {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    .avatar-sm {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    /* ── Reveal Animation ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
-    }
-    .reveal.vis { opacity: 1; transform: none; }
-    .reveal.d1 { transition-delay: 0.08s; }
-    .reveal.d2 { transition-delay: 0.16s; }
-    .reveal.d3 { transition-delay: 0.24s; }
-    .reveal.d4 { transition-delay: 0.32s; }
-
-    /* ── Slide Number ── */
-    .snum {
-      position: absolute;
-      bottom: 28px;
-      right: 36px;
-      font-size: 11px;
-      font-weight: 600;
-      opacity: 0.12;
-      letter-spacing: 0.05em;
-    }
-
-    /* ── Navigation Dots ── */
-    .nav {
-      position: fixed;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 999;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      overflow: hidden;
-    }
-    .nav a {
-      width: 6px;
-      height: 6px;
-      min-height: 6px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.15);
-      display: block;
-      transition: all 0.25s;
-      font-size: 0;
-      line-height: 0;
-      text-indent: -9999px;
-      overflow: hidden;
-    }
-    .nav a.active {
-      background: var(--text);
-      transform: scale(1.4);
-    }
-
-    /* ── Link ── */
-    .link {
-      color: var(--green);
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .link:hover { text-decoration: underline; }
-
-    /* ── Hero Mesh Background ── */
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      z-index: 0;
-    }
-    .hero-bg .dot {
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: var(--green);
-      opacity: 0.12;
-      animation: float 8s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0); }
-      33% { transform: translate(12px, -18px); }
-      66% { transform: translate(-8px, 10px); }
-    }
-    .hero-bg .line {
-      position: absolute;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(34,197,94,0.06), transparent);
-      transform-origin: left center;
-    }
-
-    /* ── Device Flow ── */
-    .flow-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      margin-top: 56px;
-    }
-    .flow-device {
-      text-align: center;
-      padding: 20px 28px;
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      min-width: 170px;
-      position: relative;
-    }
-    .flow-device .icon { font-size: 28px; margin-bottom: 8px; }
-    .flow-device .name { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-    .flow-device .action { font-size: 12px; opacity: 0.4; }
-    .flow-line {
-      width: 48px;
-      height: 1px;
-      background: linear-gradient(90deg, var(--card-border), var(--green), var(--card-border));
-      position: relative;
-    }
-    .flow-line::after {
-      content: '';
-      position: absolute;
-      top: -3px;
-      left: 50%;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--green);
-      transform: translateX(-50%);
-      animation: pulse 2s infinite;
-    }
-    .flow-prompt {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .flow-prompt span {
-      display: inline-block;
-      padding: 10px 24px;
-      background: var(--green-dim);
-      border: 1px solid rgba(34,197,94,0.15);
-      border-radius: 100px;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--green);
-    }
-
-    /* ── Pulse ── */
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
-      50% { opacity: 0.4; transform: translateX(-50%) scale(0.6); }
-    }
-    @keyframes glow-pulse {
-      0%, 100% { box-shadow: 0 0 12px var(--green-glow); }
-      50% { box-shadow: 0 0 28px var(--green-glow); }
-    }
-    .flow-device { transition: transform 0.3s, box-shadow 0.3s; }
-    .flow-device:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-
-    /* ── Comparison Grid ── */
-    .comp-card {
-      padding: 24px;
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .comp-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
-    .comp-card .comp-name {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-    .comp-card .comp-co {
-      font-size: 11px;
-      opacity: 0.35;
-      margin-bottom: 12px;
-    }
-    .comp-card .comp-desc {
-      font-size: 13px;
-      opacity: 0.45;
-      line-height: 1.5;
-      margin-bottom: 14px;
-    }
-    .comp-tag {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      padding: 3px 8px;
-      border-radius: 5px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-      opacity: 0.5;
-    }
-
-    /* ── Research Row ── */
-    .research-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .research-row:last-child { border-bottom: none; }
-    .rr-left { padding: 24px 24px 24px 0; }
-    .rr-right { padding: 24px; border-left: 1px solid rgba(255,255,255,0.06); }
-    .rr-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
       margin-bottom: 10px;
     }
-    .rr-title { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
-    .rr-desc { font-size: 13px; opacity: 0.45; line-height: 1.5; }
-
-    /* ── Email Gate ── */
-    #gate {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.5s ease;
+    .crit-body {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
     }
-    #gate.hidden { opacity: 0; pointer-events: none; }
-    .gate-box {
-      width: 380px;
+    .criteria-close {
+      margin-top: 32px;
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .criteria-close b { color: var(--live); font-weight: 700; }
+
+    /* ── Cascade diagram (GTM rollout) ── */
+    .cascade-diagram {
+      margin-top: 72px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cd-step {
       text-align: center;
+      padding: 28px 24px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
     }
-    .gate-box img { width: 56px; height: 56px; margin-bottom: 32px; opacity: 0.8; }
-    .gate-box h2 { font-size: 24px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
-    .gate-box p { font-size: 14px; opacity: 0.4; margin-bottom: 32px; }
-    .gate-input {
-      width: 100%;
-      padding: 14px 18px;
-      font-size: 15px;
-      font-family: 'Inter', sans-serif;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      margin-bottom: 12px;
+    .cd-step.live {
+      border-color: var(--live);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.08);
     }
-    .gate-input::placeholder { color: rgba(255,255,255,0.2); }
-    .gate-input:focus {
-      border-color: rgba(255,255,255,0.2);
-      box-shadow: 0 0 0 3px rgba(255,255,255,0.03);
+    .cd-step-label {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 4px;
     }
-    .gate-input.err {
-      border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+    .cd-step.live .cd-step-label { color: var(--live); font-weight: 700; }
+    .cd-step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 14px;
+      padding: 5px 12px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--live);
+      font-weight: 700;
+      background: rgba(22,163,74,0.08);
+      border: 1px solid rgba(22,163,74,0.25);
+      border-radius: 999px;
     }
-    .gate-err {
-      font-size: 12px;
-      color: var(--red);
-      margin-bottom: 8px;
-      opacity: 0;
-      transition: opacity 0.2s;
+    .cd-step-badge::before {
+      content: "";
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--live);
+      box-shadow: 0 0 0 2px rgba(22,163,74,0.25);
     }
-    .gate-err.show { opacity: 1; }
-    .gate-btn {
-      width: 100%;
-      padding: 14px;
-      font-size: 15px;
+    .cd-step-title {
+      font-size: 22px;
       font-weight: 600;
-      font-family: 'Inter', sans-serif;
-      background: var(--text);
-      color: var(--bg);
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.1s;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+      color: var(--ink);
     }
-    .gate-btn:hover { opacity: 0.9; }
-    .gate-btn:active { transform: scale(0.98); }
-
-    /* ── Image Container ── */
-    .img-box {
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--card-border);
-    }
-    .img-box img { width: 100%; display: block; }
-
-    /* ── Scenario Story ── */
-    .scenario {
+    .cd-step:not(.live) .cd-step-title { color: var(--muted); }
+    .cd-tiles {
       display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .scenario:last-child { border-bottom: none; }
-    .scenario-icon {
-      font-size: 28px;
-      flex-shrink: 0;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
       justify-content: center;
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
     }
-    .scenario-text {
-      font-size: 18px;
-      font-weight: 500;
-      line-height: 1.55;
-      opacity: 0.7;
-    }
-
-    /* ── Insight Chain ── */
-    .insight-item {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      padding: 22px 0;
-      border-bottom: 1px solid var(--card-border);
-    }
-    .insight-item:last-child { border-bottom: none; }
-    .insight-num {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: var(--green-dim);
-      border: 1px solid rgba(34,197,94,0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .cd-tile {
+      padding: 10px 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
       font-size: 15px;
-      font-weight: 800;
-      color: var(--green);
-      flex-shrink: 0;
-    }
-    .insight-text {
-      font-size: 18px;
       font-weight: 500;
-      line-height: 1.55;
-      opacity: 0.65;
+      letter-spacing: -0.01em;
+      background: #fff;
     }
+    .cd-step:not(.live) .cd-tile {
+      color: var(--muted);
+      border-style: dashed;
+      background: transparent;
+    }
+    .cd-tile-wedge {
+      background: #ffffff;
+      border-color: var(--live);
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.12);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cd-tile-badge {
+      display: inline-block;
+      padding: 3px 9px;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--live);
+      font-weight: 700;
+      background: rgba(22,163,74,0.1);
+      border-radius: 999px;
+    }
+    .cd-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 0;
+    }
+    .cd-arrow-line {
+      width: 1px;
+      height: 28px;
+      background: var(--line-strong);
+    }
+    .cd-arrow-head {
+      margin-top: -1px;
+      width: 0; height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 7px solid var(--line-strong);
+    }
+
+    /* ── Reveal ── */
+    .reveal {
+      opacity: 0; transform: translateY(14px);
+      transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.d1 { transition-delay: 0.06s; }
+    .reveal.d2 { transition-delay: 0.12s; }
+    .reveal.d3 { transition-delay: 0.18s; }
 
     /* ── Responsive ── */
-    @media (max-width: 1024px) {
-      .slide { padding: 60px 36px; }
-      h1 { font-size: 48px; }
-      h2 { font-size: 36px; }
-      h3 { font-size: 26px; }
-      .lead { font-size: 19px; }
-      .stat-val { font-size: 40px; }
-      .grid-4 { grid-template-columns: repeat(2,1fr); }
-      .grid-3 { grid-template-columns: repeat(2,1fr); }
-      .flow-wrap { flex-wrap: wrap; gap: 12px; }
-      .flow-line { display: none; }
-      .research-row { grid-template-columns: 1fr; }
-      .rr-right { border-left: none; border-top: 1px solid rgba(255,255,255,0.06); padding-left: 0; }
-    }
-    @media (max-width: 640px) {
-      .slide { padding: 48px 20px; }
-      h1 { font-size: 36px; }
-      h2 { font-size: 28px; }
-      h3 { font-size: 22px; }
-      .grid-2 { grid-template-columns: 1fr; }
-      .grid-3 { grid-template-columns: 1fr; }
-      .grid-4 { grid-template-columns: 1fr; }
+    @media (max-width: 900px) {
+      .slide { padding: 96px 24px 64px; }
+      .topbar { padding: 16px 24px; }
+      .data-row, .metrics, .pillars, .tam-grid, .ask-grid, .team, .backer-grid, .solution-grid, .phase, .phase-sub, .milestones, .close-links { grid-template-columns: 1fr; gap: 24px; }
+      .data-cell, .m, .pil, .tam, .alloc { border-right: none !important; border-bottom: 1px solid var(--line); padding: 24px 0 !important; }
+      .cmp-row { grid-template-columns: 1fr; }
+      .criteria { grid-template-columns: 1fr; }
+      .crit { border-right: none !important; border-bottom: 1px solid var(--line); padding: 28px 0 !important; }
+      .impact-grid { grid-template-columns: 1fr; border-left: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- Progress Bar -->
-<div id="progress" style="width:0"></div>
-
-<!-- Navigation Dots -->
-<div class="nav" id="nav"></div>
-
-<!-- Email Gate -->
-<div id="gate">
-  <div class="gate-box">
-    <img src="img/Untitled design-4_compressed.png" alt="Orion">
-    <h2>Welcome</h2>
-    <p>Enter your email to view this deck.</p>
-    <input type="email" class="gate-input" id="gate-email" placeholder="you@company.com">
-    <div class="gate-err" id="gate-error">Please enter a valid email.</div>
-    <button class="gate-btn" id="gate-btn">Continue</button>
+<!-- ── Top bar ── -->
+<div class="topbar" id="topbar">
+  <div class="brand">
+    <img src="img/orion-logo.svg" alt="Orion">
+    Orion
   </div>
+  <div class="progress">Seed deck, 2026</div>
 </div>
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 1: THE PROBLEM (Human, Felt) -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s1">
-  <div class="hero-bg" id="hero-bg"></div>
-  <div class="inner" style="position:relative;z-index:1">
-    <h1 class="reveal" style="max-width:1000px;font-size:84px;letter-spacing:-0.04em;line-height:1.05">Your AI is brilliant.<br>It just can&rsquo;t follow you.</h1>
 
-    <p class="reveal d1" style="margin-top:28px;font-size:11px;font-weight:700;letter-spacing:0.1em;opacity:0.3">A REAL DAY IN 2026</p>
-
-    <div class="grid grid-3 reveal d2" style="margin-top:18px;gap:14px;max-width:980px">
-      <div class="card" style="padding:28px 24px;border-top:2px solid rgba(255,255,255,0.08)">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
-          <div style="font-size:32px">&#128187;</div>
-          <div>
-            <p style="font-size:11px;opacity:0.35;font-weight:700;letter-spacing:0.06em">9 AM &middot; LAPTOP</p>
-            <p style="font-size:12px;opacity:0.5">ChatGPT &middot; Claude &middot; Cursor</p>
-          </div>
-        </div>
-        <p style="font-size:15px;font-weight:600;line-height:1.4">Spent an hour briefing your AI on the project.</p>
-        <p style="font-size:13px;opacity:0.4;line-height:1.5;margin-top:6px">All locked to this device.</p>
-      </div>
-      <div class="card" style="padding:28px 24px;border-top:2px solid rgba(255,255,255,0.08)">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
-          <div style="font-size:32px">&#128241;</div>
-          <div>
-            <p style="font-size:11px;opacity:0.35;font-weight:700;letter-spacing:0.06em">12 PM &middot; PHONE</p>
-            <p style="font-size:12px;opacity:0.5">Siri &middot; Gemini &middot; Apple Intelligence</p>
-          </div>
-        </div>
-        <p style="font-size:15px;font-weight:600;line-height:1.4">Step out for lunch. Need to ask one quick question.</p>
-        <p style="font-size:13px;opacity:0.4;line-height:1.5;margin-top:6px">Different AI. Knows nothing about your morning. Start over.</p>
-      </div>
-      <div class="card" style="padding:28px 24px;border-top:2px solid rgba(255,255,255,0.08)">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
-          <div style="font-size:32px">&#128268;</div>
-          <div>
-            <p style="font-size:11px;opacity:0.35;font-weight:700;letter-spacing:0.06em">7 PM &middot; HOME</p>
-            <p style="font-size:12px;opacity:0.5">Alexa &middot; HomePod &middot; Google</p>
-          </div>
-        </div>
-        <p style="font-size:15px;font-weight:600;line-height:1.4">Walk in the door. Try to keep going.</p>
-        <p style="font-size:13px;opacity:0.4;line-height:1.5;margin-top:6px">Third AI. Knows your name. Nothing about your day.</p>
-      </div>
-    </div>
-
-    <div class="reveal d3" style="margin-top:44px;display:flex;align-items:center;gap:24px;flex-wrap:wrap">
-      <p style="font-size:22px;font-weight:700;opacity:0.55;letter-spacing:-0.01em">The AI is getting smarter every month.</p>
-      <p style="font-size:22px;font-weight:700;color:var(--red);letter-spacing:-0.01em">The connection between your devices isn&rsquo;t.</p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 1 / TITLE -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <img src="img/orion-logo-large.svg" alt="Orion" class="hero-logo reveal">
+    <span class="pill reveal"><span class="dot"></span>Live product. Paying users. Waitlisted.</span>
+    <h1 class="title reveal d1">
+      Orion.<br><span class="dim">Interconnected personal intelligence.</span>
+    </h1>
+    <p class="sub reveal d2">
+      Picks up your phone. Runs on every device you own. Acts as you.
+    </p>
+    <div class="hero-meta reveal d3">
+      <div><b>Zinley Corp</b>. Palo Alto, CA.</div>
+      <div><b>Raising $10M seed.</b></div>
+      <div>khoi.nguyen@zinley.com</div>
     </div>
   </div>
-  <div class="snum">01</div>
+  <div class="slide-num">01 / 14</div>
 </section>
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 2: WHY IT'S STILL BROKEN -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s2">
-  <div class="inner">
-    <p class="eyebrow green reveal">Why nobody has fixed this</p>
-    <h2 class="reveal d1" style="max-width:900px">GPT-6, Claude 5, Gemini 4.<br>Every upgrade lands on the same wall.</h2>
-    <p class="reveal d1" style="font-size:16px;opacity:0.55;margin-top:14px;max-width:820px">Models keep getting smarter. But smarter doesn&rsquo;t cross the device boundary. Your life spans 9+ devices. The missing piece isn&rsquo;t a better model. It&rsquo;s the layer that connects them.</p>
 
-    <div class="grid grid-3 reveal d2" style="margin-top:44px;gap:16px">
-      <div class="card" style="padding:28px;border-top:2px solid var(--green)">
-        <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;opacity:0.4;margin-bottom:10px">YOUR LIFE SPANS</p>
-        <p style="font-size:42px;font-weight:800;color:var(--green);line-height:1;margin-bottom:12px">9+</p>
-        <p style="font-size:15px;font-weight:700;margin-bottom:6px">connected devices per person</p>
-        <p style="font-size:12px;opacity:0.45;line-height:1.55">Phone, laptop, watch, TV, car, thermostat. No single-device agent can see across them.</p>
-        <p style="font-size:10px;opacity:0.2;margin-top:6px">Deloitte / Parks Associates, 2024</p>
-      </div>
-      <div class="card" style="padding:28px;border-top:2px solid var(--green)">
-        <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;opacity:0.4;margin-bottom:10px">CONTEXT IS FRAGMENTED</p>
-        <p style="font-size:42px;font-weight:800;color:var(--green);line-height:1;margin-bottom:12px">6h 51m</p>
-        <p style="font-size:15px;font-weight:700;margin-bottom:6px">daily screen time, split across devices</p>
-        <p style="font-size:12px;opacity:0.45;line-height:1.55">Phone, laptop, tablet, TV. Split across devices. Each one holds a slice. No agent sees the full picture.</p>
-        <p style="font-size:10px;opacity:0.2;margin-top:6px">DataReportal / Backlinko, 2026</p>
-      </div>
-      <div class="card" style="padding:28px;border-top:2px solid var(--red)">
-        <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;opacity:0.4;margin-bottom:10px">NEW HARDWARE CAN&rsquo;T FIX IT</p>
-        <p style="font-size:42px;font-weight:800;color:var(--red);line-height:1;margin-bottom:12px">$230M</p>
-        <p style="font-size:15px;font-weight:700;margin-bottom:6px">burned proving it</p>
-        <p style="font-size:12px;opacity:0.45;line-height:1.55">Humane: dead in 10 months. Rabbit R1: 95% abandoned. A new gadget just adds a 10th device that doesn&rsquo;t talk to the other 9.</p>
-        <p style="font-size:10px;opacity:0.2;margin-top:6px">TechCrunch / 9to5Google, 2024</p>
-      </div>
-    </div>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 2 / PROBLEM -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Problem</p>
+    <h2 class="headline reveal d1">
+      AI keeps getting smarter.<br>
+      <span class="dim">Your devices still don&rsquo;t talk to each other.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Your day spans a phone, laptop, watch, car, home. Each one runs a different assistant. You are the connective tissue.
+    </p>
 
-    <div class="reveal d3" style="margin-top:24px;padding:20px 28px;background:rgba(34,197,94,0.03);border:1px solid rgba(34,197,94,0.12);border-radius:14px;display:flex;align-items:flex-start;gap:16px">
-      <div style="width:40px;height:40px;border-radius:10px;background:var(--green-dim);border:1px solid rgba(34,197,94,0.15);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;color:var(--green);font-weight:800;margin-top:2px">&#10003;</div>
-      <div>
-        <p style="font-size:16px;font-weight:700;color:var(--green);margin-bottom:4px">Apple Continuity proved interconnection works. Just locked to one brand.</p>
-        <p style="font-size:13px;opacity:0.45;line-height:1.55">Apple users rely on Handoff, AirDrop, and Universal Clipboard daily. The experience works, but only within Apple. What&rsquo;s missing is a version that works across every device you own.</p>
+    <p class="reveal d2" style="margin-top:18px;font-size:15px;color:var(--muted);max-width:960px;line-height:1.6"><b style="color:var(--ink);font-weight:600">OpenClaw</b>: one host, phone as remote. <b style="color:var(--ink);font-weight:600">Claude Cowork + Dispatch</b>: desktop agent, phone as remote. <b style="color:var(--ink);font-weight:600">19Pine</b>: outbound calls to companies. <b style="color:var(--ink);font-weight:600">CreaoAI</b>: cloud Agent Apps. <b style="color:var(--ink);font-weight:600">AGI, Inc.</b>: mobile agent operating inside your apps. None is a true interconnected personal AI around your life.</p>
+
+    <div class="data-row reveal d3">
+      <div class="data-cell">
+        <p class="data-val">9+</p>
+        <p class="data-lbl">Connected devices per person.</p>
+        <p class="data-note">Phone, laptop, watch, TV, car, thermostat. No single-device agent sees across them.</p>
+        <p class="data-src">Deloitte, Parks Associates</p>
+      </div>
+      <div class="data-cell">
+        <p class="data-val">6h 51m</p>
+        <p class="data-lbl">Daily screen time, split across devices.</p>
+        <p class="data-note">Each screen holds a slice. No agent sees the whole.</p>
+        <p class="data-src">DataReportal, Backlinko</p>
+      </div>
+      <div class="data-cell">
+        <p class="data-val">$230M</p>
+        <p class="data-lbl">Burned proving new hardware can&rsquo;t fix this.</p>
+        <p class="data-note">Humane: dead in 10 months. Rabbit R1: 95% abandoned. A 10th device that doesn&rsquo;t talk to the 9 changes nothing.</p>
+        <p class="data-src">TechCrunch, 9to5Google</p>
       </div>
     </div>
   </div>
-  <div class="snum">02</div>
+  <div class="slide-num">02 / 14</div>
 </section>
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 4: THE SOLUTION. ORION -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s3">
-  <div class="inner center">
-    <p class="eyebrow green reveal">Introducing</p>
-    <div class="reveal d1">
-      <img src="img/Untitled design-4_compressed.png" alt="Orion" style="width:72px;height:72px;margin-bottom:20px">
-      <h1>Orion.</h1>
-    </div>
-    <p class="lead reveal d2" style="max-width:820px;margin:20px auto 0">Your interconnected personal intelligence. Your life lives across every device you own. Now your AI does too.</p>
 
-    <div class="grid grid-4 reveal d3" style="margin-top:56px;max-width:1200px;margin-left:auto;margin-right:auto;gap:14px">
-      <div class="card" style="padding:28px 22px;border-top:2px solid var(--green);text-align:left">
-        <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:var(--green);margin-bottom:14px">01 &middot; CONNECTED AGENTS</p>
-        <h3 style="font-size:18px;margin-bottom:10px">An agent on every device, all connected.</h3>
-        <p style="font-size:12px;opacity:0.5;line-height:1.55">Each device runs its own Orion. Bring a new one home and it already knows you. The network carries the intelligence.</p>
-      </div>
-      <div class="card" style="padding:28px 22px;border-top:2px solid var(--green);text-align:left">
-        <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:var(--green);margin-bottom:14px">02 &middot; PLANS &amp; ROUTES</p>
-        <h3 style="font-size:18px;margin-bottom:10px">Tell it once. It picks the device.</h3>
-        <p style="font-size:12px;opacity:0.5;line-height:1.55">Orion picks the device, spins up agents, and coordinates them. You stop being the scheduler.</p>
-      </div>
-      <div class="card" style="padding:28px 22px;border-top:2px solid var(--green);text-align:left">
-        <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:var(--green);margin-bottom:14px">03 &middot; CONTEXT FLOWS</p>
-        <h3 style="font-size:18px;margin-bottom:10px">Tell your phone. Your laptop knows.</h3>
-        <p style="font-size:12px;opacity:0.5;line-height:1.55">What you said to your phone in the morning is in your laptop&rsquo;s context by afternoon.</p>
-      </div>
-      <div class="card" style="padding:28px 22px;border-top:2px solid var(--green);text-align:left">
-        <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:var(--green);margin-bottom:14px">04 &middot; ITS OWN LINE</p>
-        <h3 style="font-size:18px;margin-bottom:10px">Has its own number and email.</h3>
-        <p style="font-size:12px;opacity:0.5;line-height:1.55">Reach it by phone or text from anywhere &mdash; no app, no internet on your end. Others can call too. It answers on your behalf and catches up with you later.</p>
-      </div>
-    </div>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 3 / SOLUTION -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Solution</p>
+    <h2 class="headline reveal d1">
+      A persistent agent.<br>
+      <span class="dim">Running natively on every device you own.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Tell any device. The others already know. Close the laptop, the context doesn&rsquo;t die.
+    </p>
 
-    <div class="reveal d4">
-      <div class="flow-prompt" style="margin-top:48px">
-        <span>&ldquo;I&rsquo;m running late for dinner.&rdquo;</span>
-      </div>
-      <p style="text-align:center;font-size:11px;opacity:0.3;margin-top:8px;letter-spacing:0.06em">ORION DECIDES &middot; SPINS UP AGENTS &middot; COORDINATES ACROSS DEVICES</p>
-      <div class="flow-wrap">
-        <div class="flow-device">
-          <div class="icon">&#128187;</div>
-          <div class="name">Desktop</div>
-          <div class="action">Reschedules your 6pm meeting</div>
-        </div>
-        <div class="flow-line"></div>
-        <div class="flow-device">
-          <div class="icon">&#128241;</div>
-          <div class="name">Phone</div>
-          <div class="action">Calls the restaurant to push the table</div>
-        </div>
-        <div class="flow-line"></div>
-        <div class="flow-device">
-          <div class="icon">&#128268;</div>
-          <div class="name">Home</div>
-          <div class="action">Drops thermostat &middot; arms security</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="snum">03</div>
-</section>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 5: WHAT IS INTERCONNECTED? -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s4">
-  <div class="inner center">
-    <p class="eyebrow green reveal">Core thesis</p>
-    <h2 class="reveal d1" style="margin-bottom:48px">What does &ldquo;interconnected&rdquo; actually mean?</h2>
-
-    <div class="grid grid-2 reveal d2" style="gap:20px;max-width:900px;margin:0 auto">
-      <div class="card" style="padding:32px;border-top:2px solid var(--green);text-align:left">
-        <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:var(--green);margin-bottom:16px">REACTIVE</p>
-        <h3 style="font-size:22px;margin-bottom:12px">You pick a device and tell it what to do.</h3>
-        <p style="font-size:15px;opacity:0.5;line-height:1.55">Message any device from any interface, see what it sees, and watch it act in real time.</p>
-      </div>
-      <div class="card" style="padding:32px;border-top:2px solid var(--green);text-align:left">
-        <p style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:var(--green);margin-bottom:16px">PROACTIVE</p>
-        <h3 style="font-size:22px;margin-bottom:12px">Orion picks the devices, spins up agents, and they coordinate themselves.</h3>
-        <p style="font-size:15px;opacity:0.5;line-height:1.55">One command. Orion decides which devices are needed, spins up agents on each, and they coordinate directly through the interconnected layer.</p>
-      </div>
-    </div>
-  </div>
-  <div class="snum">04</div>
-</section>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 7: REACTIVE INTERCONNECTION DEMO -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s5">
-  <div class="inner">
-    <p class="eyebrow green reveal">Reactive &middot; live</p>
-    <h3 class="reveal d1" style="margin-bottom:32px">You tell one device what to do. It executes while you watch.</h3>
-
-    <div class="reveal d2">
-      <div style="border-radius:16px;overflow:hidden;border:1px solid var(--card-border);max-width:1040px;margin:0 auto">
-        <div style="padding:10px 16px;background:var(--card);display:flex;align-items:center;gap:8px">
-          <div style="width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite"></div>
-          <p style="font-size:10px;font-weight:700;letter-spacing:0.06em;opacity:0.4">LIVE CROSS-DEVICE DEMO</p>
-        </div>
-        <video controls playsinline preload="metadata" style="width:100%;display:block;background:#000">
-          <source src="videos/orion-remote-screen-demo.mp4" type="video/mp4">
-          <source src="videos/orion-remote-screen-demo.mov" type="video/quicktime">
+    <div class="reveal d3" style="margin-top:56px">
+      <div class="video-frame">
+        <span class="video-badge"><span class="dot"></span>Meet Orion</span>
+        <video controls playsinline preload="metadata">
+          <source src="videos/orion-intro.mp4" type="video/mp4">
         </video>
       </div>
     </div>
   </div>
-  <div class="snum">05</div>
+  <div class="slide-num">03 / 14</div>
 </section>
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 8: PROACTIVE INTERCONNECTION DEMO -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s6">
-  <div class="inner">
-    <p class="eyebrow green reveal">Proactive &middot; live</p>
-    <h3 class="reveal d1" style="margin-bottom:32px">Orion spins up agents on desktop and phone. They coordinate the task themselves.</h3>
 
-    <div class="reveal d2">
-      <div style="border-radius:16px;overflow:hidden;border:1px solid var(--card-border);max-width:1040px;margin:0 auto">
-        <div style="padding:10px 16px;background:var(--card);display:flex;align-items:center;gap:8px">
-          <div style="width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite"></div>
-          <p style="font-size:10px;font-weight:700;letter-spacing:0.06em;opacity:0.4">DESKTOP &harr; PHONE &middot; AGENT-TO-AGENT</p>
-        </div>
-        <video controls playsinline preload="metadata" style="width:100%;display:block;background:#000">
-          <source src="videos/orion-interconnected-demo.mp4" type="video/mp4">
+<!-- ══════════════════════════════════════════════ -->
+<!-- 4 / DOGFOODING + REPRESENTATIVE LAUNCH -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Shipping next</p>
+    <h2 class="headline reveal d1">
+      Orion just picked up<br>
+      <span class="dim">its own phone.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Answers for you. Dials in your voice. Remembers everyone on the line. Live in the US, Canada, UK, Australia, Germany.
+    </p>
+
+    <div class="reveal d3" style="margin-top:56px">
+      <div class="video-frame">
+        <span class="video-badge"><span class="dot"></span>Launch film</span>
+        <video controls playsinline preload="metadata">
+          <source src="videos/orion-representative-launch.mp4" type="video/mp4">
         </video>
       </div>
     </div>
-  </div>
-  <div class="snum">06</div>
-</section>
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 9: VOICE DEMOS + SOCIAL PROOF -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s7">
-  <div class="inner">
-    <p class="eyebrow green reveal">Hear it working</p>
-    <h3 class="reveal d1" style="margin-bottom:36px">Real phone calls. Your AI handles the call.</h3>
+    <div class="reveal d3" style="margin-top:96px">
+      <p style="text-align:center;font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-2);margin-bottom:56px">The next phrase</p>
 
-    <div class="grid grid-2 reveal d2" style="gap:20px;align-items:start">
-      <div class="card" style="padding:24px">
-        <p style="font-size:10px;font-weight:700;letter-spacing:0.06em;opacity:0.35;margin-bottom:14px">VOICE DEMOS</p>
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <div style="display:flex;align-items:center;gap:12px">
-            <span style="font-size:18px">&#127869;</span>
-            <div style="flex:1">
-              <p style="font-size:13px;font-weight:600">Restaurant booking</p>
-              <audio controls style="width:100%;height:30px;margin-top:6px"><source src="videos/orion-restaurant-demo.wav" type="audio/wav"></audio>
-            </div>
+      <div style="position:relative;max-width:960px;margin:0 auto">
+        <div style="position:absolute;top:19px;left:8%;right:8%;height:1px;background:linear-gradient(90deg,var(--line-strong) 0%,var(--line-strong) 65%,var(--live) 100%)"></div>
+
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);position:relative">
+          <div style="text-align:center">
+            <div style="width:10px;height:10px;border-radius:50%;background:var(--muted-2);margin:14px auto 28px;position:relative;z-index:1"></div>
+            <p style="font-size:11px;color:var(--muted-2);letter-spacing:0.14em;margin-bottom:8px">1980s</p>
+            <p style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:var(--muted)">&ldquo;Call me.&rdquo;</p>
           </div>
-          <div style="display:flex;align-items:center;gap:12px">
-            <span style="font-size:18px">&#127834;</span>
-            <div style="flex:1">
-              <p style="font-size:13px;font-weight:600">Hotpot reservation</p>
-              <audio controls style="width:100%;height:30px;margin-top:6px"><source src="videos/orion-hotpot-demo.wav" type="audio/wav"></audio>
-            </div>
+          <div style="text-align:center">
+            <div style="width:10px;height:10px;border-radius:50%;background:var(--muted-2);margin:14px auto 28px;position:relative;z-index:1"></div>
+            <p style="font-size:11px;color:var(--muted-2);letter-spacing:0.14em;margin-bottom:8px">2000s</p>
+            <p style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:var(--muted)">&ldquo;Text me.&rdquo;</p>
           </div>
-          <div style="display:flex;align-items:center;gap:12px">
-            <span style="font-size:18px">&#129504;</span>
-            <div style="flex:1">
-              <p style="font-size:13px;font-weight:600">Self-awareness</p>
-              <audio controls style="width:100%;height:30px;margin-top:6px"><source src="videos/orion-self-awareness-demo.wav" type="audio/wav"></audio>
-            </div>
+          <div style="text-align:center">
+            <div style="width:10px;height:10px;border-radius:50%;background:var(--muted-2);margin:14px auto 28px;position:relative;z-index:1"></div>
+            <p style="font-size:11px;color:var(--muted-2);letter-spacing:0.14em;margin-bottom:8px">2010s</p>
+            <p style="font-size:19px;font-weight:500;letter-spacing:-0.02em;color:var(--muted)">&ldquo;DM me.&rdquo;</p>
+          </div>
+          <div style="text-align:center">
+            <div style="width:16px;height:16px;border-radius:50%;background:var(--live);margin:11px auto 25px;box-shadow:0 0 0 6px rgba(22,163,74,0.15);position:relative;z-index:1"></div>
+            <p style="font-size:11px;color:var(--live);letter-spacing:0.14em;margin-bottom:8px;font-weight:700">2026</p>
+            <p style="font-size:24px;font-weight:700;letter-spacing:-0.025em;color:var(--ink)">&ldquo;Call my agent.&rdquo;</p>
           </div>
         </div>
       </div>
 
-      <div class="card" style="padding:24px;display:flex;align-items:flex-start;gap:14px">
-        <img src="img/chi-wang.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;margin-top:2px">
+      <p style="text-align:center;font-size:15px;color:var(--muted);margin:52px auto 0;max-width:620px;line-height:1.5">Every user gets an Agent Card. Try mine: <a href="https://meetorion.app/call/31vjgwog" target="_blank" rel="noopener" style="color:var(--ink);font-weight:600;border-bottom:1px solid var(--line-strong);text-decoration:none">meetorion.app/call/31vjgwog</a></p>
+    </div>
+  </div>
+  <div class="slide-num">04 / 14</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 5 / TRACTION -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Traction</p>
+    <h2 class="headline reveal d1">
+      Supply-constrained,<br>
+      <span class="dim">not demand-constrained.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Early users found Orion before we were ready to onboard them. Zero marketing. Gated while we hold quality.
+    </p>
+
+    <div class="metrics reveal d3">
+      <div class="m">
+        <p class="m-val">8 hrs</p>
+        <p class="m-lbl">Peak daily use per user</p>
+      </div>
+      <div class="m">
+        <p class="m-val">$200+</p>
+        <p class="m-lbl">Top-tier ARPU, per month</p>
+      </div>
+      <div class="m">
+        <p class="m-val">$0</p>
+        <p class="m-lbl">Marketing spend to date</p>
+      </div>
+      <div class="m">
+        <p class="m-val">Gated</p>
+        <p class="m-lbl">Access capped for quality</p>
+      </div>
+    </div>
+
+    <div class="quote reveal">
+      <img src="img/chi-wang.jpeg" alt="">
+      <div>
+        <p class="q">&ldquo;Orion attended a Google Meet for me. Asked follow-ups, took notes, sent the summary. I never joined.&rdquo;</p>
+        <p class="attr"><b>Chi Wang</b>, creator of AutoGen, Google DeepMind. <a href="https://x.com/Chi_Wang_/status/2019484565631561919" target="_blank" style="text-decoration:underline">View on X</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">05 / 14</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 5 / UNIQUE ADVANTAGE -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Category creation</p>
+    <h2 class="headline reveal d1">
+      Three things a real<br>
+      <span class="dim">interconnected personal AI does.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Today&rsquo;s tools miss at least one. That&rsquo;s why yours still feels broken.
+    </p>
+
+    <div class="criteria reveal d3">
+      <div class="crit">
+        <p class="crit-num">01 &middot; One owner</p>
+        <p class="crit-pain">&ldquo;You explain yourself. Every. Single. Time.&rdquo;</p>
+        <p class="crit-title">Tied to you.</p>
+        <p class="crit-body">Your entity. Your memory. Your identity. Never a stranger again.</p>
+      </div>
+      <div class="crit">
+        <p class="crit-num">02 &middot; On your behalf</p>
+        <p class="crit-pain">&ldquo;It helps. You still do the work.&rdquo;</p>
+        <p class="crit-title">Acts as you.</p>
+        <p class="crit-body">Answers, dials, books, negotiates. In your voice, as you. Not just for you.</p>
+      </div>
+      <div class="crit">
+        <p class="crit-num">03 &middot; Anywhere, anytime</p>
+        <p class="crit-pain">&ldquo;Dies the moment you need it most.&rdquo;</p>
+        <p class="crit-title">Shows up.</p>
+        <p class="crit-body">Every device. Every surface. Any condition, online or off. Always there.</p>
+      </div>
+    </div>
+
+    <p class="criteria-close reveal">Orion ships <b>all three.</b> Nobody else does.</p>
+
+  </div>
+  <div class="slide-num">06 / 14</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 6 / BUSINESS MODEL -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Business model</p>
+    <h2 class="headline reveal d1">
+      Come for the tool.<br>
+      <span class="dim">Stay for the network.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Productivity is the wedge. The mesh is the moat. The protocol is the endgame. Three stacking revenue lines.
+    </p>
+
+    <div class="phases reveal d3">
+      <div class="phase">
         <div>
-          <p style="font-size:15px;font-weight:500;font-style:italic;opacity:0.75;line-height:1.5">&ldquo;Orion attended a Google Meet for me. Asked follow-ups, took notes, sent the summary. I never joined.&rdquo;</p>
-          <p style="font-size:11px;opacity:0.4;margin-top:10px"><strong>Chi Wang</strong>, Creator of AutoGen, Google DeepMind &middot; <a href="https://x.com/Chi_Wang_/status/2019484565631561919" target="_blank" class="link" style="font-size:11px;color:var(--green)">View on X &rarr;</a></p>
+          <p class="phase-label">Phase 01</p>
+          <p class="phase-name">Tool</p>
+        </div>
+        <div class="phase-body">
+          <h4>Subscription, $20 to $200 per seat, per month.</h4>
+          <p>B2C and B2B. Tiered by devices and compute. Live today.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div>
+          <p class="phase-label">Phase 02</p>
+          <p class="phase-name">Identity</p>
+        </div>
+        <div class="phase-body">
+          <h4>Your agent gets its own number, email, and inbox.</h4>
+          <p>It answers calls, replies to messages, books on your behalf. Each identity stacks on top of subscription.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div>
+          <p class="phase-label">Phase 03</p>
+          <p class="phase-name">Protocol</p>
+        </div>
+        <div class="phase-body">
+          <h4>The mesh becomes a licensing protocol.</h4>
+          <p>A Universal Agent Layer embedded across every connected surface: automotive (per-VIN), IoT and wearables (per-unit), defense and tactical edge (program-of-record).</p>
         </div>
       </div>
     </div>
   </div>
-  <div class="snum">07</div>
+  <div class="slide-num">07 / 14</div>
 </section>
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 10: TECHNICAL MOAT -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s8">
-  <div class="inner">
-    <p class="eyebrow green reveal">Under the hood</p>
-    <h2 class="reveal d1" style="margin-bottom:48px">Why this is hard to build.<br>And harder to replicate.</h2>
 
-    <div class="grid grid-2 reveal d2" style="gap:40px;align-items:start">
-      <!-- Architecture visual -->
-      <div>
-        <div style="position:relative;background:rgba(255,255,255,0.015);border:1px solid var(--card-border);border-radius:20px;padding:32px 24px">
-          <div style="text-align:center;margin-bottom:20px">
-            <div style="display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,rgba(34,197,94,0.2),rgba(34,197,94,0.04));border:2px solid var(--green);animation:glow-pulse 3s infinite">
-              <span style="font-size:20px">&#128279;</span>
-            </div>
-            <p style="font-size:11px;font-weight:700;color:var(--green);margin-top:6px">Orion Mesh Layer</p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 7 / MARKET -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Market</p>
+    <h2 class="headline reveal d1">
+      The market is every device<br>
+      <span class="dim">with a person in front of it.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Today: personal productivity and consumer AI. Tomorrow: every connected surface an OEM ships.
+    </p>
+
+    <div class="tam-grid reveal d3">
+      <div class="tam">
+        <p class="tam-stage">Tool</p>
+        <p class="tam-val">$450B</p>
+        <p class="tam-desc">Productivity SaaS + consumer AI by 2030. Mordor, Grand View Research.</p>
+      </div>
+      <div class="tam">
+        <p class="tam-stage">Identity</p>
+        <p class="tam-val">$750B</p>
+        <p class="tam-desc">AI phone plans by 2030. 2B+ private agent numbers (1 to 4 per user) across consumer, SMB, gig, creator, global ops. $30/mo blended ARPU. Market.us, World Bank.</p>
+      </div>
+      <div class="tam">
+        <p class="tam-stage">Protocol</p>
+        <p class="tam-val">$1.3T</p>
+        <p class="tam-desc">Automotive ($462B) + AIoT ($897B) by 2030. McKinsey, Grand View Research.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">08 / 14</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 9 / GTM -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Go to market</p>
+    <h2 class="headline reveal d1">
+      A phone number is the sharpest wedge<br>
+      <span class="dim">into daily life.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Representative ships first. Every future interface inherits the mesh.
+    </p>
+
+    <div class="pillars reveal d3">
+      <div class="pil">
+        <p class="pil-k">Why ship this first</p>
+        <p class="pil-t">Every call is a social surface.</p>
+        <p class="pil-b">Every call introduces Orion to someone new. No app, no account. Agent Cards (<a href="https://meetorion.app/call/31vjgwog" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px solid var(--line-strong);text-decoration:none">try one</a>) spread the number everywhere. The product scales itself.</p>
+      </div>
+      <div class="pil">
+        <p class="pil-k">Cuts through the noise</p>
+        <p class="pil-t">Most AI is a prompt box. Orion is an entity.</p>
+        <p class="pil-b">Every other AI lives inside a window, waiting to be typed at. Orion has its own identity and a private line, one per user, stepping into real life.</p>
+      </div>
+      <div class="pil">
+        <p class="pil-k">Scales naturally</p>
+        <p class="pil-t">Same Orion. New surface.</p>
+        <p class="pil-b">Representative is the same Orion from your desktop and phone, just with an inbound line. Auth, memory, routing, trust: solved once. New interfaces ship in days.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">09 / 14</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 10 / IMPACT -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">What this changes</p>
+    <h2 class="headline reveal d1">
+      A phone that<br>
+      <span class="dim">runs your life.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Your own private number. Answers when you can&rsquo;t. Makes calls when you can&rsquo;t. Any hour, any language.
+    </p>
+
+    <div class="impact-grid reveal d3">
+      <div class="impact">
+        <p class="impact-k">Small business owners</p>
+        <p class="impact-t">Your phone never sleeps.</p>
+        <p class="impact-b">Three customers call while you&rsquo;re in a meeting. All three get a real answer, in your voice. Nothing goes to voicemail.</p>
+      </div>
+      <div class="impact">
+        <p class="impact-k">Drivers and delivery workers</p>
+        <p class="impact-t">Your rep talks to theirs.</p>
+        <p class="impact-b">Driver speaks another language. Customer is in a meeting. Their reps handle the call, both ways. Package lands at the right door.</p>
+      </div>
+      <div class="impact">
+        <p class="impact-k">Creators and micro-KOLs</p>
+        <p class="impact-t">Every booking, every pitch, handled.</p>
+        <p class="impact-b">Brand inquiries, collab requests, fan bookings. Orion takes the call, updates your CRM post-call under your rules, books what fits.</p>
+      </div>
+      <div class="impact">
+        <p class="impact-k">Parents and elders</p>
+        <p class="impact-t">Mom stops getting stuck on the phone.</p>
+        <p class="impact-b">Doctor, insurance, the bank. Confusing menus, English-only scripts. Her rep handles it in her language, loops you in.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">10 / 14</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 11 / GTM ROLLOUT DIAGRAM -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">GTM rollout</p>
+    <h2 class="headline reveal d1">
+      Mesh ready. Apps live.<br>
+      <span class="dim">Phone is the wedge.</span>
+    </h2>
+    <p class="sub reveal d2">
+      The mesh is built. Every app is shipping. We double down on the phone as the GTM wedge. Every next interface auto-expands on the same mesh.
+    </p>
+
+    <div class="cascade-diagram reveal d3">
+      <div class="cd-step live">
+        <p class="cd-step-label">Live today</p>
+        <p class="cd-step-title">Every app is ready.</p>
+        <div class="cd-tiles">
+          <div class="cd-tile cd-tile-wedge">
+            <span class="cd-tile-badge">GTM wedge</span>
+            Phone (personal rep)
           </div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-            <div style="padding:14px 8px;background:rgba(255,255,255,0.02);border:1px solid var(--card-border);border-radius:12px">
-              <div style="text-align:center;font-size:20px;margin-bottom:4px">&#128187;</div>
-              <p style="text-align:center;font-size:10px;font-weight:700;color:var(--green);margin-bottom:6px">Orion &middot; Desktop</p>
-              <div style="display:flex;flex-direction:column;gap:2px">
-                <div style="font-size:9px;padding:3px 6px;background:var(--card);border:1px solid var(--card-border);border-radius:4px;opacity:0.4">Screen</div>
-                <div style="font-size:9px;padding:3px 6px;background:var(--card);border:1px solid var(--card-border);border-radius:4px;opacity:0.4">Browser</div>
-                <div style="font-size:9px;padding:3px 6px;background:var(--card);border:1px solid var(--card-border);border-radius:4px;opacity:0.4">Files</div>
-              </div>
-            </div>
-            <div style="padding:14px 8px;background:rgba(255,255,255,0.02);border:1px solid var(--card-border);border-radius:12px">
-              <div style="text-align:center;font-size:20px;margin-bottom:4px">&#128241;</div>
-              <p style="text-align:center;font-size:10px;font-weight:700;color:var(--green);margin-bottom:6px">Orion &middot; Phone</p>
-              <div style="display:flex;flex-direction:column;gap:2px">
-                <div style="font-size:9px;padding:3px 6px;background:var(--card);border:1px solid var(--card-border);border-radius:4px;opacity:0.4">Voice</div>
-                <div style="font-size:9px;padding:3px 6px;background:var(--card);border:1px solid var(--card-border);border-radius:4px;opacity:0.4">SMS</div>
-                <div style="font-size:9px;padding:3px 6px;background:var(--card);border:1px solid var(--card-border);border-radius:4px;opacity:0.4">Calendar</div>
-              </div>
-            </div>
-            <div style="padding:14px 8px;background:rgba(255,255,255,0.02);border:1px solid var(--card-border);border-radius:12px">
-              <div style="text-align:center;font-size:20px;margin-bottom:4px">&#128268;</div>
-              <p style="text-align:center;font-size:10px;font-weight:700;color:var(--green);margin-bottom:6px">Orion &middot; Home</p>
-              <div style="display:flex;flex-direction:column;gap:2px">
-                <div style="font-size:9px;padding:3px 6px;background:var(--card);border:1px solid var(--card-border);border-radius:4px;opacity:0.4">Climate</div>
-                <div style="font-size:9px;padding:3px 6px;background:var(--card);border:1px solid var(--card-border);border-radius:4px;opacity:0.4">Security</div>
-                <div style="font-size:9px;padding:3px 6px;background:var(--card);border:1px solid var(--card-border);border-radius:4px;opacity:0.4">Lighting</div>
-              </div>
-            </div>
-          </div>
-          <p style="text-align:center;font-size:8px;opacity:0.15;margin-top:10px;letter-spacing:0.1em">NATIVE AGENT ON EACH DEVICE &middot; UNIFIED MESH &middot; SHARED CONTEXT</p>
+          <div class="cd-tile">Desktop app</div>
+          <div class="cd-tile">Mobile app</div>
+          <div class="cd-tile">CLI</div>
         </div>
       </div>
 
-      <!-- Technical moat bullets -->
-      <div>
-        <div style="display:flex;flex-direction:column;gap:20px">
+      <div class="cd-arrow"><div class="cd-arrow-line"></div><div class="cd-arrow-head"></div></div>
+
+      <div class="cd-step">
+        <p class="cd-step-label">Auto-expands next</p>
+        <p class="cd-step-title">Same mesh, new surfaces.</p>
+        <div class="cd-tiles">
+          <div class="cd-tile">SMS</div>
+          <div class="cd-tile">Email</div>
+          <div class="cd-tile">Smart speaker</div>
+          <div class="cd-tile">Car</div>
+          <div class="cd-tile">Headset</div>
+          <div class="cd-tile">Home IoT</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">11 / 14</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 12 / TEAM -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Team</p>
+    <h2 class="headline reveal d1">
+      Friends, colleagues,<br>
+      <span class="dim">and yes, one is the other&rsquo;s landlord.</span>
+    </h2>
+
+    <div class="team reveal d2">
+      <div class="person">
+        <img src="img/khoi-nguyen.jpeg" alt="">
+        <p class="person-name">Khoi Nguyen</p>
+        <p class="person-role">CEO</p>
+        <p class="person-bio">Stanford STAIR Lab. AI for pediatric medicine with Stanford Medicine. Ex-Google. Two-time founder.</p>
+      </div>
+      <div class="person">
+        <img src="img/minh-le.jpeg" alt="">
+        <p class="person-name">Minh Le</p>
+        <p class="person-role">CTO</p>
+        <p class="person-bio">Senior Quant Technologist at QRT. Real-time monitoring across 3,000+ HFT strategies, 2B+ daily orders. Ex-Meta, Amazon. Oxford CS.</p>
+      </div>
+      <div class="person">
+        <img src="img/jason-chen.jpeg" alt="">
+        <p class="person-name">Jason Chen</p>
+        <p class="person-role">CPO</p>
+        <p class="person-bio">Apple CoreOS. Tech lead, Darwin Kernel cloud infrastructure. Ex-Northrop Grumman. Georgia Tech MS in CS and AI.</p>
+      </div>
+      <div class="person">
+        <img src="img/peter-bakas.jpeg" alt="">
+        <p class="person-name">Peter Bakas</p>
+        <p class="person-role">COO and Investor</p>
+        <p class="person-bio">Director of Engineering at Netflix. Keystone, 700B+ events per day. Co-founded DataScale (acquired by DataStax). Ex-Yahoo, PayPal.</p>
+      </div>
+      <div class="person">
+        <img src="img/steve-hong.jpeg" alt="">
+        <p class="person-name">Steve Hong</p>
+        <p class="person-role">Founding Member</p>
+        <p class="person-bio">Quant Trader at DV Trading. ICML and two NeurIPS papers. Ex-J.P. Morgan. Cambridge MPhil in Machine Learning.</p>
+      </div>
+      <div class="person">
+        <img src="img/hoang-tan.jpeg" alt="">
+        <p class="person-name">Hoang Trong Tan</p>
+        <p class="person-role">Founding Member</p>
+        <p class="person-bio">Production Engineer at Meta. AI/HPC infra, NCCL, CUDA across ~50K daily jobs. Ex-TikTok. NUS BSc, First-Class.</p>
+      </div>
+    </div>
+
+    <div class="backers reveal">
+      <p class="backers-l">Backed by</p>
+      <div class="backer-grid">
+        <div class="backer">
+          <img src="img/chi-wang.jpeg" alt="">
           <div>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
-              <div style="width:28px;height:28px;border-radius:8px;background:var(--green-dim);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;border:1px solid rgba(34,197,94,0.12)">&#128279;</div>
-              <p style="font-size:15px;font-weight:700">Mesh coordination layer</p>
-            </div>
-            <p style="font-size:13px;opacity:0.4;line-height:1.5;padding-left:38px">Agents on every device route through one unified mesh. Per-device identity, signed per session. Tool execution stays local to the device.</p>
+            <p class="bn">Chi Wang, PhD</p>
+            <p class="bd">Google DeepMind. Creator of AutoGen. ~16K citations.</p>
           </div>
+        </div>
+        <div class="backer">
+          <img src="img/lawrence-lou.jpeg" alt="">
           <div>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
-              <div style="width:28px;height:28px;border-radius:8px;background:var(--green-dim);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;border:1px solid rgba(34,197,94,0.12)">&#129520;</div>
-              <p style="font-size:15px;font-weight:700">Native on every device</p>
-            </div>
-            <p style="font-size:13px;opacity:0.4;line-height:1.5;padding-left:38px">Not sandboxed VMs or cloud screenshots. Each Orion runs natively with full access to screen, files, browser, and voice.</p>
-          </div>
-          <div>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
-              <div style="width:28px;height:28px;border-radius:8px;background:var(--green-dim);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;border:1px solid rgba(34,197,94,0.12)">&#128065;</div>
-              <p style="font-size:15px;font-weight:700">Ambient perception</p>
-            </div>
-            <p style="font-size:13px;opacity:0.4;line-height:1.5;padding-left:38px">Agent stays aware of its world &mdash; screen, sound, context. Always on, like a human.</p>
-          </div>
-          <div>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
-              <div style="width:28px;height:28px;border-radius:8px;background:var(--green-dim);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;border:1px solid rgba(34,197,94,0.12)">&#9889;</div>
-              <p style="font-size:15px;font-weight:700">Built in-house</p>
-            </div>
-            <p style="font-size:13px;opacity:0.4;line-height:1.5;padding-left:38px">No 3rd-party agent frameworks. Agent orchestration, perception, device coordination, safety &mdash; our own code, end to end.</p>
+            <p class="bn">Lawrence Lou</p>
+            <p class="bd">Llama Venture. Early OpenAI, Anthropic, xAI. Ex-PM Lead, Airbnb AI Agent.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="snum">08</div>
+  <div class="slide-num">12 / 14</div>
 </section>
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 10.5: DEFENSIBLE MOAT -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s8b">
-  <div class="inner">
-    <p class="eyebrow green reveal">Why this compounds</p>
-    <h2 class="reveal d1" style="margin-bottom:16px">The interconnected layer lets us<br>spin up a core feature in a day.</h2>
-    <p class="reveal d1" style="font-size:16px;opacity:0.5;margin-bottom:48px;max-width:820px">Auth, state, sync, memory, error handling. Solved once. A new feature just plugs in.</p>
 
-    <div class="grid grid-3 reveal d2" style="gap:16px;margin-bottom:32px">
-      <div class="card" style="padding:28px;border-top:2px solid var(--green);text-align:center">
-        <p style="font-size:36px;margin-bottom:12px">&#128187;</p>
-        <p style="font-size:15px;font-weight:700;margin-bottom:4px">Remote screen viewing</p>
-        <p style="font-size:32px;font-weight:800;color:var(--green);margin:8px 0">1 day</p>
-        <p style="font-size:12px;opacity:0.4">See and control any device from any other device.</p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 13 / THE ASK -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">The ask</p>
+    <h2 class="headline reveal d1">
+      $10M seed.<br>
+      <span class="dim">14 months to Series A.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Grow to ~10 people across engineering, security, and GTM. Scale compute. Move Orion from gated beta to the default.
+    </p>
+
+    <div class="ask-grid reveal d3">
+      <div class="alloc">
+        <p class="alloc-pct">45%</p>
+        <p class="alloc-cat">Team</p>
+        <p class="alloc-desc">Grow to ~10 people. Engineering, security, GTM.</p>
       </div>
-      <div class="card" style="padding:28px;border-top:2px solid var(--green);text-align:center">
-        <p style="font-size:36px;margin-bottom:12px">&#128193;</p>
-        <p style="font-size:15px;font-weight:700;margin-bottom:4px">Cross-device file transfer</p>
-        <p style="font-size:32px;font-weight:800;color:var(--green);margin:8px 0">1 day</p>
-        <p style="font-size:12px;opacity:0.4">Move files between any of your devices. No upload steps, no cables.</p>
+      <div class="alloc">
+        <p class="alloc-pct">25%</p>
+        <p class="alloc-cat">Compute</p>
+        <p class="alloc-desc">GPU, training, inference.</p>
       </div>
-      <div class="card" style="padding:28px;border-top:2px solid var(--green);text-align:center">
-        <p style="font-size:36px;margin-bottom:12px">&#129504;</p>
-        <p style="font-size:15px;font-weight:700;margin-bottom:4px">Representative mode</p>
-        <p style="font-size:32px;font-weight:800;color:var(--green);margin:8px 0">Days</p>
-        <p style="font-size:12px;opacity:0.4">Orion gets its own number. People call it, it answers and acts on your behalf.</p>
+      <div class="alloc">
+        <p class="alloc-pct">20%</p>
+        <p class="alloc-cat">Go to market</p>
+        <p class="alloc-desc">Sales, pilots, enterprise.</p>
+      </div>
+      <div class="alloc">
+        <p class="alloc-pct">10%</p>
+        <p class="alloc-cat">Ops</p>
+        <p class="alloc-desc">Legal, SOC 2, admin.</p>
       </div>
     </div>
 
-    <p class="reveal d3" style="font-size:14px;opacity:0.4;max-width:720px">Each feature is a new interface on the same interconnected layer. Auth, state, sync, memory, device routing &mdash; solved once. That&rsquo;s why we ship in days what others spend months rebuilding from scratch.</p>
-  </div>
-  <div class="snum">09</div>
-</section>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 11: COMPETITIVE LANDSCAPE -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s9">
-  <div class="inner">
-    <p class="eyebrow green reveal">The landscape</p>
-    <h2 class="reveal d1" style="margin-bottom:48px">They all build for one screen.<br>We build across all of them.</h2>
-
-    <div class="reveal d2" style="border:1px solid var(--card-border);border-radius:16px;overflow:hidden">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;line-height:1.45">
-        <thead>
-          <tr style="border-bottom:1px solid var(--card-border)">
-            <th style="padding:18px 20px;text-align:left;font-size:11px;font-weight:600;opacity:0.25;letter-spacing:0.06em;width:15%"></th>
-            <th style="padding:18px 14px;text-align:center;font-weight:700;font-size:13px;opacity:0.75;width:17%">OpenClaw</th>
-            <th style="padding:18px 14px;text-align:center;font-weight:700;font-size:13px;opacity:0.75;width:17%">Genspark Claw</th>
-            <th style="padding:18px 14px;text-align:center;font-weight:700;font-size:13px;opacity:0.75;width:17%">Claude Cowork</th>
-            <th style="padding:18px 14px;text-align:center;font-weight:700;font-size:13px;opacity:0.75;width:17%">Perplexity Computer</th>
-            <th style="padding:18px 14px;text-align:center;font-weight:700;font-size:14px;color:var(--green);width:17%">Orion</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom:1px solid var(--card-border)">
-            <td style="padding:16px 20px;font-weight:700;font-size:13px">Architecture</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.5">Self-hosted local gateway</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.5">One cloud VM per user</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.5">Cloud brain, local body</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.5">Cloud orchestrator, Firecracker VMs</td>
-            <td style="padding:16px 14px;text-align:center;color:var(--green);font-weight:600">Interconnected personal intelligence, native agent on every device</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--card-border)">
-            <td style="padding:16px 20px;font-weight:700;font-size:13px">Multi-device</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
-            <td style="padding:16px 14px;text-align:center;color:var(--green);font-size:18px;font-weight:700">&check;</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--card-border)">
-            <td style="padding:16px 20px;font-weight:700;font-size:13px">Context flows<br>across devices</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
-            <td style="padding:16px 14px;text-align:center;color:var(--green);font-weight:600">Streams live</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--card-border)">
-            <td style="padding:16px 20px;font-weight:700;font-size:13px">Works without<br>internet</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
-            <td style="padding:16px 14px;text-align:center;color:var(--green);font-weight:600">Call or SMS</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--card-border)">
-            <td style="padding:16px 20px;font-weight:700;font-size:13px">Local app access</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.5">Self-hosted only</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.5">Scoped folders</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.35;font-size:16px">&times;</td>
-            <td style="padding:16px 14px;text-align:center;color:var(--green);font-weight:600">Full native, every device</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--card-border)">
-            <td style="padding:16px 20px;font-weight:700;font-size:13px">Zero config</td>
-            <td style="padding:16px 14px;text-align:center;color:var(--red);font-weight:500">Requires DevOps</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.5">Yes</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.5">Needs connectors</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.5">Hardware setup</td>
-            <td style="padding:16px 14px;text-align:center;color:var(--green);font-weight:600">Yes</td>
-          </tr>
-          <tr>
-            <td style="padding:16px 20px;font-weight:700;font-size:13px">Security</td>
-            <td style="padding:16px 14px;text-align:center;color:var(--red);font-weight:500;font-size:12px">138+ CVEs, critical RCE</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.5">Cloud isolation</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.5">Sandboxed VM</td>
-            <td style="padding:16px 14px;text-align:center;opacity:0.5">Firecracker, SOC 2</td>
-            <td style="padding:16px 14px;text-align:center;color:var(--green);font-weight:600">Per-device identity, encrypted transport</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p class="reveal d3" style="text-align:center;font-size:11px;opacity:0.2;margin-top:14px;letter-spacing:0.04em">Apple Intelligence and Google Gemini are ecosystem-locked to their own devices. Not included.</p>
-  </div>
-  <div class="snum">10</div>
-</section>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 12: RESEARCH -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s10">
-  <div class="inner">
-    <p class="eyebrow green reveal">Research</p>
-    <h2 class="reveal d1" style="margin-bottom:48px">Core capabilities backed<br>by original research.</h2>
-
-    <div class="reveal d2" style="border-top:1px solid rgba(255,255,255,0.06)">
-      <div class="research-row">
-        <div class="rr-left">
-          <p class="rr-label" style="opacity:0.3">Problem</p>
-          <p class="rr-title">Agents have no senses</p>
-          <p class="rr-desc">Can&rsquo;t see your screen or hear conversations.</p>
-        </div>
-        <div class="rr-right">
-          <p class="rr-label"><a href="https://hiorion.ai/orion-sensor" target="_blank" class="link" style="font-size:11px">Read the research &rarr;</a></p>
-          <p class="rr-title">Orion Sensor</p>
-          <p class="rr-desc">Sees your screen, hears your world, steps in when you need it.</p>
-        </div>
+    <div class="close-links reveal">
+      <div class="close-link">
+        <p class="k">Lab</p>
+        <p class="v">zinley.com</p>
       </div>
-      <div class="research-row">
-        <div class="rr-left">
-          <p class="rr-label" style="opacity:0.3">Problem</p>
-          <p class="rr-title">Agents fail silently</p>
-          <p class="rr-desc">One mistake compounds into total failure.</p>
-        </div>
-        <div class="rr-right">
-          <p class="rr-label"><a href="https://hiorion.ai/self-audit" target="_blank" class="link" style="font-size:11px">Read the research &rarr;</a></p>
-          <p class="rr-title">Multi-Agent Self-Audit</p>
-          <p class="rr-desc">A separate model reviews risky actions before execution.</p>
-        </div>
+      <div class="close-link">
+        <p class="k">Product</p>
+        <p class="v">meetorion.app</p>
       </div>
-      <div class="research-row">
-        <div class="rr-left">
-          <p class="rr-label" style="opacity:0.3">Problem</p>
-          <p class="rr-title">Context dies at the device boundary</p>
-          <p class="rr-desc">Close the laptop, context is gone.</p>
-        </div>
-        <div class="rr-right">
-          <p class="rr-label"><a href="https://hiorion.ai/communication" target="_blank" class="link" style="font-size:11px">Read the research &rarr;</a></p>
-          <p class="rr-title">Cross-Device Communication</p>
-          <p class="rr-desc">Orion instances stay in sync through a unified mesh layer, streaming context live across devices.</p>
-        </div>
-      </div>
-      <div class="research-row">
-        <div class="rr-left">
-          <p class="rr-label" style="opacity:0.3">Problem</p>
-          <p class="rr-title">Security is an afterthought</p>
-          <p class="rr-desc">No auth, prompt injection, cascading failures.</p>
-        </div>
-        <div class="rr-right">
-          <p class="rr-label"><a href="https://hiorion.ai/orion-safety" target="_blank" class="link" style="font-size:11px">Read the research &rarr;</a></p>
-          <p class="rr-title">Deep Personalization &amp; Safety</p>
-          <p class="rr-desc">Encrypted transport, device-local tool execution, defense-in-depth at every layer.</p>
-        </div>
+      <div class="close-link">
+        <p class="k">Contact</p>
+        <p class="v">khoi.nguyen@zinley.com</p>
       </div>
     </div>
   </div>
-  <div class="snum">11</div>
+  <div class="slide-num">13 / 14</div>
 </section>
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 13: TRACTION + REVIEWS -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s11">
-  <div class="inner">
-    <p class="eyebrow green reveal">Early signal</p>
-    <h2 class="reveal d1" style="margin-bottom:48px">Supply-constrained, not demand-constrained.</h2>
 
-    <div class="grid grid-4 reveal d2" style="margin-bottom:40px">
-      <div class="card center">
-        <div class="stat-val" data-count="8">0</div>
-        <p class="stat-label">Peak daily hours per user</p>
-      </div>
-      <div class="card center">
-        <div class="stat-val" style="font-size:44px">$200+</div>
-        <p class="stat-label">Revenue per user / month</p>
-      </div>
-      <div class="card center">
-        <div class="stat-val">$0</div>
-        <p class="stat-label">Marketing spend</p>
-      </div>
-      <div class="card center">
-        <div class="stat-val" style="font-size:36px">Gated</div>
-        <p class="stat-label">Access capped for quality</p>
-      </div>
-    </div>
-
-    <p class="reveal d2" style="font-size:14px;opacity:0.35;text-align:center;max-width:560px;margin:0 auto 32px">Every user found Orion organically.</p>
-
-    <div class="reveal d3" style="display:flex;gap:10px;align-items:flex-start">
-      <div style="flex:1;display:flex;flex-direction:column;gap:10px">
-        <img src="img/customer-review/review5.png" alt="Review" style="width:100%;display:block;border-radius:10px">
-        <img src="img/customer-review/review6.png" alt="Review" style="width:100%;display:block;border-radius:10px">
-        <img src="img/customer-review/review10.png" alt="Review" style="width:100%;display:block;border-radius:10px">
-      </div>
-      <div style="flex:1;display:flex;flex-direction:column;gap:10px">
-        <img src="img/customer-review/review1.png" alt="Review" style="width:100%;display:block;border-radius:10px">
-        <img src="img/customer-review/review3.png" alt="Review" style="width:100%;display:block;border-radius:10px">
-        <img src="img/customer-review/review4.png" alt="Review" style="width:100%;display:block;border-radius:10px">
-      </div>
-      <div style="flex:1;display:flex;flex-direction:column;gap:10px">
-        <img src="img/customer-review/review12.png" alt="Review" style="width:100%;display:block;border-radius:10px">
-        <img src="img/customer-review/review8.png" alt="Review" style="width:100%;display:block;border-radius:10px">
-        <img src="img/customer-review/review2.png" alt="Review" style="width:100%;display:block;border-radius:10px">
-      </div>
-    </div>
-
-    <p class="reveal d3" style="text-align:center;margin-top:16px;font-size:13px;opacity:0.25">Non-technical professionals paying $200+/month</p>
-  </div>
-  <div class="snum">12</div>
-</section>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 14: TEAM -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s12">
-  <div class="inner">
-    <p class="eyebrow green center reveal">Team</p>
-    <h3 class="center reveal d1" style="margin-bottom:48px">Friends, colleagues, and yes, one is the other&rsquo;s landlord.</h3>
-
-    <div class="grid grid-3 reveal d2" style="gap:16px;margin-bottom:20px">
-      <div class="card center">
-        <img src="img/khoi-nguyen.jpeg" class="avatar" style="margin-bottom:14px">
-        <p style="font-size:15px;font-weight:700;margin-bottom:2px">Khoi Nguyen</p>
-        <p style="font-size:11px;opacity:0.35;margin-bottom:10px">CEO</p>
-        <p style="font-size:13px;opacity:0.4;line-height:1.5">Stanford STAIR Lab. AI for pediatric medicine with Stanford Medicine. Ex-Google. 2x founder.</p>
-      </div>
-      <div class="card center">
-        <img src="img/minh-le.jpeg" class="avatar" style="margin-bottom:14px">
-        <p style="font-size:15px;font-weight:700;margin-bottom:2px">Minh Le</p>
-        <p style="font-size:11px;opacity:0.35;margin-bottom:10px">CTO</p>
-        <p style="font-size:13px;opacity:0.4;line-height:1.5">Senior Quant Technologist at QRT. Real-time monitoring across 3,000+ HFT strategies, 2B+ daily orders. Ex-Meta &amp; Amazon. Oxford BA &amp; MSc Computer Science.</p>
-      </div>
-      <div class="card center">
-        <img src="img/jason-chen.jpeg" class="avatar" style="margin-bottom:14px">
-        <p style="font-size:15px;font-weight:700;margin-bottom:2px">Jason Chen</p>
-        <p style="font-size:11px;opacity:0.35;margin-bottom:10px">CPO</p>
-        <p style="font-size:13px;opacity:0.4;line-height:1.5">Apple CoreOS. Tech lead, Darwin Kernel cloud infrastructure. Ex-Northrop Grumman. Georgia Tech MS (CS/AI).</p>
-      </div>
-    </div>
-    <div class="grid grid-3 reveal d3" style="gap:16px;margin-bottom:28px">
-      <div class="card center">
-        <img src="img/peter-bakas.jpeg" class="avatar" style="margin-bottom:14px">
-        <p style="font-size:15px;font-weight:700;margin-bottom:2px">Peter Bakas</p>
-        <p style="font-size:11px;opacity:0.35;margin-bottom:10px">COO &amp; Investor</p>
-        <p style="font-size:13px;opacity:0.4;line-height:1.5">Director of Engineering at Netflix. Keystone, 700B+ events/day. Co-founded DataScale (acq. DataStax). Ex-Yahoo, PayPal.</p>
-      </div>
-      <div class="card center">
-        <img src="img/steve-hong.jpeg" class="avatar" style="margin-bottom:14px">
-        <p style="font-size:15px;font-weight:700;margin-bottom:2px">Steve Hong</p>
-        <p style="font-size:11px;opacity:0.35;margin-bottom:10px">Founding Member</p>
-        <p style="font-size:13px;opacity:0.4;line-height:1.5">Quant Trader at DV Trading. ICML + 2 NeurIPS papers. Ex-Data Scientist at J.P. Morgan. Cambridge MPhil Machine Learning. UCL BSc Statistics, First-Class.</p>
-      </div>
-      <div class="card center">
-        <img src="img/hoang-tan.jpeg" class="avatar" style="margin-bottom:14px">
-        <p style="font-size:15px;font-weight:700;margin-bottom:2px">Hoang Trong Tan</p>
-        <p style="font-size:11px;opacity:0.35;margin-bottom:10px">Founding Member</p>
-        <p style="font-size:13px;opacity:0.4;line-height:1.5">Production Engineer at Meta. AI/HPC infra, NCCL, CUDA across ~50K daily jobs. Ex-SWE at TikTok. NUS BSc Computer Science, First-Class.</p>
-      </div>
-    </div>
-
-    <p class="reveal d3" style="font-size:10px;font-weight:700;letter-spacing:0.06em;opacity:0.25;margin-bottom:12px">BACKED BY</p>
-    <div class="grid grid-2 reveal d4" style="gap:14px;max-width:700px">
-      <div class="card" style="display:flex;align-items:center;gap:14px;padding:18px">
-        <img src="img/chi-wang.jpeg" class="avatar-sm">
-        <div>
-          <p style="font-size:14px;font-weight:700">Chi Wang, PhD</p>
-          <p style="font-size:11px;opacity:0.35">Google DeepMind. Creator of AutoGen. ~16K citations.</p>
-        </div>
-      </div>
-      <div class="card" style="display:flex;align-items:center;gap:14px;padding:18px">
-        <img src="img/lawrence-lou.jpeg" class="avatar-sm">
-        <div>
-          <p style="font-size:14px;font-weight:700">Lawrence Lou</p>
-          <p style="font-size:11px;opacity:0.35">Llama Venture. Early OpenAI, Anthropic, xAI investor. Ex-PM Lead at Airbnb (AI Agent).</p>
-        </div>
-      </div>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 14 / VISION CLOSE -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide close-slide">
+  <div class="wrap" style="text-align:center">
+    <img src="img/orion-logo-large.svg" alt="Orion" class="hero-logo reveal" style="margin:0 auto 48px">
+    <p class="kicker reveal" style="justify-content:center">Our thesis</p>
+    <h1 class="title reveal d1" style="font-size:clamp(44px,6.6vw,96px)">
+      Iron Man&rsquo;s Jarvis isn&rsquo;t just a smarter model.<br>
+      <span class="dim">It&rsquo;s an interconnected one.</span>
+    </h1>
+    <p class="sub reveal d2" style="margin:40px auto 0">
+      That&rsquo;s what we&rsquo;re building.
+    </p>
+    <div class="reveal d3" style="margin-top:80px;padding-top:32px;border-top:1px solid var(--line);display:inline-flex;gap:56px;font-size:14px;color:var(--muted);flex-wrap:wrap;justify-content:center">
+      <span><b style="color:var(--ink);font-weight:600">zinley.com</b></span>
+      <span><b style="color:var(--ink);font-weight:600">meetorion.app</b></span>
+      <span><b style="color:var(--ink);font-weight:600">khoi.nguyen@zinley.com</b></span>
     </div>
   </div>
-  <div class="snum">13</div>
+  <div class="slide-num">14 / 14</div>
 </section>
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 15: VISION -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s13">
-  <div class="inner center">
-    <p class="eyebrow green reveal">Vision</p>
-    <h2 class="reveal d1" style="margin-bottom:64px">The evolution of AI.</h2>
-
-    <!-- Horizontal progress bar -->
-    <div class="reveal d2" style="position:relative;max-width:960px;margin:0 auto">
-      <!-- Track line -->
-      <div style="position:absolute;top:19px;left:60px;right:60px;height:2px;background:linear-gradient(90deg,rgba(255,255,255,0.04),rgba(255,255,255,0.08) 30%,rgba(34,197,94,0.3) 65%,rgba(34,197,94,0.08) 80%,rgba(255,255,255,0.03))"></div>
-
-      <div style="display:flex;justify-content:space-between;position:relative">
-        <!-- Chatbots -->
-        <div style="text-align:center;flex:1">
-          <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.08);margin:14px auto 20px"></div>
-          <p style="font-size:14px;font-weight:700;opacity:0.15">Chatbots</p>
-          <p style="font-size:11px;opacity:0.1;margin-top:4px">Q&A. No memory.</p>
-        </div>
-        <!-- Copilots -->
-        <div style="text-align:center;flex:1">
-          <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.15);margin:14px auto 20px"></div>
-          <p style="font-size:14px;font-weight:700;opacity:0.25">Copilots</p>
-          <p style="font-size:11px;opacity:0.15;margin-top:4px">AI assists. You drive.</p>
-        </div>
-        <!-- Agents -->
-        <div style="text-align:center;flex:1">
-          <div style="width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.3);margin:13px auto 19px"></div>
-          <p style="font-size:15px;font-weight:700;opacity:0.45">Agents</p>
-          <p style="font-size:11px;opacity:0.25;margin-top:4px">AI acts. Industry is here.</p>
-        </div>
-        <!-- Orion -->
-        <div style="text-align:center;flex:1.4;margin-top:-12px">
-          <div style="background:rgba(34,197,94,0.04);border:1px solid rgba(34,197,94,0.15);border-radius:16px;padding:24px 16px">
-            <div style="width:16px;height:16px;border-radius:50%;background:var(--green);margin:0 auto 16px;box-shadow:0 0 16px var(--green-glow);animation:glow-pulse 3s infinite"></div>
-            <p style="font-size:18px;font-weight:800;color:var(--green);margin-bottom:4px">Interconnected Personal Intelligence</p>
-            <p style="font-size:12px;opacity:0.4;margin-bottom:8px">Your AI, connected across<br>every device you use.</p>
-            <p style="font-size:12px;font-weight:700;color:var(--green)">Orion is here.</p>
-          </div>
-        </div>
-        <!-- Future -->
-        <div style="text-align:center;flex:1">
-          <div style="width:10px;height:10px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);margin:14px auto 20px"></div>
-          <p style="font-size:14px;font-weight:700;opacity:0.18">The OS for the<br>Physical World</p>
-          <p style="font-size:11px;opacity:0.1;margin-top:4px">Universal Agent Layer.<br>Cars, IoT, tactical edge.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="snum">14</div>
-</section>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 16: BUSINESS MODEL -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s14">
-  <div class="inner">
-    <p class="eyebrow green reveal">Business model</p>
-    <h2 class="reveal d1" style="margin-bottom:18px">Come for the tool.<br>Stay for the network.</h2>
-    <p class="reveal d1" style="font-size:16px;opacity:0.45;margin-bottom:64px;max-width:780px">Productivity is the wedge. The mesh between agents is the moat. The protocol is the endgame.</p>
-
-    <!-- Phase 01 -->
-    <div class="reveal d2" style="display:grid;grid-template-columns:120px 1fr;gap:48px;padding:28px 0;border-top:1px solid rgba(255,255,255,0.08)">
-      <div>
-        <p style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;opacity:0.3;letter-spacing:0.1em;margin-bottom:8px">PHASE 01 / NOW</p>
-        <p style="font-size:42px;font-weight:200;letter-spacing:-0.04em;line-height:1;opacity:0.9">Tool</p>
-        <p style="font-size:11px;opacity:0.35;margin-top:6px;letter-spacing:0.04em">B2C &middot; B2B</p>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
-        <div>
-          <p style="font-size:13px;font-weight:600;margin-bottom:6px;opacity:0.85">Free</p>
-          <p style="font-size:13px;opacity:0.45;line-height:1.55">Try the agent with limited quota and features.</p>
-        </div>
-        <div>
-          <p style="font-size:13px;font-weight:600;margin-bottom:6px;opacity:0.85">Pro &amp; Enterprise <span style="font-weight:400;opacity:0.5">&middot; $20&ndash;$200 / seat / mo</span></p>
-          <p style="font-size:13px;opacity:0.45;line-height:1.55">Tiered by devices and compute. Cross-device coordination, shared mesh, audit trails.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Phase 02 -->
-    <div class="reveal d3" style="display:grid;grid-template-columns:120px 1fr;gap:48px;padding:28px 0;border-top:1px solid rgba(255,255,255,0.08)">
-      <div>
-        <p style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;opacity:0.3;letter-spacing:0.1em;margin-bottom:8px">PHASE 02 / NEXT</p>
-        <p style="font-size:42px;font-weight:200;letter-spacing:-0.04em;line-height:1;opacity:0.9">Identity</p>
-        <p style="font-size:11px;opacity:0.35;margin-top:6px;letter-spacing:0.04em">Per-agent revenue</p>
-      </div>
-      <div>
-        <p style="font-size:15px;font-weight:600;margin-bottom:6px;opacity:0.9">Your agent owns its own number, email, and inbox.</p>
-        <p style="font-size:13px;opacity:0.45;line-height:1.6;max-width:640px">It answers calls, replies to messages, and books on your behalf, even when you&rsquo;re offline. Each agent identity is a new revenue line stacked on top of subscription.</p>
-      </div>
-    </div>
-
-    <!-- Phase 03 -->
-    <div class="reveal d4" style="display:grid;grid-template-columns:120px 1fr;gap:48px;padding:28px 0 8px;border-top:1px solid rgba(255,255,255,0.08)">
-      <div>
-        <p style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.1em;margin-bottom:8px;color:var(--green);opacity:0.85">PHASE 03 / LATER</p>
-        <p style="font-size:42px;font-weight:200;letter-spacing:-0.04em;line-height:1">Protocol</p>
-        <p style="font-size:11px;opacity:0.5;margin-top:6px;letter-spacing:0.04em">The OS for the physical world</p>
-      </div>
-      <div>
-        <p style="font-size:13px;opacity:0.5;line-height:1.6;max-width:640px;margin-bottom:24px">The mesh becomes the Universal Agent Layer: a licensing protocol embedded across every connected surface.</p>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(255,255,255,0.06)">
-          <div style="padding:18px 20px 4px 0;border-right:1px solid rgba(255,255,255,0.06)">
-            <p style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;opacity:0.4;letter-spacing:0.08em;margin-bottom:8px">A</p>
-            <p style="font-size:14px;font-weight:600;margin-bottom:4px">Automotive</p>
-            <p style="font-size:12px;opacity:0.4;line-height:1.55">In-cabin agent that follows the driver. Per-VIN licensing to OEMs.</p>
-          </div>
-          <div style="padding:18px 20px 4px 20px;border-right:1px solid rgba(255,255,255,0.06)">
-            <p style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;opacity:0.4;letter-spacing:0.08em;margin-bottom:8px">B</p>
-            <p style="font-size:14px;font-weight:600;margin-bottom:4px">IoT &amp; Wearables</p>
-            <p style="font-size:12px;opacity:0.4;line-height:1.55">Pre-installed on smart-home, robotics, personal devices. Per-unit royalty.</p>
-          </div>
-          <div style="padding:18px 0 4px 20px">
-            <p style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;opacity:0.4;letter-spacing:0.08em;margin-bottom:8px">C</p>
-            <p style="font-size:14px;font-weight:600;margin-bottom:4px">Defense &amp; Tactical Edge</p>
-            <p style="font-size:12px;opacity:0.4;line-height:1.55">On-device, mesh-native intelligence for disconnected environments. Program-of-record.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="snum">15</div>
-</section>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 17: THE ASK -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s15">
-  <div class="inner">
-    <p class="eyebrow green reveal">The ask</p>
-    <h2 class="reveal d1" style="margin-bottom:8px">$10M seed.</h2>
-    <p class="reveal d1" style="font-size:17px;opacity:0.4;margin-bottom:48px;max-width:700px">Hire 10&ndash;15 engineers. Scale compute. Series A in 14 months.</p>
-
-    <div class="grid grid-4 reveal d2" style="gap:12px;margin-bottom:48px">
-      <div class="card center" style="padding:24px 20px">
-        <p style="font-size:14px;font-weight:700;color:var(--green)">ENGINEERING 45%</p>
-        <p style="font-size:12px;opacity:0.35">10&ndash;15 engineers &middot; mesh, mobile, IoT</p>
-      </div>
-      <div class="card center" style="padding:24px 20px">
-        <p style="font-size:14px;font-weight:700;color:var(--blue)">COMPUTE 25%</p>
-        <p style="font-size:12px;opacity:0.35">GPU, training, inference</p>
-      </div>
-      <div class="card center" style="padding:24px 20px">
-        <p style="font-size:14px;font-weight:700">GTM 20%</p>
-        <p style="font-size:12px;opacity:0.35">Sales, pilots, enterprise motion</p>
-      </div>
-      <div class="card center" style="padding:24px 20px">
-        <p style="font-size:14px;font-weight:700;color:var(--amber)">OPS 10%</p>
-        <p style="font-size:12px;opacity:0.35">Legal, SOC 2, admin</p>
-      </div>
-    </div>
-
-    <p class="reveal d3" style="font-size:10px;font-weight:700;letter-spacing:0.08em;opacity:0.3;margin-bottom:14px">SERIES A MILESTONES &middot; 14 MONTHS</p>
-    <div class="grid grid-3 reveal d3" style="gap:12px">
-      <div class="card" style="padding:20px">
-        <div style="width:6px;height:6px;border-radius:50%;background:var(--green);margin-bottom:12px"></div>
-        <p style="font-size:14px;font-weight:700;margin-bottom:4px">Launch paid GTM</p>
-        <p style="font-size:12px;opacity:0.4;line-height:1.5">First marketing spend. Prove scalable acquisition.</p>
-      </div>
-      <div class="card" style="padding:20px">
-        <div style="width:6px;height:6px;border-radius:50%;background:var(--green);margin-bottom:12px"></div>
-        <p style="font-size:14px;font-weight:700;margin-bottom:4px">Scale mobile + IoT</p>
-        <p style="font-size:12px;opacity:0.4;line-height:1.5">Public mobile app &amp; expanded hardware integrations.</p>
-      </div>
-      <div class="card" style="padding:20px">
-        <div style="width:6px;height:6px;border-radius:50%;background:var(--green);margin-bottom:12px"></div>
-        <p style="font-size:14px;font-weight:700;margin-bottom:4px">Enterprise pilot</p>
-        <p style="font-size:12px;opacity:0.4;line-height:1.5">First team deployments with shared agent mesh.</p>
-      </div>
-    </div>
-
-    <p style="margin-top:36px;font-size:12px;opacity:0.25">Wilson Sonsini &middot; Delaware C-Corp &middot; Palo Alto, CA</p>
-  </div>
-  <div class="snum">16</div>
-</section>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- SLIDE 18: CLOSE -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="slide" id="s16">
-  <div class="hero-bg" id="close-bg"></div>
-  <div class="inner center" style="position:relative;z-index:1">
-    <div class="reveal">
-      <img src="img/Untitled design-4_compressed.png" alt="Orion" style="width:64px;height:64px;margin-bottom:40px;opacity:0.7">
-    </div>
-    <h1 class="reveal d1">Your AI shouldn&rsquo;t stop<br>at the device boundary.</h1>
-    <p class="lead reveal d2" style="margin-top:20px">Orion makes sure it doesn&rsquo;t.</p>
-
-    <div class="reveal d3" style="margin-top:80px;display:flex;gap:56px;justify-content:center;font-size:15px">
-      <div>
-        <p style="font-size:10px;opacity:0.25;margin-bottom:4px;letter-spacing:0.05em">LAB</p>
-        <p style="font-weight:600">zinley.com</p>
-      </div>
-      <div>
-        <p style="font-size:10px;opacity:0.25;margin-bottom:4px;letter-spacing:0.05em">PRODUCT</p>
-        <p style="font-weight:600">hiorion.ai</p>
-      </div>
-      <div>
-        <p style="font-size:10px;opacity:0.25;margin-bottom:4px;letter-spacing:0.05em">EMAIL</p>
-        <p style="font-weight:600">khoi.nguyen@zinley.com</p>
-      </div>
-    </div>
-
-    <p style="margin-top:56px;font-size:10px;opacity:0.1">Zinley Corporation &middot; Palo Alto, CA</p>
-  </div>
-  <div class="snum">17</div>
-</section>
 
 <script>
-// ── Navigation dots ──
-const slides = document.querySelectorAll('.slide');
-const nav = document.getElementById('nav');
-slides.forEach((_, i) => {
-  const a = document.createElement('a');
-  a.href = '#s' + (i + 1);
-  nav.appendChild(a);
-});
-
-// ── Scroll tracking: active dot + progress bar ──
-const dots = nav.querySelectorAll('a');
-const progressBar = document.getElementById('progress');
-
-const slideObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const i = [...slides].indexOf(e.target);
-      dots.forEach(d => d.classList.remove('active'));
-      if (dots[i]) dots[i].classList.add('active');
-      // Adapt dot color for light slides
-      const isLight = e.target.classList.contains('white') || e.target.classList.contains('light');
-      dots.forEach(d => {
-        d.style.background = d.classList.contains('active')
-          ? (isLight ? '#09090b' : '#fafafa')
-          : (isLight ? 'rgba(0,0,0,0.12)' : 'rgba(255,255,255,0.15)');
+  const topbar = document.getElementById('topbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) topbar.classList.add('scrolled');
+    else topbar.classList.remove('scrolled');
+  });
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -5% 0px' });
+    reveals.forEach(el => io.observe(el));
+    // Immediately reveal anything already above the fold at load
+    requestAnimationFrame(() => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      reveals.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh) el.classList.add('in');
       });
-    }
-  });
-}, { threshold: 0.5 });
-slides.forEach(s => slideObserver.observe(s));
-
-// Progress bar
-window.addEventListener('scroll', () => {
-  const h = document.documentElement.scrollHeight - window.innerHeight;
-  progressBar.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0';
-});
-
-// ── Reveal animations ──
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) e.target.classList.add('vis');
-  });
-}, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-// ── Stat counter animation ──
-const counterObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting && e.target.dataset.count) {
-      const target = parseInt(e.target.dataset.count);
-      let current = 0;
-      const step = Math.max(1, Math.floor(target / 40));
-      const timer = setInterval(() => {
-        current += step;
-        if (current >= target) {
-          e.target.textContent = '~' + target + 'h';
-          clearInterval(timer);
-        } else {
-          e.target.textContent = '~' + current + 'h';
-        }
-      }, 30);
-      delete e.target.dataset.count;
-    }
-  });
-}, { threshold: 0.5 });
-document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
-
-// ── Hero background mesh ──
-(function() {
-  const bg = document.getElementById('hero-bg');
-  if (!bg) return;
-  for (let i = 0; i < 18; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'dot';
-    dot.style.left = Math.random() * 100 + '%';
-    dot.style.top = Math.random() * 100 + '%';
-    dot.style.animationDelay = (Math.random() * 5) + 's';
-    dot.style.animationDuration = (6 + Math.random() * 6) + 's';
-    bg.appendChild(dot);
-  }
-  for (let i = 0; i < 6; i++) {
-    const line = document.createElement('div');
-    line.className = 'line';
-    line.style.left = Math.random() * 80 + '%';
-    line.style.top = Math.random() * 100 + '%';
-    line.style.width = (80 + Math.random() * 200) + 'px';
-    line.style.transform = 'rotate(' + (Math.random() * 60 - 30) + 'deg)';
-    bg.appendChild(line);
-  }
-})();
-
-// ── Close slide mesh background ──
-(function() {
-  const bg = document.getElementById('close-bg');
-  if (!bg) return;
-  for (let i = 0; i < 14; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'dot';
-    dot.style.left = Math.random() * 100 + '%';
-    dot.style.top = Math.random() * 100 + '%';
-    dot.style.animationDelay = (Math.random() * 5) + 's';
-    dot.style.animationDuration = (6 + Math.random() * 6) + 's';
-    bg.appendChild(dot);
-  }
-  for (let i = 0; i < 4; i++) {
-    const line = document.createElement('div');
-    line.className = 'line';
-    line.style.left = Math.random() * 80 + '%';
-    line.style.top = Math.random() * 100 + '%';
-    line.style.width = (80 + Math.random() * 200) + 'px';
-    line.style.transform = 'rotate(' + (Math.random() * 60 - 30) + 'deg)';
-    bg.appendChild(line);
-  }
-})();
-
-// ── Keyboard navigation ──
-document.addEventListener('keydown', e => {
-  const current = [...slides].findIndex(s => {
-    const r = s.getBoundingClientRect();
-    return r.top >= -100 && r.top < window.innerHeight / 2;
-  });
-  if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-    e.preventDefault();
-    const next = Math.min(current + 1, slides.length - 1);
-    slides[next].scrollIntoView({ behavior: 'smooth' });
-  }
-  if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-    e.preventDefault();
-    const prev = Math.max(current - 1, 0);
-    slides[prev].scrollIntoView({ behavior: 'smooth' });
-  }
-});
-
-// ── Email Gate ──
-(function() {
-  const gate = document.getElementById('gate');
-  if (localStorage.getItem('orion_deck_email')) {
-    gate.classList.add('hidden');
-    return;
-  }
-  document.documentElement.style.overflow = 'hidden';
-  const input = document.getElementById('gate-email');
-  const btn = document.getElementById('gate-btn');
-  const err = document.getElementById('gate-error');
-
-  function valid(e) {
-    const t = e.trim();
-    const at = t.indexOf('@');
-    const dot = t.lastIndexOf('.');
-    return at > 0 && dot > at + 1 && dot < t.length - 1;
-  }
-
-  function submit() {
-    const email = input.value.trim();
-    if (!valid(email)) {
-      input.classList.add('err');
-      err.classList.add('show');
-      return;
-    }
-    btn.disabled = true;
-    btn.textContent = 'Please wait...';
-    fetch('https://snowx.ai/api-beta/api/deck/lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email })
-    }).catch(function(){}).finally(function() {
-      localStorage.setItem('orion_deck_email', email);
-      document.documentElement.style.overflow = '';
-      gate.classList.add('hidden');
-      if (window._engPing) window._engPing();
     });
+  } else {
+    reveals.forEach(el => el.classList.add('in'));
   }
-
-  input.addEventListener('input', function() {
-    input.classList.remove('err');
-    err.classList.remove('show');
-  });
-  input.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') submit();
-  });
-  btn.addEventListener('click', submit);
-})();
-
-// ── Engagement Tracking ──
-(function() {
-  var sessionId = crypto.randomUUID();
-  var slideData = {};
-  var currentSlideId = null;
-  var slideEnterTime = null;
-  var paused = false;
-  var furthestSlide = 0;
-  var totalSlides = slides.length;
-
-  slides.forEach(function(s) {
-    slideData[s.id] = { totalMs: 0, visits: 0 };
-  });
-
-  function getEmail() {
-    return localStorage.getItem('orion_deck_email');
-  }
-
-  function pauseTracking() {
-    if (currentSlideId && slideEnterTime && !paused) {
-      slideData[currentSlideId].totalMs += Date.now() - slideEnterTime;
-      slideEnterTime = null;
-      paused = true;
-    }
-  }
-
-  function resumeTracking() {
-    if (paused && currentSlideId) {
-      slideEnterTime = Date.now();
-      paused = false;
-    }
-  }
-
-  function enterSlide(id, index) {
-    if (currentSlideId && slideEnterTime) {
-      slideData[currentSlideId].totalMs += Date.now() - slideEnterTime;
-    }
-    currentSlideId = id;
-    slideEnterTime = document.hidden ? null : Date.now();
-    paused = document.hidden;
-    slideData[id].visits++;
-    if (index > furthestSlide) furthestSlide = index;
-  }
-
-  function buildPayload() {
-    var email = getEmail();
-    if (!email) return null;
-    var snap = {};
-    for (var id in slideData) {
-      var extra = (id === currentSlideId && slideEnterTime) ? Date.now() - slideEnterTime : 0;
-      snap[id] = { totalMs: slideData[id].totalMs + extra, visits: slideData[id].visits };
-    }
-    var totalMs = 0;
-    for (var id in snap) totalMs += snap[id].totalMs;
-    return {
-      email: email,
-      sessionId: sessionId,
-      slides: snap,
-      furthestSlide: furthestSlide,
-      totalMs: totalMs,
-      completed: furthestSlide >= totalSlides - 1
-    };
-  }
-
-  var ENG_URL = 'https://snowx.ai/api-beta/api/deck/engagement';
-
-  function sendHeartbeat() {
-    var payload = buildPayload();
-    if (!payload) return;
-    fetch(ENG_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).catch(function() {});
-  }
-
-  function sendBeacon() {
-    var payload = buildPayload();
-    if (!payload || !navigator.sendBeacon) return;
-    navigator.sendBeacon(ENG_URL, new Blob([JSON.stringify(payload)], { type: 'application/json' }));
-  }
-
-  var engObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        var idx = [].indexOf.call(slides, e.target);
-        enterSlide(e.target.id, idx);
-      }
-    });
-  }, { threshold: 0.5 });
-  slides.forEach(function(s) { engObserver.observe(s); });
-
-  document.addEventListener('visibilitychange', function() {
-    if (document.hidden) { pauseTracking(); sendBeacon(); }
-    else { resumeTracking(); }
-  });
-
-  window.addEventListener('beforeunload', function() {
-    pauseTracking();
-    sendBeacon();
-  });
-
-  // Expose heartbeat so the gate can trigger it immediately after email capture
-  window._engPing = sendHeartbeat;
-
-  setTimeout(sendHeartbeat, 3000);
-  setInterval(sendHeartbeat, 30000);
-})();
+  // Safety net: reveal everything after 2s no matter what
+  setTimeout(() => { reveals.forEach(el => el.classList.add('in')); }, 2000);
 </script>
+
 </body>
 </html>
