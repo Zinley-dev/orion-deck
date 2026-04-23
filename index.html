@@ -54,6 +54,24 @@
     @media (min-width: 900px) {
       .hero-logo { width: 104px; height: 104px; }
     }
+    @keyframes eye-blink {
+      0% { transform: scaleY(1); }
+      10% { transform: scaleY(0.05); }
+      13% { transform: scaleY(1); }
+      58% { transform: scaleY(1); }
+      61% { transform: scaleY(0.05); }
+      64% { transform: scaleY(1); }
+      100% { transform: scaleY(1); }
+    }
+    .hero-logo .eye {
+      transform-origin: 50% 46%;
+      transform-box: view-box;
+      -webkit-transform-origin: 50% 46%;
+    }
+    .hero-logo.seeing .eye {
+      animation: eye-blink 4s infinite;
+      -webkit-animation: eye-blink 4s infinite;
+    }
     .progress { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
 
     /* ── Slide ── */
@@ -600,6 +618,90 @@
       border-top: 7px solid var(--line-strong);
     }
 
+    /* ── Email Gate ── */
+    #gate {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease;
+    }
+    #gate.hidden { opacity: 0; pointer-events: none; }
+    .gate-box {
+      width: 420px;
+      max-width: calc(100vw - 48px);
+      text-align: center;
+      padding: 48px 32px;
+    }
+    .gate-box .logo {
+      width: 56px; height: 56px;
+      margin: 0 auto 32px;
+      display: block;
+    }
+    .gate-box h2 {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+    .gate-box p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+    .gate-input {
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      margin-bottom: 12px;
+    }
+    .gate-input::placeholder { color: var(--muted-2); }
+    .gate-input:focus {
+      border-color: var(--ink);
+      box-shadow: 0 0 0 3px rgba(10,10,10,0.04);
+    }
+    .gate-input.err {
+      border-color: #dc2626;
+      box-shadow: 0 0 0 3px rgba(220,38,38,0.08);
+    }
+    .gate-err {
+      font-size: 12px;
+      color: #dc2626;
+      margin-bottom: 8px;
+      opacity: 0;
+      transition: opacity 0.2s;
+      text-align: left;
+    }
+    .gate-err.show { opacity: 1; }
+    .gate-btn {
+      width: 100%;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      background: var(--ink);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .gate-btn:hover { opacity: 0.92; }
+    .gate-btn:active { transform: scale(0.98); }
+    .gate-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
     /* ── Reveal ── */
     .reveal {
       opacity: 0; transform: translateY(14px);
@@ -625,6 +727,22 @@
 </head>
 <body>
 
+<!-- Email Gate -->
+<div id="gate">
+  <div class="gate-box">
+    <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <rect x="12" y="20" width="76" height="60" rx="20" stroke="#0a0a0a" stroke-width="5" fill="none"/>
+      <circle cx="36" cy="46" r="8" fill="#0a0a0a"/>
+      <circle cx="64" cy="46" r="8" fill="#0a0a0a"/>
+    </svg>
+    <h2>Welcome</h2>
+    <p>Enter your email to view this deck.</p>
+    <input type="email" class="gate-input" id="gate-email" placeholder="you@company.com" autocomplete="email">
+    <div class="gate-err" id="gate-error">Please enter a valid email.</div>
+    <button class="gate-btn" id="gate-btn">Continue</button>
+  </div>
+</div>
+
 <!-- ── Top bar ── -->
 <div class="topbar" id="topbar">
   <div class="brand">
@@ -640,7 +758,11 @@
 <!-- ══════════════════════════════════════════════ -->
 <section class="slide">
   <div class="wrap">
-    <img src="img/orion-logo-large.svg" alt="Orion" class="hero-logo reveal">
+    <svg class="hero-logo reveal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="Orion">
+      <rect x="12" y="20" width="76" height="60" rx="20" stroke="#0a0a0a" stroke-width="5" fill="none"/>
+      <circle class="eye" cx="36" cy="46" r="8" fill="#0a0a0a"/>
+      <circle class="eye" cx="64" cy="46" r="8" fill="#0a0a0a"/>
+    </svg>
     <span class="pill reveal"><span class="dot"></span>Live product. Paying users. Waitlisted.</span>
     <h1 class="title reveal d1">
       Orion.<br><span class="dim">Interconnected personal intelligence.</span>
@@ -672,7 +794,7 @@
       Your day spans a phone, laptop, watch, car, home. Each one runs a different assistant. You are the connective tissue.
     </p>
 
-    <p class="reveal d2" style="margin-top:18px;font-size:15px;color:var(--muted);max-width:960px;line-height:1.6"><b style="color:var(--ink);font-weight:600">OpenClaw</b>: one host, phone as remote. <b style="color:var(--ink);font-weight:600">Claude Cowork + Dispatch</b>: desktop agent, phone as remote. <b style="color:var(--ink);font-weight:600">19Pine</b>: outbound calls to companies. <b style="color:var(--ink);font-weight:600">CreaoAI</b>: cloud Agent Apps. <b style="color:var(--ink);font-weight:600">AGI, Inc.</b>: mobile agent operating inside your apps. None is a true interconnected personal AI around your life.</p>
+    <p class="reveal d2" style="margin-top:18px;font-size:15px;color:var(--muted);max-width:960px;line-height:1.6"><b style="color:var(--ink);font-weight:600">OpenAI Workspace Agents</b>: shared team agents in ChatGPT + Slack. <b style="color:var(--ink);font-weight:600">OpenClaw</b>: one host, phone as remote. <b style="color:var(--ink);font-weight:600">Claude Cowork + Dispatch</b>: desktop agent, phone as remote. <b style="color:var(--ink);font-weight:600">CreaoAI</b>: cloud Agent Apps. <b style="color:var(--ink);font-weight:600">AGI, Inc.</b>: mobile agent operating inside your apps. None is a true interconnected personal AI around your life.</p>
 
     <div class="data-row reveal d3">
       <div class="data-cell">
@@ -807,7 +929,7 @@
       </div>
       <div class="m">
         <p class="m-val">$200+</p>
-        <p class="m-lbl">Top-tier ARPU, per month</p>
+        <p class="m-lbl">Paid by top users, per month</p>
       </div>
       <div class="m">
         <p class="m-val">$0</p>
@@ -884,7 +1006,7 @@
       <span class="dim">Stay for the network.</span>
     </h2>
     <p class="sub reveal d2">
-      Productivity is the wedge. The mesh is the moat. The protocol is the endgame. Three stacking revenue lines.
+      Productivity is the wedge. The mesh is the moat. The protocol is the long game. Three stacking revenue lines.
     </p>
 
     <div class="phases reveal d3">
@@ -971,7 +1093,7 @@
       <span class="dim">into daily life.</span>
     </h2>
     <p class="sub reveal d2">
-      Representative ships first. Every future interface inherits the mesh.
+      Equipping every person with a real private-entity personal rep.
     </p>
 
     <div class="pillars reveal d3">
@@ -1048,7 +1170,7 @@
       <span class="dim">Phone is the wedge.</span>
     </h2>
     <p class="sub reveal d2">
-      The mesh is built. Every app is shipping. We double down on the phone as the GTM wedge. Every next interface auto-expands on the same mesh.
+      We double down on the phone as the GTM wedge. Every next interface auto-expands on the same mesh.
     </p>
 
     <div class="cascade-diagram reveal d3">
@@ -1221,7 +1343,11 @@
 <!-- ══════════════════════════════════════════════ -->
 <section class="slide close-slide">
   <div class="wrap" style="text-align:center">
-    <img src="img/orion-logo-large.svg" alt="Orion" class="hero-logo reveal" style="margin:0 auto 48px">
+    <svg class="hero-logo reveal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" style="margin:0 auto 48px" role="img" aria-label="Orion">
+      <rect x="12" y="20" width="76" height="60" rx="20" stroke="#0a0a0a" stroke-width="5" fill="none"/>
+      <circle class="eye" cx="36" cy="46" r="8" fill="#0a0a0a"/>
+      <circle class="eye" cx="64" cy="46" r="8" fill="#0a0a0a"/>
+    </svg>
     <p class="kicker reveal" style="justify-content:center">Our thesis</p>
     <h1 class="title reveal d1" style="font-size:clamp(44px,6.6vw,96px)">
       Iron Man&rsquo;s Jarvis isn&rsquo;t just a smarter model.<br>
@@ -1265,6 +1391,175 @@
   }
   // Safety net: reveal everything after 2s no matter what
   setTimeout(() => { reveals.forEach(el => el.classList.add('in')); }, 2000);
+
+  // ── Email Gate ──
+  (function() {
+    const gate = document.getElementById('gate');
+    if (localStorage.getItem('orion_deck_email')) {
+      gate.classList.add('hidden');
+      return;
+    }
+    document.documentElement.style.overflow = 'hidden';
+    const input = document.getElementById('gate-email');
+    const btn = document.getElementById('gate-btn');
+    const err = document.getElementById('gate-error');
+
+    function valid(e) {
+      const t = e.trim();
+      const at = t.indexOf('@');
+      const dot = t.lastIndexOf('.');
+      return at > 0 && dot > at + 1 && dot < t.length - 1;
+    }
+
+    function submit() {
+      const email = input.value.trim();
+      if (!valid(email)) {
+        input.classList.add('err');
+        err.classList.add('show');
+        return;
+      }
+      btn.disabled = true;
+      btn.textContent = 'Please wait...';
+      fetch('https://snowx.ai/api-beta/api/deck/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      }).catch(function(){}).finally(function() {
+        localStorage.setItem('orion_deck_email', email);
+        document.documentElement.style.overflow = '';
+        gate.classList.add('hidden');
+        if (window._engPing) window._engPing();
+      });
+    }
+
+    input.addEventListener('input', function() {
+      input.classList.remove('err');
+      err.classList.remove('show');
+    });
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') submit();
+    });
+    btn.addEventListener('click', submit);
+  })();
+
+  // ── Engagement Tracking ──
+  (function() {
+    const trackedSlides = document.querySelectorAll('.slide');
+    if (!trackedSlides.length) return;
+    const sessionId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + '-' + Math.random().toString(36).slice(2);
+    const slideData = {};
+    let currentSlideIdx = null;
+    let slideEnterTime = null;
+    let paused = false;
+    let furthestSlide = 0;
+    const totalSlides = trackedSlides.length;
+
+    trackedSlides.forEach(function(_, i) { slideData[i] = { totalMs: 0, visits: 0 }; });
+
+    function getEmail() { return localStorage.getItem('orion_deck_email'); }
+
+    function pauseTracking() {
+      if (currentSlideIdx !== null && slideEnterTime && !paused) {
+        slideData[currentSlideIdx].totalMs += Date.now() - slideEnterTime;
+        slideEnterTime = null;
+        paused = true;
+      }
+    }
+    function resumeTracking() {
+      if (paused && currentSlideIdx !== null) {
+        slideEnterTime = Date.now();
+        paused = false;
+      }
+    }
+    function enterSlide(idx) {
+      if (currentSlideIdx !== null && slideEnterTime) {
+        slideData[currentSlideIdx].totalMs += Date.now() - slideEnterTime;
+      }
+      currentSlideIdx = idx;
+      slideEnterTime = document.hidden ? null : Date.now();
+      paused = document.hidden;
+      slideData[idx].visits++;
+      if (idx > furthestSlide) furthestSlide = idx;
+    }
+    function buildPayload() {
+      const email = getEmail();
+      if (!email) return null;
+      const snap = {};
+      for (const id in slideData) {
+        const extra = (parseInt(id, 10) === currentSlideIdx && slideEnterTime) ? Date.now() - slideEnterTime : 0;
+        snap[id] = { totalMs: slideData[id].totalMs + extra, visits: slideData[id].visits };
+      }
+      let totalMs = 0;
+      for (const id in snap) totalMs += snap[id].totalMs;
+      return {
+        email: email,
+        sessionId: sessionId,
+        slides: snap,
+        furthestSlide: furthestSlide,
+        totalMs: totalMs,
+        completed: furthestSlide >= totalSlides - 1
+      };
+    }
+
+    const ENG_URL = 'https://snowx.ai/api-beta/api/deck/engagement';
+
+    function sendHeartbeat() {
+      const payload = buildPayload();
+      if (!payload) return;
+      fetch(ENG_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(function() {});
+    }
+    function sendBeacon() {
+      const payload = buildPayload();
+      if (!payload || !navigator.sendBeacon) return;
+      navigator.sendBeacon(ENG_URL, new Blob([JSON.stringify(payload)], { type: 'application/json' }));
+    }
+
+    const engObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          const idx = Array.prototype.indexOf.call(trackedSlides, e.target);
+          if (idx >= 0) enterSlide(idx);
+        }
+      });
+    }, { threshold: 0.5 });
+    trackedSlides.forEach(function(s) { engObserver.observe(s); });
+
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) { pauseTracking(); sendBeacon(); }
+      else { resumeTracking(); }
+    });
+    window.addEventListener('beforeunload', function() {
+      pauseTracking();
+      sendBeacon();
+    });
+
+    window._engPing = sendHeartbeat;
+    setTimeout(sendHeartbeat, 3000);
+    setInterval(sendHeartbeat, 30000);
+  })();
+
+  // Blink eyes whenever the Orion face enters view (restart animation each time)
+  const blinkers = document.querySelectorAll('.hero-logo');
+  if ('IntersectionObserver' in window && blinkers.length) {
+    const blinkObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.remove('seeing');
+          void e.target.getBoundingClientRect();
+          e.target.classList.add('seeing');
+        } else {
+          e.target.classList.remove('seeing');
+        }
+      });
+    }, { threshold: 0.3 });
+    blinkers.forEach(el => blinkObs.observe(el));
+  } else {
+    blinkers.forEach(el => el.classList.add('seeing'));
+  }
 </script>
 
 </body>
