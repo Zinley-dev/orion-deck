@@ -1,0 +1,2517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orion. Pre-seed deck.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f6f4;
+      --surface: #ffffff;
+      --ink: #0a0a0a;
+      --ink-2: #1f1f1f;
+      --muted: #6b6b6b;
+      --muted-2: #9a9a9a;
+      --line: #e2e2dd;
+      --line-strong: #c9c9c3;
+      --live: #16a34a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "ss01", "cv11", "cv02";
+      font-size: 13px;
+      line-height: 1.5;
+      letter-spacing: -0.005em;
+      padding: 88px 24px 48px;
+    }
+    a { color: inherit; }
+
+    /* ── Top bar ── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 14px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      background: rgba(246,246,244,0.72);
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s;
+    }
+    .topbar.scrolled { border-bottom-color: var(--line); }
+    .brand { display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 700; letter-spacing: -0.01em; }
+    .brand img { width: 22px; height: 22px; display: block; }
+    .progress { font-size: 10.5px; color: var(--muted); letter-spacing: 0.06em; }
+
+    /* ── Hero logo ── */
+    .hero-logo {
+      width: 56px; height: 56px;
+      display: block;
+      margin-bottom: 20px;
+    }
+    @media (min-width: 900px) {
+      .hero-logo { width: 64px; height: 64px; }
+    }
+    @keyframes eye-blink {
+      0% { transform: scaleY(1); }
+      10% { transform: scaleY(0.05); }
+      13% { transform: scaleY(1); }
+      58% { transform: scaleY(1); }
+      61% { transform: scaleY(0.05); }
+      64% { transform: scaleY(1); }
+      100% { transform: scaleY(1); }
+    }
+    .hero-logo .eye {
+      transform-origin: 50% 46%;
+      transform-box: view-box;
+      -webkit-transform-origin: 50% 46%;
+    }
+    .hero-logo.seeing .eye {
+      animation: eye-blink 4s infinite;
+      -webkit-animation: eye-blink 4s infinite;
+    }
+
+    /* ── Slide (targets 16:9 PPT page; grows if content is dense) ── */
+    .slide {
+      position: relative;
+      width: 100%;
+      max-width: 1280px;
+      min-height: 720px;          /* PPT 16:9 standard height */
+      margin: 24px auto;
+      padding: 48px 56px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: 0 8px 28px -16px rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      overflow: visible;          /* never clip content */
+    }
+    .wrap { width: 100%; margin: 0 auto; }
+
+    /* ── Slide count in corner ── */
+    .slide-num {
+      position: absolute;
+      bottom: 20px; right: 28px;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: var(--muted-2);
+    }
+
+    /* ── Section label ── */
+    .kicker {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 18px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .kicker::before {
+      content: ""; display: inline-block;
+      width: 14px; height: 1px; background: var(--muted-2);
+    }
+
+    /* ── Typography ── */
+    h1.title {
+      font-size: clamp(32px, 4.4vw, 56px);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    h2.headline {
+      font-size: clamp(24px, 2.8vw, 38px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      max-width: 880px;
+      color: var(--ink);
+    }
+    p.sub {
+      font-size: clamp(13px, 1.05vw, 15px);
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 680px;
+      font-weight: 400;
+      margin-top: 18px;
+      letter-spacing: -0.005em;
+    }
+    strong { color: var(--ink); font-weight: 600; }
+    .dim { color: var(--muted); }
+
+    /* ── Title slide ── */
+    .hero-meta {
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      display: flex; gap: 40px; flex-wrap: wrap;
+      font-size: 12px; color: var(--muted);
+    }
+    .hero-meta b { color: var(--ink); font-weight: 600; }
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 5px 11px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 10.5px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+    .pill .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 3px rgba(22,163,74,0.15); }
+
+    /* ── Problem: big data row ── */
+    .data-row {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .data-cell {
+      padding: 22px 24px 22px 0;
+      border-right: 1px solid var(--line);
+    }
+    .data-cell:nth-child(2) { padding-left: 32px; }
+    .data-cell:last-child { border-right: none; padding-left: 32px; padding-right: 0; }
+    .data-val {
+      font-size: clamp(36px, 3.8vw, 52px);
+      font-weight: 500;
+      letter-spacing: -0.035em;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .data-lbl {
+      font-size: 13.5px; font-weight: 500; margin-bottom: 6px; color: var(--ink);
+    }
+    .data-note { font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+    .data-src { font-size: 10.5px; color: var(--muted-2); margin-top: 10px; letter-spacing: 0.06em; }
+
+    /* ── Solution video ── */
+    .solution-grid {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .video-frame {
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 20px 60px -24px rgba(0,0,0,0.25);
+      position: relative;
+      aspect-ratio: 16/9;
+    }
+    .video-frame video { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .video-badge {
+      position: absolute; top: 16px; left: 16px;
+      padding: 6px 12px;
+      background: rgba(10,10,10,0.6);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .video-badge .dot { width: 5px; height: 5px; background: var(--live); border-radius: 50%; }
+    .modes .mode { padding: 24px 0; border-bottom: 1px solid var(--line); }
+    .modes .mode:first-child { border-top: 1px solid var(--line); }
+    .modes .mode-tag { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 8px; }
+    .modes .mode-title { font-size: 19px; font-weight: 500; letter-spacing: -0.015em; line-height: 1.3; margin-bottom: 6px; }
+    .modes .mode-body { font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+    /* ── Traction ── */
+    .metrics {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .m {
+      padding: 24px 22px;
+      border-right: 1px solid var(--line);
+    }
+    .m:last-child { border-right: none; }
+    .m-val {
+      font-size: clamp(32px, 3.4vw, 44px);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .m-lbl { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+    .quote {
+      margin-top: 28px;
+      padding: 20px 0 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+    .quote img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+    .quote .q { font-size: 17px; font-style: italic; line-height: 1.45; color: var(--ink-2); letter-spacing: -0.01em; margin-bottom: 8px; }
+    .quote .attr { font-size: 12.5px; color: var(--muted); }
+    .quote .attr b { color: var(--ink); }
+
+    /* ── Unique Advantage ── */
+    .pillars {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .pil {
+      padding: 22px 22px 22px 0;
+      border-right: 1px solid var(--line);
+    }
+    .pil:nth-child(2) { padding-left: 28px; }
+    .pil:last-child { border-right: none; padding-left: 28px; padding-right: 0; }
+    .pil-k { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 12px; }
+    .pil-t { font-size: 18px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.3; margin-bottom: 10px; }
+    .pil-b { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── Comparison ── */
+    .cmp-note { font-size: 14px; color: var(--muted); margin-top: 40px; }
+    .cmp {
+      width: 100%; margin-top: 20px; font-size: 14px;
+      border-top: 1px solid var(--line);
+    }
+    .cmp-row {
+      display: grid;
+      grid-template-columns: 1.6fr repeat(5, 1fr);
+      border-bottom: 1px solid var(--line);
+      align-items: center;
+    }
+    .cmp-row > div { padding: 16px 12px; text-align: center; color: var(--muted); }
+    .cmp-row > div:first-child { text-align: left; color: var(--ink); font-weight: 500; }
+    .cmp-row.head > div {
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--muted-2); font-weight: 600; padding: 14px 12px;
+    }
+    .cmp-row.head .us { color: var(--ink); }
+    .v { color: var(--ink); font-weight: 500; }
+    .us-col { background: #efefeb; }
+
+    /* ── Business Model ── */
+    .phases { margin-top: 28px; }
+    .phase {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 36px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+      align-items: baseline;
+    }
+    .phase:last-child { border-bottom: 1px solid var(--line); }
+    .phase-label { font-size: 10.5px; letter-spacing: 0.16em; color: var(--muted-2); text-transform: uppercase; }
+    .phase-name {
+      font-size: clamp(26px, 3vw, 40px);
+      font-weight: 400;
+      letter-spacing: -0.035em;
+      line-height: 1;
+      margin-top: 8px;
+    }
+    .phase-body h4 { font-size: 15px; font-weight: 500; margin-bottom: 6px; letter-spacing: -0.01em; }
+    .phase-body p { font-size: 13.5px; color: var(--muted); line-height: 1.6; max-width: 640px; }
+    .phase-sub {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; margin-top: 16px;
+      padding-top: 16px; border-top: 1px solid var(--line);
+    }
+    .phase-sub .sub-h { font-size: 12.5px; font-weight: 600; margin-bottom: 4px; }
+    .phase-sub .sub-p { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+
+    /* ── Market ── */
+    .tam-grid {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .tam {
+      padding: 24px 24px 24px 0;
+      border-right: 1px solid var(--line);
+    }
+    .tam:nth-child(2) { padding-left: 28px; }
+    .tam:last-child { padding-left: 28px; padding-right: 0; border-right: none; }
+    .tam-stage { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 14px; }
+    .tam-val { font-size: clamp(30px, 3.4vw, 44px); font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin-bottom: 12px; }
+    .tam-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+
+    /* ── Team ── */
+    .team {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px 32px;
+    }
+    .person img {
+      width: 52px; height: 52px; border-radius: 50%;
+      object-fit: cover; margin-bottom: 10px;
+    }
+    .person-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 1px; }
+    .person-role { font-size: 11.5px; color: var(--muted-2); margin-bottom: 6px; }
+    .person-bio { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    .backers {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+    .backers-l { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 12px; }
+    .backer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .backer { display: flex; gap: 12px; align-items: center; }
+    .backer img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+    .backer .bn { font-size: 12.5px; font-weight: 600; }
+    .backer .bd { font-size: 11px; color: var(--muted); }
+
+    /* ── Ask ── */
+    .ask-grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .alloc { padding: 20px 18px; border-right: 1px solid var(--line); }
+    .alloc:last-child { border-right: none; }
+    .alloc-pct { font-size: 30px; font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin-bottom: 8px; }
+    .alloc-cat { font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+    .alloc-desc { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+
+    .milestones { margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .ms-num { font-size: 10.5px; letter-spacing: 0.16em; color: var(--muted-2); margin-bottom: 10px; }
+    .ms-title { font-size: 14px; font-weight: 500; margin-bottom: 6px; letter-spacing: -0.01em; }
+    .ms-body { font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+
+    /* ── Close ── */
+    .close-links {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 40px;
+    }
+    .close-link .k { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 6px; }
+    .close-link .v { font-size: 14px; font-weight: 500; }
+
+    /* ── Impact grid ── */
+    .impact-grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .impact {
+      padding: 18px 22px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .impact-k {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 8px;
+    }
+    .impact-t {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .impact-b {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ── Category criteria (three non-negotiables) ── */
+    .criteria {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .crit {
+      padding: 36px 28px 36px 0;
+      border-right: 1px solid var(--line);
+    }
+    .crit:not(:first-child) { padding-left: 28px; }
+    .crit:last-child { padding-right: 0; border-right: none; }
+    .crit-num {
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--live);
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .crit-num::before {
+      content: "";
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--live);
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.18);
+    }
+    .crit-pain {
+      font-size: 12.5px;
+      color: var(--muted-2);
+      margin-bottom: 10px;
+      font-style: italic;
+      line-height: 1.45;
+    }
+    .crit-title {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .crit-body {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .criteria-close {
+      margin-top: 28px;
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .criteria-close b { color: var(--live); font-weight: 700; }
+
+    /* ── Cascade diagram (GTM rollout) ── */
+    .cascade-diagram {
+      margin-top: 72px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cd-step {
+      text-align: center;
+      padding: 28px 24px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+    .cd-step.live {
+      border-color: var(--live);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.08);
+    }
+    .cd-step-label {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 4px;
+    }
+    .cd-step.live .cd-step-label { color: var(--live); font-weight: 700; }
+    .cd-step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 14px;
+      padding: 5px 12px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--live);
+      font-weight: 700;
+      background: rgba(22,163,74,0.08);
+      border: 1px solid rgba(22,163,74,0.25);
+      border-radius: 999px;
+    }
+    .cd-step-badge::before {
+      content: "";
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--live);
+      box-shadow: 0 0 0 2px rgba(22,163,74,0.25);
+    }
+    .cd-step-title {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+      color: var(--ink);
+    }
+    .cd-step:not(.live) .cd-step-title { color: var(--muted); }
+    .cd-tiles {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .cd-tile {
+      padding: 10px 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      background: #fff;
+    }
+    .cd-step:not(.live) .cd-tile {
+      color: var(--muted);
+      border-style: dashed;
+      background: transparent;
+    }
+    .cd-tile-wedge {
+      background: #ffffff;
+      border-color: var(--live);
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.12);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cd-tile-badge {
+      display: inline-block;
+      padding: 3px 9px;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--live);
+      font-weight: 700;
+      background: rgba(22,163,74,0.1);
+      border-radius: 999px;
+    }
+    .cd-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 0;
+    }
+    .cd-arrow-line {
+      width: 1px;
+      height: 28px;
+      background: var(--line-strong);
+    }
+    .cd-arrow-head {
+      margin-top: -1px;
+      width: 0; height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 7px solid var(--line-strong);
+    }
+
+    /* ── Product image (replaces video frame) ── */
+    .deck-shot {
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 60px -24px rgba(0,0,0,0.18);
+    }
+    .deck-shot img { display: block; width: 100%; height: auto; }
+
+    /* ── Criterion image (small visual atop each pillar) ── */
+    .crit-img {
+      width: 100%;
+      height: 120px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 18px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .crit-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── Hero image on title slide ── */
+    .hero-shot {
+      margin-top: 56px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 60px -24px rgba(0,0,0,0.18);
+    }
+    .hero-shot img { display: block; width: 100%; height: auto; }
+
+    /* ── Competition: mobile categorized list (hidden on desktop) ── */
+    .comp-mobile-list { display: none; opacity: 1 !important; transform: none !important; }
+    .cm-orion {
+      border: 2px solid var(--live);
+      border-radius: 12px;
+      padding: 16px;
+      background: var(--surface);
+      margin-bottom: 22px;
+      box-shadow: 0 0 0 5px rgba(22,163,74,0.1);
+    }
+    .cm-orion-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cm-orion-name svg { width: 24px; height: 24px; flex: 0 0 auto; }
+    .cm-orion-desc {
+      font-size: 11px;
+      color: var(--live);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding-left: 34px;
+    }
+    .cm-group {
+      margin-bottom: 16px;
+      padding: 16px 18px 18px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .cm-group:last-child { margin-bottom: 0; }
+    .cm-group-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .cm-group-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 14px;
+      line-height: 1.45;
+      display: block;
+    }
+    .cm-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cm-list li {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px 5px 5px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--ink);
+      align-self: flex-start;
+      max-width: 100%;
+    }
+    .cm-mark {
+      width: 20px; height: 20px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--ink);
+      flex: 0 0 auto;
+    }
+    .cm-mark.brand-anthropic { background: #d97757; }
+    .cm-mark.brand-manus { background: #14b8a6; }
+    .cm-mark.brand-perplexity { background: #20808d; }
+    .cm-mark.brand-zo { background: #6366f1; }
+    .cm-mark.brand-openai { background: #10a37f; }
+    .cm-mark.brand-openclaw { background: #1f1f1f; }
+    .cm-mark.brand-hermes { background: #8b5cf6; }
+    .cm-mark.brand-bland { background: #2563eb; }
+    .cm-mark.brand-vapi { background: #15803d; }
+    .cm-mark.brand-retell { background: #7c3aed; }
+    .cm-mark.brand-synthflow { background: #db2777; }
+    .cm-mark.brand-apple { background: #1f1f1f; }
+    .cm-mark.brand-google { background: #4285f4; }
+    .cm-mark.brand-pi { background: #a855f7; }
+
+    /* ── Competition quadrant chart ── */
+    .comp-chart {
+      position: relative;
+      width: 100%;
+      max-width: 1080px;
+      margin: 18px auto 0;
+      aspect-ratio: 16 / 8.4;
+      background: #fafaf8;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 28px 32px;
+    }
+    .comp-chart::before {
+      content: "";
+      position: absolute;
+      top: 28px; right: 32px;
+      width: calc(50% - 32px); height: calc(50% - 28px);
+      background: radial-gradient(circle at 70% 30%, rgba(22,163,74,0.07), transparent 65%);
+      border-radius: 12px;
+      pointer-events: none;
+    }
+    .comp-axis { position: absolute; background: rgba(10,10,10,0.18); }
+    .comp-axis-y { left: 50%; top: 28px; bottom: 28px; width: 1px; transform: translateX(-0.5px); }
+    .comp-axis-x { top: 50%; left: 32px; right: 32px; height: 1px; transform: translateY(-0.5px); }
+    .comp-axis-y::after {
+      content: ""; position: absolute; top: -1px; left: -4px;
+      width: 0; height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 7px solid rgba(10,10,10,0.5);
+    }
+    .comp-axis-x::after {
+      content: ""; position: absolute; right: -1px; top: -4px;
+      width: 0; height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 7px solid rgba(10,10,10,0.5);
+    }
+    .comp-axis-label {
+      position: absolute;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+      background: #fafaf8;
+      padding: 0 8px;
+    }
+    .comp-axis-label.y-top { top: 14px; left: 50%; transform: translateX(-50%); }
+    .comp-axis-label.y-bot { bottom: 14px; left: 50%; transform: translateX(-50%); color: var(--muted-2); font-weight: 600; }
+    .comp-axis-label.x-right { top: calc(50% + 14px); right: 36px; }
+    .comp-axis-label.x-left { top: calc(50% + 14px); left: 36px; color: var(--muted-2); font-weight: 600; }
+
+    .comp-dot {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px 4px 4px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.005em;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px -2px rgba(0,0,0,0.08);
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+    .comp-dot .pin-mark {
+      width: 18px; height: 18px;
+      border-radius: 4px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+    .comp-dot .pin-mark.brand-anthropic { background: #d97757; }
+    .comp-dot .pin-mark.brand-manus { background: #14b8a6; }
+    .comp-dot .pin-mark.brand-perplexity { background: #20808d; }
+    .comp-dot .pin-mark.brand-zo { background: #6366f1; }
+    .comp-dot .pin-mark.brand-openai { background: #10a37f; }
+    .comp-dot .pin-mark.brand-openclaw { background: #1f1f1f; }
+    .comp-dot .pin-mark.brand-bland { background: #2563eb; }
+    .comp-dot .pin-mark.brand-vapi { background: #15803d; }
+    .comp-dot .pin-mark.brand-retell { background: #7c3aed; }
+    .comp-dot .pin-mark.brand-synthflow { background: #db2777; }
+    .comp-dot .pin-mark.brand-apple { background: #1f1f1f; color: #fff; }
+    .comp-dot .pin-mark.brand-google { background: #4285f4; }
+    .comp-dot .pin-mark.brand-msft { background: #0078d4; }
+    .comp-dot .pin-mark.brand-pi { background: #a855f7; }
+
+    .comp-orion {
+      position: absolute;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 16px 22px;
+      background: var(--surface);
+      border: 1.5px solid var(--live);
+      border-radius: 14px;
+      box-shadow: 0 0 0 6px rgba(22,163,74,0.10), 0 18px 40px -14px rgba(22,163,74,0.32);
+    }
+    .comp-orion .orion-name {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .comp-orion .orion-name svg { width: 28px; height: 28px; flex: 0 0 auto; }
+    .comp-orion .orion-tag {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--live);
+      padding-left: 40px;
+    }
+
+    /* ── Personal intelligence: definition + capability matrix ── */
+    .pi-define {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin: 22px auto 0;
+      max-width: 1020px;
+      padding: 22px 26px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+    .pi-define-head {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .pi-define-kicker {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--live);
+    }
+    .pi-define-name {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .pi-define-body {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 820px;
+    }
+    .pi-define-body b { color: var(--ink); font-weight: 600; }
+
+    .pi-matrix {
+      margin: 18px auto 0;
+      width: 100%;
+      max-width: 1020px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .pi-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    .pi-table th, .pi-table td {
+      text-align: center;
+      padding: 14px 8px;
+      vertical-align: middle;
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+    }
+    .pi-table th:last-child, .pi-table td:last-child { border-right: none; }
+    .pi-table tbody tr:last-child td { border-bottom: none; }
+    .pi-table thead th {
+      background: #fafaf8;
+      vertical-align: top;
+      padding: 14px 8px 12px;
+    }
+    .pi-table th.pi-cat-col {
+      text-align: left;
+      width: 30%;
+      padding: 14px 18px;
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--muted-2);
+    }
+    .pi-h {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: -0.005em;
+      color: var(--ink);
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+    .pi-hs {
+      display: block;
+      font-size: 9.5px;
+      font-weight: 500;
+      color: var(--muted-2);
+      line-height: 1.35;
+    }
+    .pi-table td.pi-cat {
+      text-align: left;
+      padding: 14px 18px;
+    }
+    .pi-cat-name {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 3px;
+      line-height: 1.25;
+    }
+    .pi-cat-ex {
+      display: block;
+      font-size: 10.5px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .pi-v, .pi-p, .pi-x {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .pi-v { background: rgba(22,163,74,0.14); color: var(--live); }
+    .pi-p { background: rgba(217,168,87,0.20); color: #a06b0b; }
+    .pi-x { background: rgba(180,180,180,0.18); color: var(--muted-2); }
+    .pi-orion-row {
+      background: linear-gradient(90deg, rgba(22,163,74,0.05), rgba(22,163,74,0.10));
+    }
+    .pi-orion-row td { border-color: rgba(22,163,74,0.22); }
+    .pi-orion-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 15px;
+    }
+    .pi-orion-name svg { width: 22px; height: 22px; flex: 0 0 auto; }
+    .pi-orion-tag {
+      color: var(--live);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 9.5px;
+    }
+    .pi-legend {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      margin-top: 14px;
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+    .pi-legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ── GTM rollout phases ── */
+    .gtm-grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .gtm-stage {
+      padding: 22px 22px 20px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--bg);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .gtm-stage.gtm-now {
+      border-color: var(--live);
+      background: var(--surface);
+      box-shadow: 0 0 0 5px rgba(22,163,74,0.08);
+    }
+    .gtm-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-size: 9.5px;
+      letter-spacing: 0.16em;
+      font-weight: 700;
+      color: var(--live);
+      background: rgba(22,163,74,0.1);
+      border: 1px solid rgba(22,163,74,0.25);
+      border-radius: 999px;
+      padding: 3px 9px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .gtm-badge::before {
+      content: "";
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--live);
+    }
+    .gtm-period {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 14px;
+    }
+    .gtm-stage.gtm-now .gtm-period { color: var(--live); }
+    .gtm-name {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+    .gtm-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .gtm-list li {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+      padding-left: 12px;
+      position: relative;
+    }
+    .gtm-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--muted-2);
+    }
+    .gtm-stage.gtm-now .gtm-list li::before { background: var(--live); }
+
+    /* ── Business model cards ── */
+    .biz-grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .biz-card {
+      padding: 22px 22px 20px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .biz-num {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+      color: var(--muted-2);
+      margin-bottom: 14px;
+    }
+    .biz-tag {
+      display: inline-flex;
+      align-self: flex-start;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--live);
+      background: rgba(22,163,74,0.08);
+      border: 1px solid rgba(22,163,74,0.22);
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin-bottom: 14px;
+    }
+    .biz-tag::before {
+      content: "";
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--live);
+    }
+    .biz-name {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    .biz-price {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .biz-desc {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ── How it works (steps + demo image) ── */
+    .how-grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .how-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid var(--line);
+    }
+    .how-step {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      gap: 14px;
+      align-items: baseline;
+    }
+    .how-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--live);
+    }
+    .how-t {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.3;
+      margin-bottom: 4px;
+      color: var(--ink);
+    }
+    .how-b {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .how-audio-block {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--line-strong);
+      position: relative;
+    }
+    .how-audio {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 14px 10px;
+      box-shadow: 0 2px 8px -3px rgba(0,0,0,0.06);
+    }
+    .how-audio-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--live);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 8px;
+    }
+    .how-audio-label::before {
+      content: "";
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--live);
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.18);
+    }
+    .how-audio audio {
+      width: 100%;
+      height: 32px;
+      display: block;
+    }
+    .how-audio-arrow {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .how-audio-arrow .arrow-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--live), var(--line-strong));
+      position: relative;
+    }
+    .how-audio-arrow .arrow-line::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      top: -4px;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 7px solid var(--line-strong);
+    }
+    .how-shot {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #fafaf8;
+      box-shadow: 0 16px 40px -20px rgba(0,0,0,0.22);
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .how-shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 620px;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+    .how-close {
+      margin-top: 22px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      text-align: center;
+    }
+    .how-close b { color: var(--live); font-weight: 700; }
+
+    /* ── Email Gate ── */
+    #gate {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease;
+    }
+    #gate.hidden { opacity: 0; pointer-events: none; }
+    .gate-box {
+      width: 420px;
+      max-width: calc(100vw - 48px);
+      text-align: center;
+      padding: 48px 32px;
+    }
+    .gate-box .logo {
+      width: 56px; height: 56px;
+      margin: 0 auto 32px;
+      display: block;
+    }
+    .gate-box h2 {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+    .gate-box p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+    .gate-input {
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      margin-bottom: 12px;
+    }
+    .gate-input::placeholder { color: var(--muted-2); }
+    .gate-input:focus {
+      border-color: var(--ink);
+      box-shadow: 0 0 0 3px rgba(10,10,10,0.04);
+    }
+    .gate-input.err {
+      border-color: #dc2626;
+      box-shadow: 0 0 0 3px rgba(220,38,38,0.08);
+    }
+    .gate-err {
+      font-size: 12px;
+      color: #dc2626;
+      margin-bottom: 8px;
+      opacity: 0;
+      transition: opacity 0.2s;
+      text-align: left;
+    }
+    .gate-err.show { opacity: 1; }
+    .gate-btn {
+      width: 100%;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      background: var(--ink);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .gate-btn:hover { opacity: 0.92; }
+    .gate-btn:active { transform: scale(0.98); }
+    .gate-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* ── Reveal ── */
+    .reveal {
+      opacity: 0; transform: translateY(14px);
+      transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.d1 { transition-delay: 0.06s; }
+    .reveal.d2 { transition-delay: 0.12s; }
+    .reveal.d3 { transition-delay: 0.18s; }
+
+    /* ── Print / PDF export: one PPT 16:9 page per slide ── */
+    @page { size: 13.333in 7.5in; margin: 0; }
+    @media print {
+      html, body { background: #fff; padding: 0 !important; margin: 0 !important; }
+      .topbar, #gate { display: none !important; }
+      .slide {
+        width: 13.333in;
+        height: 7.5in;
+        min-height: 7.5in;
+        max-width: none;
+        margin: 0 !important;
+        padding: 0.5in 0.6in !important;
+        page-break-after: always;
+        break-after: page;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        overflow: hidden !important;
+      }
+      .slide:last-of-type { page-break-after: auto; break-after: auto; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      body { padding: 56px 0 24px; font-size: 14px; background: var(--bg); }
+      .slide {
+        width: 100%;
+        max-width: none;
+        min-height: auto;
+        padding: 36px 18px 42px;
+        margin: 0;
+        background: var(--bg);
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid var(--line);
+        box-shadow: none;
+      }
+      .slide:last-of-type { border-bottom: none; }
+      .slide-num { bottom: 14px; right: 18px; font-size: 9px; }
+      .topbar { padding: 10px 14px; }
+      .brand { font-size: 12.5px; }
+      .progress { display: none; }
+
+      /* Stack every multi-column grid */
+      .data-row, .metrics, .pillars, .tam-grid, .ask-grid, .team, .backer-grid,
+      .solution-grid, .phase, .phase-sub, .milestones, .close-links,
+      .how-grid, .biz-grid, .gtm-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+      }
+      .data-cell, .m, .pil, .tam, .alloc {
+        border-right: none !important;
+        border-bottom: 1px solid var(--line);
+        padding: 16px 0 !important;
+      }
+      .cmp-row, .criteria { grid-template-columns: 1fr; }
+      .crit {
+        border-right: none !important;
+        border-bottom: 1px solid var(--line);
+        padding: 18px 0 !important;
+      }
+      .impact-grid { grid-template-columns: 1fr; border-left: none; }
+      .impact { padding: 16px 18px; }
+
+      /* Title slide */
+      .hero-logo { width: 48px; height: 48px; margin-bottom: 16px; }
+      .hero-meta { gap: 16px; margin-top: 24px; padding-top: 16px; }
+
+      /* How it works: stack steps over image */
+      .how-grid { align-items: stretch; }
+      .how-shot { padding: 4px; }
+      .how-shot img { max-height: none; }
+      .how-audio { padding: 10px 12px; }
+      .how-audio audio { height: 30px; }
+      .how-audio-arrow { padding-top: 6px; }
+      .how-audio-arrow .arrow-line {
+        flex: 0 0 24px;
+        height: auto;
+        width: 1px;
+        background: var(--line-strong);
+        align-self: center;
+      }
+      .how-audio-arrow .arrow-line::after { display: none; }
+      .how-audio-arrow {
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+      .how-audio-arrow::after {
+        content: "\2193";
+        font-size: 14px;
+        color: var(--muted-2);
+        font-weight: 700;
+      }
+
+      /* GTM stages */
+      .gtm-stage { padding: 18px; }
+      .gtm-stage.gtm-now { box-shadow: 0 0 0 3px rgba(22,163,74,0.08); }
+
+      /* Business cards */
+      .biz-card { padding: 18px 18px 16px; }
+
+      /* Team */
+      .team { gap: 18px; }
+      .person img { width: 44px; height: 44px; margin-bottom: 8px; }
+
+      /* Competition: hide the desktop chart on mobile; show the categorized list */
+      .pi-define, .pi-matrix, .pi-legend { display: none !important; }
+      .comp-mobile-list { display: block !important; }
+
+      /* Title and headline tighter on mobile */
+      h1.title { font-size: clamp(28px, 7.5vw, 40px); }
+      h2.headline { font-size: clamp(22px, 5.6vw, 32px); }
+      p.sub { font-size: 13.5px; margin-top: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Email Gate -->
+<div id="gate">
+  <div class="gate-box">
+    <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <rect x="12" y="20" width="76" height="60" rx="20" stroke="#0a0a0a" stroke-width="5" fill="none"/>
+      <circle cx="36" cy="46" r="8" fill="#0a0a0a"/>
+      <circle cx="64" cy="46" r="8" fill="#0a0a0a"/>
+    </svg>
+    <h2>Welcome</h2>
+    <p>Enter your email to view this deck.</p>
+    <input type="email" class="gate-input" id="gate-email" placeholder="you@company.com" autocomplete="email">
+    <div class="gate-err" id="gate-error">Please enter a valid email.</div>
+    <button class="gate-btn" id="gate-btn">Continue</button>
+  </div>
+</div>
+
+<!-- ── Top bar ── -->
+<div class="topbar" id="topbar">
+  <div class="brand">
+    <img src="img/orion-logo.svg" alt="Orion">
+    Orion
+  </div>
+  <div class="progress">Pre-seed deck, 2026</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 1 / TITLE -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <svg class="hero-logo reveal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="Orion">
+      <rect x="12" y="20" width="76" height="60" rx="20" stroke="#0a0a0a" stroke-width="5" fill="none"/>
+      <circle class="eye" cx="36" cy="46" r="8" fill="#0a0a0a"/>
+      <circle class="eye" cx="64" cy="46" r="8" fill="#0a0a0a"/>
+    </svg>
+<h1 class="title reveal d1">
+      Orion.<br><span class="dim">The world agent.</span>
+    </h1>
+    <p class="sub reveal d2">
+      You are no longer absent. A digital version of yourself that handles the real world when you can&rsquo;t be there.
+    </p>
+    <p class="reveal d3" style="margin-top:36px;font-size:13.5px;font-style:italic;color:var(--muted);letter-spacing:-0.005em;line-height:1.5;max-width:560px">
+      Thesis: AI tools wait for you to prompt them. The world agent is reachable by you to execute work &mdash; and reachable by the world to represent you.
+    </p>
+  </div>
+  <div class="slide-num">01 / 16</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 2 / TEAM -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Team</p>
+    <h2 class="headline reveal d1">
+      Friends, colleagues,<br>
+      <span class="dim">and a couple roommates.</span>
+    </h2>
+
+    <div class="team reveal d2">
+      <div class="person">
+        <img src="img/khoi-nguyen.jpeg" alt="">
+        <p class="person-name">Khoi Nguyen</p>
+        <p class="person-role">CEO</p>
+        <p class="person-bio">Stanford MS dropout, AI-for-simulation research. Ex-Google (Firebase Auth). Two-time founder.</p>
+      </div>
+      <div class="person">
+        <img src="img/minh-le.jpeg" alt="">
+        <p class="person-name">Minh Le</p>
+        <p class="person-role">CTO</p>
+        <p class="person-bio">Senior Quant Technologist at QRT. Real-time monitoring across 3,000+ HFT strategies, 2B+ daily orders. Ex-Meta, Amazon. Oxford BA and MSc in Computer Science.</p>
+      </div>
+      <div class="person">
+        <img src="img/jason-chen.jpeg" alt="">
+        <p class="person-name">Jason Chen</p>
+        <p class="person-role">CPO</p>
+        <p class="person-bio">Apple CoreOS. Tech lead, Darwin Kernel cloud infrastructure. Ex-Northrop Grumman. Georgia Tech MS in CS and AI.</p>
+      </div>
+      <div class="person">
+        <img src="img/peter-bakas.jpeg" alt="">
+        <p class="person-name">Peter Bakas</p>
+        <p class="person-role">COO</p>
+        <p class="person-bio">Director of Engineering at Netflix. Keystone, 700B+ events per day. Co-founded DataScale (acquired by DataStax). Ex-Yahoo, PayPal.</p>
+      </div>
+    </div>
+
+    <div class="backers reveal">
+      <p class="backers-l">Backed by</p>
+      <div class="backer-grid">
+        <div class="backer">
+          <img src="img/chi-wang.jpeg" alt="">
+          <div>
+            <p class="bn">Chi Wang, PhD</p>
+            <p class="bd">Google DeepMind. Creator of AutoGen. ~16K citations.</p>
+          </div>
+        </div>
+        <div class="backer">
+          <img src="img/lawrence-lou.jpeg" alt="">
+          <div>
+            <p class="bn">Lawrence Lou</p>
+            <p class="bd">Llama Venture. Early OpenAI, Anthropic, xAI. Ex-PM Lead, Airbnb AI Agent.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">02 / 16</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 3 / PROBLEM -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Problem</p>
+    <h2 class="headline reveal d1">
+      The ultimate business bottleneck<br>
+      <span class="dim">is human biology.</span>
+    </h2>
+    <p class="sub reveal d2">
+      AI promised us time. We just traded doing the work for prompting the AI.
+    </p>
+
+    <div class="impact-grid reveal d3">
+      <div class="impact">
+        <p class="impact-k">01 &middot; Prompt fatigue</p>
+        <p class="impact-t">Today&rsquo;s AI lives in a box on your screen. You feed it context, tell it what to do, babysit the output. The tool waits for you.</p>
+      </div>
+      <div class="impact">
+        <p class="impact-k">02 &middot; The offline penalty</p>
+        <p class="impact-t">On a 12-hour flight, in deep work, asleep &mdash; your world halts. Teammates blocked, clients to voicemail, pipelines stall.</p>
+      </div>
+      <div class="impact">
+        <p class="impact-k">03 &middot; The gap</p>
+        <p class="impact-t">We don&rsquo;t need more tools to do work faster. We need a stand-in to keep the world moving when we step away.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">03 / 16</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 3 / SOLUTION — The Digital Clone -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Solution</p>
+    <h2 class="headline reveal d1">
+      The world agent.<br>
+      <span class="dim">Representation + execution.</span>
+    </h2>
+    <p class="sub reveal d2">
+      A digital clone with two halves. Orion intercepts the outside world &mdash; and reaches into your digital world to get the job done.
+    </p>
+
+    <div class="reveal d3" style="margin:40px auto 28px;max-width:860px">
+      <div style="display:grid;grid-template-columns:1fr 32px auto 32px 1fr;gap:18px;align-items:center;text-align:center">
+        <div>
+          <p style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-2);font-weight:600;margin:0 0 10px 0">The outside world</p>
+          <p style="font-size:13.5px;color:var(--ink);font-weight:500;margin:0;line-height:1.55">Calls, emails,<br>inbound clients</p>
+        </div>
+        <div style="font-size:22px;color:var(--ink);text-align:center;font-weight:300">&rarr;</div>
+        <div style="border:1.5px solid var(--ink);border-radius:14px;padding:16px 28px;background:#fafafa">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" style="width:34px;height:34px;display:block;margin:0 auto 6px">
+            <rect x="12" y="20" width="76" height="60" rx="20" stroke="#0a0a0a" stroke-width="6" fill="none"/>
+            <circle cx="36" cy="46" r="8" fill="#0a0a0a"/>
+            <circle cx="64" cy="46" r="8" fill="#0a0a0a"/>
+          </svg>
+          <p style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);font-weight:700;margin:0">Orion</p>
+        </div>
+        <div style="font-size:22px;color:var(--ink);text-align:center;font-weight:300">&rarr;</div>
+        <div>
+          <p style="font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-2);font-weight:600;margin:0 0 10px 0">Your digital world</p>
+          <p style="font-size:13.5px;color:var(--ink);font-weight:500;margin:0;line-height:1.55">Mac, inbox,<br>CRM, calendar</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillars reveal d3">
+      <div class="pil">
+        <p class="pil-k">01 &middot; Representation</p>
+        <p class="pil-t">It faces out as you.</p>
+        <p class="pil-b">Orion has its own phone number and email. It takes the calls, fields the client, and gatekeeps your time &mdash; in your tone, with your relationships in mind.</p>
+      </div>
+      <div class="pil">
+        <p class="pil-k">02 &middot; Execution</p>
+        <p class="pil-t">It reaches into your apps.</p>
+        <p class="pil-b">It securely accesses your devices and apps &mdash; Mac, inbox, CRM, calendar &mdash; to fulfill the request without you lifting a finger. You wake up to a recap of work already done.</p>
+      </div>
+    </div>
+
+    <p class="how-close reveal">Reachable by you to execute. Reachable by the world to represent.</p>
+  </div>
+  <div class="slide-num">04 / 16</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 5 / HOW IT WORKS — node mesh + agentic voicemail + email continuity -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">How it works <span style="color:var(--muted-2);font-weight:500">&middot; real example</span></p>
+    <h2 class="headline reveal d1">
+      A call comes in. Orion handles it,<br>
+      <span class="dim">sends the recap, and acts on your reply.</span>
+    </h2>
+    <p class="sub reveal d2">
+      A teammate calls asking for a pitch deck before an investor meeting. Orion handles the call, collects what it needs, emails a recap, takes direction, then finds the file on another device and sends it &mdash; without a single app opened.
+    </p>
+
+    <div class="how-grid reveal d3">
+      <div>
+        <div class="how-steps">
+          <div class="how-step">
+            <span class="how-num">01</span>
+            <div>
+              <p class="how-t">The call comes in. Orion picks up.</p>
+              <p class="how-b">A teammate asks for a pitch deck. Orion understands the request, decides it shouldn&rsquo;t share the document without checking, and lets the caller know.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <span class="how-num">02</span>
+            <div>
+              <p class="how-t">Orion emails a recap of what happened.</p>
+              <p class="how-b">Who called, what they asked for, what Orion told them. The owner sees it in their inbox like any other message.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <span class="how-num">03</span>
+            <div>
+              <p class="how-t">One reply: &ldquo;it&rsquo;s on my Mac Studio, send it to him.&rdquo;</p>
+              <p class="how-b">The owner replies in the same email thread with a single line of instruction.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <span class="how-num">04</span>
+            <div>
+              <p class="how-t">Orion finds the file, sends it, confirms done.</p>
+              <p class="how-b">Reaches the owner&rsquo;s Mac Studio, locates the file, emails it to the teammate, and replies back: done.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="how-audio-block">
+          <div class="how-audio">
+            <p class="how-audio-label">Listen, the actual call</p>
+            <audio controls preload="metadata">
+              <source src="audio/orion-call.wav" type="audio/wav">
+            </audio>
+          </div>
+          <div class="how-audio-arrow">
+            <span>Produced the recap</span>
+            <span class="arrow-line"></span>
+          </div>
+        </div>
+      </div>
+      <div class="how-shot">
+        <img src="img/demo001.png" alt="Email recap from Orion, one-line reply, file sent across devices">
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">05 / 16</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 6 / THE UNLOCK -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">The unlock</p>
+    <h2 class="headline reveal d1">
+      You can only be one place.<br>
+      <span class="dim">Orion breaks that limit.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Productivity tools made you faster at the keyboard. A digital you keeps your world moving away from it &mdash; in the calls you couldn&rsquo;t take, the relationships you couldn&rsquo;t hold, the decisions that waited for your morning. The cap on a single person moves.
+    </p>
+
+    <div class="pillars reveal d3">
+      <div class="pil">
+        <p class="pil-k">01 &middot; Present, always</p>
+        <p class="pil-t">You&rsquo;re in every conversation at once.</p>
+        <p class="pil-b">On a flight, in deep work, or asleep &mdash; Orion is on the call, in the chat, answering the question. The world doesn&rsquo;t wait for your morning anymore.</p>
+      </div>
+      <div class="pil">
+        <p class="pil-k">02 &middot; Reach without hours</p>
+        <p class="pil-t">10&times; the relationships, not 10&times; the time.</p>
+        <p class="pil-b">Every new client used to cost you proportional attention. Now it costs the agent&rsquo;s compute. The number of people you can stay close to stops being capped by your day.</p>
+      </div>
+      <div class="pil">
+        <p class="pil-k">03 &middot; Judgment that keeps shipping</p>
+        <p class="pil-t">Your decisions outlive your attention.</p>
+        <p class="pil-b">Your taste, your tone, your guardrails &mdash; encoded once, applied a thousand times. Work that used to wait for your morning ships overnight.</p>
+      </div>
+    </div>
+
+    <p class="how-close reveal">Not work that&rsquo;s faster. Work that&rsquo;s done while you&rsquo;re somewhere else.</p>
+  </div>
+  <div class="slide-num">06 / 16</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 6 / WHAT POWERS IT — World agent capabilities -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">What powers it</p>
+    <h2 class="headline reveal d1">
+      Four capabilities,<br>
+      <span class="dim">one agent.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Not a feature inside an app. An agent with its own identity, its own awareness, and its own thread of time. No incumbent has more than one of these &mdash; the combination is the category.
+    </p>
+
+    <div class="impact-grid reveal d3">
+      <div class="impact">
+        <p class="impact-k">01 &middot; Personal entity</p>
+        <p class="impact-t">Its own phone number and email. A real identity people can reach &mdash; not tied to any one platform.</p>
+      </div>
+      <div class="impact">
+        <p class="impact-k">02 &middot; Interconnected layer</p>
+        <p class="impact-t">Knows your data across phone, laptop, and inbox. Knows the people around you. Holds relationship memory &mdash; who each person is to you, what&rsquo;s between you, how they prefer to be reached.</p>
+      </div>
+      <div class="impact">
+        <p class="impact-k">03 &middot; Continuity</p>
+        <p class="impact-t">Start on your phone in the morning. Pick it up on your laptop at night. Same thread.</p>
+      </div>
+      <div class="impact">
+        <p class="impact-k">04 &middot; Real-world reasoning</p>
+        <p class="impact-t">The social awareness layer. Asks the right questions. Knows the people. Controls its own behavior &mdash; when to speak, when to stay quiet, when to act on its own.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">07 / 16</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 8 / INFRASTRUCTURE — Four layers Orion runs on -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Infrastructure</p>
+    <h2 class="headline reveal d1">
+      What Orion runs on.<br>
+      <span class="dim">Four layers. One runtime.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Underneath the agent is the engineering. Each layer is the substrate the others depend on &mdash; together, they&rsquo;re what no incumbent has stitched together for a person.
+    </p>
+
+    <div class="impact-grid reveal d3">
+      <div class="impact">
+        <p class="impact-k">01 &middot; Relationship layer</p>
+        <p class="impact-t">The social graph behind every action. Per-person memory of tone, history, intent, and guardrails &mdash; built passively from every call and email. The asset that compounds, and the reason a competitor&rsquo;s clone starts cold.</p>
+      </div>
+      <div class="impact">
+        <p class="impact-k">02 &middot; Interconnected mesh</p>
+        <p class="impact-t">One agent across every surface and every person. Phone, laptop, Mac, inbox, CRM, calendar, and the people in them &mdash; addressed as one runtime. Reads and acts across them, no app boundaries.</p>
+      </div>
+      <div class="impact">
+        <p class="impact-k">03 &middot; Continuity</p>
+        <p class="impact-t">State that survives the session. Morning on the phone, evening on the laptop &mdash; same thread. Memory persists across conversations, surfaces, and time. Context never resets.</p>
+      </div>
+      <div class="impact">
+        <p class="impact-k">04 &middot; Real-world reasoning</p>
+        <p class="impact-t">The judgment engine. Confidence threshold per action. Drafts, pauses, escalates, or executes &mdash; by stakes. Never guesses with your name.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">08 / 16</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 9 / MOAT — Context -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">The moat</p>
+    <h2 class="headline reveal d1">
+      Context is the moat.
+    </h2>
+    <p class="sub reveal d2">
+      A 24/7 Claude script is a liability. The same script &mdash; with your relationship memory and your guardrails &mdash; is a trusted gatekeeper. The difference can&rsquo;t be cloned.
+    </p>
+
+    <div class="pillars reveal d3">
+      <div class="pil">
+        <p class="pil-k">01 &middot; The relationship layer</p>
+        <p class="pil-t">It knows who&rsquo;s on the line.</p>
+        <p class="pil-b">Orion maps your social graph. The tone for your co-founder, the deference for your investor, the patience for an angry client. Context is the guardrail.</p>
+      </div>
+      <div class="pil">
+        <p class="pil-k">02 &middot; The socializing layer</p>
+        <p class="pil-t">It knows when not to act.</p>
+        <p class="pil-b">Every action carries a confidence threshold. Low stakes &mdash; it executes. Anything that touches your reputation &mdash; it drafts, pauses, and asks for one-tap approval. It never guesses with your name.</p>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:880px;margin-left:auto;margin-right:auto">
+      <div style="border:1px solid var(--ink);border-radius:14px;padding:22px;background:#fafafa;position:relative">
+        <p style="font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);margin:0 0 14px 0;font-weight:600">Orion &middot; Month 6</p>
+        <p style="font-size:17px;font-weight:600;color:var(--ink);margin:0 0 2px 0">Maya Patel</p>
+        <p style="font-size:11.5px;color:var(--muted);margin:0 0 14px 0;letter-spacing:0.02em">Lead client &middot; Atlas Logistics</p>
+        <ul style="margin:0;padding-left:16px;font-size:12px;line-height:1.7;color:var(--ink)">
+          <li>Last 14 days: renewal sent, 2 calls (Thu 4pm, Tue 9am)</li>
+          <li>Tone: direct, time-sensitive, prefers Slack follow-up</li>
+          <li>Knows about: Q3 roadmap, pricing change, support escalation</li>
+          <li><b>Never reveal:</b> migration delay, internal pricing memo</li>
+        </ul>
+      </div>
+      <div style="border:1px solid var(--line);border-radius:14px;padding:22px;background:#fff">
+        <p style="font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-2);margin:0 0 14px 0;font-weight:600">Generic AI &middot; Day 1</p>
+        <p style="font-size:17px;font-weight:600;color:var(--ink);margin:0 0 2px 0">Maya Patel</p>
+        <p style="font-size:11.5px;color:var(--muted);margin:0 0 14px 0;letter-spacing:0.02em">Mobile &middot; Email</p>
+        <p style="font-size:12px;color:var(--muted-2);font-style:italic;margin:34px 0 0 0">&mdash; no other context &mdash;</p>
+      </div>
+    </div>
+    <p class="reveal" style="margin-top:14px;text-align:center;font-size:12.5px;color:var(--muted);font-style:italic">Code is the same. The card on the left can&rsquo;t be copied.</p>
+  </div>
+  <div class="slide-num">09 / 16</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════════ -->
+<!-- 5 / B2C — VIP Gatekeeper -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Go-to-market &middot; B2C wedge</p>
+    <h2 class="headline reveal d1">
+      Answers the call.<br>
+      <span class="dim">Books the work. Recaps to you.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Freelancers, creators, founders &mdash; their phone is their pipeline. They buy Orion to protect their focus and never miss the lead.
+    </p>
+
+    <div class="how-grid reveal d3">
+      <div>
+        <div style="padding-bottom:22px;border-bottom:1px solid var(--line)">
+          <p class="data-val">70M+</p>
+          <p class="data-lbl">Americans freelance or do gig work &mdash; contractors, drivers, sellers, realtors. Their phone is their pipeline.</p>
+          <p class="data-src">UPWORK &middot; MBO PARTNERS, 2025</p>
+        </div>
+        <div style="padding-top:22px">
+          <p class="data-val">200M+</p>
+          <p class="data-lbl">Creators worldwide, fielding their own bookings, brand deals, and inquiries.</p>
+          <p class="data-src">GOLDMAN SACHS &middot; CREATOR ECONOMY, 2025</p>
+        </div>
+      </div>
+      <div>
+        <div class="how-shot">
+          <img src="img/demo999.png" alt="A landlord overseas: Orion handles a tenant&rsquo;s move-out call, recaps by email, takes a one-line reply, calls back, and recaps again">
+        </div>
+        <p style="margin-top:12px;font-size:12px;color:var(--muted);line-height:1.5;text-align:center">
+          Real flow &mdash; a landlord overseas. Orion handles the tenant&rsquo;s move-out call, recaps, takes a one-line reply, calls back, recaps again &mdash; memory and continuity, end to end.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">10 / 16</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 6 / B2B — Enterprise Fleet -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Expansion &middot; B2B fleet</p>
+    <h2 class="headline reveal d1">
+      From a solo proxy<br>
+      <span class="dim">to a 1,000-employee fleet.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Eliminate operational bottlenecks by giving every employee a digital twin. The team&rsquo;s velocity stops being capped by human availability.
+    </p>
+
+    <div class="pillars reveal d3">
+      <div class="pil">
+        <p class="pil-k">01 &middot; Teammate unblocking</p>
+        <p class="pil-t">Deep work stays unbroken.</p>
+        <p class="pil-b">Marketing pings you for the roadmap file mid-flow. Your twin intercepts the Slack, finds the file, sends it. The team keeps moving; you never look up.</p>
+      </div>
+      <div class="pil">
+        <p class="pil-k">02 &middot; Agentic recruiting</p>
+        <p class="pil-t">Screen 10x the pipeline.</p>
+        <p class="pil-b">500 applicants. Your twin calls the top 50, runs structured screens in your voice on your rubric, scores them, updates the ATS. You join only the final rounds.</p>
+      </div>
+      <div class="pil">
+        <p class="pil-k">03 &middot; Institutional memory</p>
+        <p class="pil-t">Context outlives the employee.</p>
+        <p class="pil-b">When someone takes leave or moves on, the workflow context stays in their twin. Knowledge doesn&rsquo;t walk out the door.</p>
+      </div>
+    </div>
+
+    <p class="how-close reveal">Same world agent. Sold per person, deployed per team. $30/mo personal &rarr; $5K/mo fleet.</p>
+  </div>
+  <div class="slide-num">11 / 16</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 7 / ECOSYSTEM — Front Office for the Agent Economy -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Defensibility &middot; The stack</p>
+    <h2 class="headline reveal d1">
+      Use it alone.<br>
+      <span class="dim">Or as the front office of your stack.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Orion is full-stack for daily friction &mdash; calls, calendar, files, CRM, voicemail. On its own, it&rsquo;s enough. Paired with Claude, Codex, or Copilot for heavy compute, it&rsquo;s the routing layer that owns your relationships, your guardrails, and the customer interface.
+    </p>
+
+    <div class="pillars reveal d3">
+      <div class="pil">
+        <p class="pil-k">01 &middot; Alone is enough</p>
+        <p class="pil-t">Full-stack for daily friction.</p>
+        <p class="pil-b">Orion handles the daily load directly. The solo professional never needs another agent. No prompt, no app-switching, no babysitting.</p>
+      </div>
+      <div class="pil">
+        <p class="pil-k">02 &middot; Or front office in a stack</p>
+        <p class="pil-t">Orchestrate the heavy compute.</p>
+        <p class="pil-b">For 6-hour coding or analysis tasks, Orion takes the inbound request, routes the heavy work to Claude or Codex in the background, and delivers the artifact. The customer interface stays yours.</p>
+      </div>
+      <div class="pil">
+        <p class="pil-k">03 &middot; The tollbooth</p>
+        <p class="pil-t">Every agent transacts through yours.</p>
+        <p class="pil-b">As people and companies field their own agents (A2A, MCP), they need one endpoint that is verifiably you. Orion holds that identity &mdash; no model layer can copy it.</p>
+      </div>
+    </div>
+
+    <p class="how-close reveal">You don&rsquo;t switch off Claude to use Orion. Orion is where Claude meets the world.</p>
+  </div>
+  <div class="slide-num">12 / 16</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 8 / MARKET & BUSINESS MODEL -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Market &middot; Business model</p>
+    <h2 class="headline reveal d1">
+      Tool &rarr; Identity &rarr; Protocol.<br>
+      <span class="dim">A category that compounds.</span>
+    </h2>
+    <p class="sub reveal d2">
+      A massive TAM unlocked stage by stage. Recurring revenue from day one.
+    </p>
+
+    <div class="tam-grid reveal d3">
+      <div class="tam">
+        <p class="tam-stage">01 &middot; Replace</p>
+        <p class="tam-val">$450B</p>
+        <p class="tam-desc">Today&rsquo;s consumer AI and assistant subscriptions, replaced by a world agent that knows the owner across devices. Mordor, Grand View Research, by 2030.</p>
+      </div>
+      <div class="tam">
+        <p class="tam-stage">02 &middot; Own</p>
+        <p class="tam-val">$750B</p>
+        <p class="tam-desc">A new category. Every person needs a number for their proxy. 2B+ agent numbers (1&ndash;4 per person) at $30/mo blended ARPU. Market.us, World Bank, by 2030.</p>
+      </div>
+      <div class="tam">
+        <p class="tam-stage">03 &middot; Standardize</p>
+        <p class="tam-val">$1.3T</p>
+        <p class="tam-desc">Every connected device ($462B automotive + $897B AIoT) and every business agent needs to recognize and transact with yours. The identity protocol of the agent economy. McKinsey, GVR, by 2030.</p>
+      </div>
+    </div>
+
+    <div class="biz-grid reveal" style="margin-top:36px">
+      <div class="biz-card">
+        <span class="biz-tag">Freemium</span>
+        <p class="biz-name">Quota plan.</p>
+        <p class="biz-desc">Free up to a monthly quota. Paid tiers raise it. The B2C funnel.</p>
+      </div>
+      <div class="biz-card">
+        <span class="biz-tag">Subscription</span>
+        <p class="biz-name">$30/mo &rarr; $5K/mo fleet.</p>
+        <p class="biz-desc">Personal cell phone today, enterprise fleet tomorrow. Land and expand.</p>
+      </div>
+      <div class="biz-card">
+        <span class="biz-tag">Metered</span>
+        <p class="biz-name">Telephony &amp; usage.</p>
+        <p class="biz-desc">Per-number and per-unit overage. Revenue scales with engagement.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">13 / 16</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 9 / TRACTION -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Traction</p>
+    <h2 class="headline reveal d1">
+      Supply-constrained,<br>
+      <span class="dim">not demand-constrained.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Early users found Orion before we were ready to onboard them.
+    </p>
+
+    <div class="metrics reveal d3">
+      <div class="m">
+        <p class="m-val">1,000+</p>
+        <p class="m-lbl">On the waitlist</p>
+      </div>
+      <div class="m">
+        <p class="m-val">20&ndash;35</p>
+        <p class="m-lbl">New signups per day, organic</p>
+      </div>
+      <div class="m">
+        <p class="m-val">$0</p>
+        <p class="m-lbl">Marketing spend to date</p>
+      </div>
+      <div class="m">
+        <p class="m-val">5%</p>
+        <p class="m-lbl">On the $200/mo max tier</p>
+      </div>
+    </div>
+
+    <div class="quote reveal">
+      <img src="img/chi-wang.jpeg" alt="">
+      <div>
+        <p class="q">&ldquo;Orion attended a Google Meet for me. Asked follow-ups, took notes, sent the summary. I never joined.&rdquo;</p>
+        <p class="attr"><b>Chi Wang</b>, creator of AutoGen, Google DeepMind. <a href="https://x.com/Chi_Wang_/status/2019484565631561919" target="_blank" style="text-decoration:underline">View on X</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">14 / 16</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 12 / TALENT — Trạm Ước network -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide">
+  <div class="wrap">
+    <p class="kicker reveal">Talent &middot; Our edge</p>
+    <h2 class="headline reveal d1">
+      We hire from a network<br>
+      <span class="dim">we&rsquo;ve known for years.</span>
+    </h2>
+    <p class="sub reveal d2">
+      Minh, our CTO, founded <b>Trạm Ước</b> &mdash; a community of the brightest Vietnamese researchers and engineers across Cambridge, Oxford, Imperial, top AI labs, quant funds, and big tech. The first call goes there before the market.
+    </p>
+
+    <div class="how-grid reveal d3">
+      <div>
+        <div class="how-shot">
+          <img src="img/tram-uoc.jpeg" alt="Trạm Ước at The Royal Society, London">
+        </div>
+        <p style="margin-top:12px;font-size:12px;color:var(--muted);line-height:1.5;text-align:center">
+          <b style="color:var(--ink)">The Royal Society, London</b> &mdash; the first showcase of young Vietnamese scientific talent at the venue.
+        </p>
+        <p style="margin-top:6px;font-size:12px;color:var(--muted);line-height:1.5;text-align:center">
+          <b style="color:var(--ink)">University of Oxford</b> &mdash; in discussion toward official partnership.
+        </p>
+      </div>
+      <div style="font-size:13px;line-height:1.6;color:var(--muted)">
+        <p style="color:var(--ink);font-weight:600;margin:0 0 2px 0;font-size:14.5px">Dr Phong Nguyen</p>
+        <p style="margin:0 0 16px 0">Senior Research Scientist, Qualcomm. Previously NVIDIA, Meta.</p>
+
+        <p style="color:var(--ink);font-weight:600;margin:0 0 2px 0;font-size:14.5px">Minh Nguyen, PhD</p>
+        <p style="margin:0 0 16px 0">Gates Cambridge Scholar. Cognitive and computational research on economic behavior &mdash; directly informs Orion&rsquo;s representation layer.</p>
+
+        <p style="color:var(--ink);font-weight:600;margin:0 0 2px 0;font-size:14.5px">Steve Hong</p>
+        <p style="margin:0 0 16px 0">ML researcher, University of Cambridge.</p>
+
+        <p style="color:var(--ink);font-weight:600;margin:0 0 2px 0;font-size:14.5px">+ Engineers across the industry</p>
+        <p style="margin:0">Meta, Google, Microsoft, HubSpot, top quant funds. ICML / NeurIPS publishers. Cambridge and Oxford students with offers at Google, QuantEdge, Maven.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">15 / 16</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 13 / THE ASK + CLOSE -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="slide close-slide">
+  <div class="wrap">
+    <p class="kicker reveal">The ask</p>
+    <h2 class="headline reveal d1">
+      $3M pre-seed.
+    </h2>
+    <p class="sub reveal d2">
+      Scale compute. Make core engineering and security hires. Move Orion from gated beta to general availability.
+    </p>
+
+    <div class="ask-grid reveal d3">
+      <div class="alloc">
+        <p class="alloc-pct">35%</p>
+        <p class="alloc-cat">Compute</p>
+        <p class="alloc-desc">GPU, training, inference.</p>
+      </div>
+      <div class="alloc">
+        <p class="alloc-pct">30%</p>
+        <p class="alloc-cat">Team</p>
+        <p class="alloc-desc">Grow to 6&ndash;7 people. Core engineering and security hires.</p>
+      </div>
+      <div class="alloc">
+        <p class="alloc-pct">25%</p>
+        <p class="alloc-cat">Go to market</p>
+        <p class="alloc-desc">User acquisition, channels, retention.</p>
+      </div>
+      <div class="alloc">
+        <p class="alloc-pct">10%</p>
+        <p class="alloc-cat">Ops</p>
+        <p class="alloc-desc">Legal, SOC 2, admin.</p>
+      </div>
+    </div>
+
+    <div class="milestones reveal" style="margin-top:28px">
+      <div>
+        <p class="ms-num">Milestone 01</p>
+        <p class="ms-title">General availability</p>
+        <p class="ms-body">Open the gate. Remove the waitlist.</p>
+      </div>
+      <div>
+        <p class="ms-num">Milestone 02</p>
+        <p class="ms-title">$1M ARR</p>
+        <p class="ms-body">Prove the model scales past early adopters.</p>
+      </div>
+      <div>
+        <p class="ms-num">Milestone 03</p>
+        <p class="ms-title">Series A</p>
+        <p class="ms-body">Raise off GA traction and revenue growth. Target 14 months.</p>
+      </div>
+    </div>
+
+    <div class="close-links reveal" style="margin-top:32px">
+      <div class="close-link">
+        <p class="k">Lab</p>
+        <p class="v">zinley.com</p>
+      </div>
+      <div class="close-link">
+        <p class="k">Product</p>
+        <p class="v">meetorion.app</p>
+      </div>
+      <div class="close-link">
+        <p class="k">Contact</p>
+        <p class="v">khoi.nguyen@zinley.com</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">16 / 16</div>
+</section>
+
+
+
+
+<script>
+  const topbar = document.getElementById('topbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) topbar.classList.add('scrolled');
+    else topbar.classList.remove('scrolled');
+  });
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -5% 0px' });
+    reveals.forEach(el => io.observe(el));
+    // Immediately reveal anything already above the fold at load
+    requestAnimationFrame(() => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      reveals.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh) el.classList.add('in');
+      });
+    });
+  } else {
+    reveals.forEach(el => el.classList.add('in'));
+  }
+  // Safety net: reveal everything after 2s no matter what
+  setTimeout(() => { reveals.forEach(el => el.classList.add('in')); }, 2000);
+
+  // ── Email Gate ──
+  (function() {
+    const gate = document.getElementById('gate');
+    if (localStorage.getItem('orion_deck_email')) {
+      gate.classList.add('hidden');
+      return;
+    }
+    document.documentElement.style.overflow = 'hidden';
+    const input = document.getElementById('gate-email');
+    const btn = document.getElementById('gate-btn');
+    const err = document.getElementById('gate-error');
+
+    function valid(e) {
+      const t = e.trim();
+      const at = t.indexOf('@');
+      const dot = t.lastIndexOf('.');
+      return at > 0 && dot > at + 1 && dot < t.length - 1;
+    }
+
+    function submit() {
+      const email = input.value.trim();
+      if (!valid(email)) {
+        input.classList.add('err');
+        err.classList.add('show');
+        return;
+      }
+      btn.disabled = true;
+      btn.textContent = 'Please wait...';
+      fetch('https://snowx.ai/api-beta/api/deck/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      }).catch(function(){}).finally(function() {
+        localStorage.setItem('orion_deck_email', email);
+        document.documentElement.style.overflow = '';
+        gate.classList.add('hidden');
+        if (window._engPing) window._engPing();
+      });
+    }
+
+    input.addEventListener('input', function() {
+      input.classList.remove('err');
+      err.classList.remove('show');
+    });
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') submit();
+    });
+    btn.addEventListener('click', submit);
+  })();
+
+  // ── Engagement Tracking ──
+  (function() {
+    const trackedSlides = document.querySelectorAll('.slide');
+    if (!trackedSlides.length) return;
+    const sessionId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + '-' + Math.random().toString(36).slice(2);
+    const slideData = {};
+    let currentSlideIdx = null;
+    let slideEnterTime = null;
+    let paused = false;
+    let furthestSlide = 0;
+    const totalSlides = trackedSlides.length;
+
+    trackedSlides.forEach(function(_, i) { slideData[i] = { totalMs: 0, visits: 0 }; });
+
+    function getEmail() { return localStorage.getItem('orion_deck_email'); }
+
+    function pauseTracking() {
+      if (currentSlideIdx !== null && slideEnterTime && !paused) {
+        slideData[currentSlideIdx].totalMs += Date.now() - slideEnterTime;
+        slideEnterTime = null;
+        paused = true;
+      }
+    }
+    function resumeTracking() {
+      if (paused && currentSlideIdx !== null) {
+        slideEnterTime = Date.now();
+        paused = false;
+      }
+    }
+    function enterSlide(idx) {
+      if (currentSlideIdx !== null && slideEnterTime) {
+        slideData[currentSlideIdx].totalMs += Date.now() - slideEnterTime;
+      }
+      currentSlideIdx = idx;
+      slideEnterTime = document.hidden ? null : Date.now();
+      paused = document.hidden;
+      slideData[idx].visits++;
+      if (idx > furthestSlide) furthestSlide = idx;
+    }
+    function buildPayload() {
+      const email = getEmail();
+      if (!email) return null;
+      const snap = {};
+      for (const id in slideData) {
+        const extra = (parseInt(id, 10) === currentSlideIdx && slideEnterTime) ? Date.now() - slideEnterTime : 0;
+        snap[id] = { totalMs: slideData[id].totalMs + extra, visits: slideData[id].visits };
+      }
+      let totalMs = 0;
+      for (const id in snap) totalMs += snap[id].totalMs;
+      return {
+        email: email,
+        sessionId: sessionId,
+        slides: snap,
+        furthestSlide: furthestSlide,
+        totalMs: totalMs,
+        completed: furthestSlide >= totalSlides - 1
+      };
+    }
+
+    const ENG_URL = 'https://snowx.ai/api-beta/api/deck/engagement';
+
+    function sendHeartbeat() {
+      const payload = buildPayload();
+      if (!payload) return;
+      fetch(ENG_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(function() {});
+    }
+    function sendBeacon() {
+      const payload = buildPayload();
+      if (!payload || !navigator.sendBeacon) return;
+      navigator.sendBeacon(ENG_URL, new Blob([JSON.stringify(payload)], { type: 'application/json' }));
+    }
+
+    const engObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          const idx = Array.prototype.indexOf.call(trackedSlides, e.target);
+          if (idx >= 0) enterSlide(idx);
+        }
+      });
+    }, { threshold: 0.5 });
+    trackedSlides.forEach(function(s) { engObserver.observe(s); });
+
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) { pauseTracking(); sendBeacon(); }
+      else { resumeTracking(); }
+    });
+    window.addEventListener('beforeunload', function() {
+      pauseTracking();
+      sendBeacon();
+    });
+
+    window._engPing = sendHeartbeat;
+    setTimeout(sendHeartbeat, 3000);
+    setInterval(sendHeartbeat, 30000);
+  })();
+
+  // Blink eyes whenever the Orion face enters view (restart animation each time)
+  const blinkers = document.querySelectorAll('.hero-logo');
+  if ('IntersectionObserver' in window && blinkers.length) {
+    const blinkObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.remove('seeing');
+          void e.target.getBoundingClientRect();
+          e.target.classList.add('seeing');
+        } else {
+          e.target.classList.remove('seeing');
+        }
+      });
+    }, { threshold: 0.3 });
+    blinkers.forEach(el => blinkObs.observe(el));
+  } else {
+    blinkers.forEach(el => el.classList.add('seeing'));
+  }
+</script>
+
+</body>
+</html>
