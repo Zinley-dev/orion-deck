@@ -456,6 +456,46 @@
       line-height: 1.55;
     }
 
+    /* ── Unlock list (slide 6) ── */
+    .unlock-grid {
+      margin-top: 32px;
+      max-width: 880px;
+      border-top: 1px solid var(--line);
+    }
+    .unlock-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 28px;
+      align-items: baseline;
+      padding: 16px 4px;
+      border-bottom: 1px solid var(--line);
+    }
+    .unlock-role {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin: 0;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .unlock-n {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: var(--muted-2);
+      font-weight: 700;
+    }
+    .unlock-line {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin: 0;
+      letter-spacing: -0.005em;
+    }
+    .unlock-line b { color: var(--ink); font-weight: 600; }
+    .unlock-from { color: var(--muted-2); }
+
     /* ── Landscape table icons ── */
     .ls-yes, .ls-partial, .ls-no {
       display: inline-flex;
@@ -1517,6 +1557,14 @@
       .impact-grid { grid-template-columns: 1fr; border-left: none; }
       .impact { padding: 16px 18px; }
 
+      /* Unlock list: stack role over line */
+      .unlock-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 14px 0;
+      }
+      .unlock-line { font-size: 12.5px; }
+
       /* Title slide */
       .hero-logo { width: 48px; height: 48px; margin-bottom: 16px; }
       .hero-meta { gap: 16px; margin-top: 24px; padding-top: 16px; }
@@ -1860,32 +1908,37 @@
   <div class="wrap">
     <p class="kicker reveal">The unlock</p>
     <h2 class="headline reveal d1">
-      You can only be one place.<br>
-      <span class="dim">Orion breaks that limit.</span>
+      Being human stops being<br>
+      <span class="dim">a chokepoint.</span>
     </h2>
     <p class="sub reveal d2">
-      Productivity tools made you faster at the keyboard. A digital extension of you keeps your world moving away from it &mdash; in the calls you couldn&rsquo;t take, the relationships you couldn&rsquo;t hold, the decisions that waited for your morning. The cap on a single person moves.
+      When extensions go mainstream, the bottleneck moves off the person &mdash; pattern by pattern.
     </p>
 
-    <div class="pillars reveal d3">
-      <div class="pil">
-        <p class="pil-k">01 &middot; Space</p>
-        <p class="pil-t">You&rsquo;re in every conversation at once.</p>
-        <p class="pil-b">On a flight, in deep work, or asleep &mdash; Orion is on the call, in the chat, answering the question. Being in one place stops being a constraint.</p>
+    <div class="reveal d3 unlock-grid">
+      <div class="unlock-item">
+        <p class="unlock-role"><span class="unlock-n">01</span> Founders &amp; operators</p>
+        <p class="unlock-line"><span class="unlock-from">First responder, 23-min interrupt tax</span> &rarr; <b>approver of last resort, tax &rarr; 0</b></p>
       </div>
-      <div class="pil">
-        <p class="pil-k">02 &middot; Time</p>
-        <p class="pil-t">Work ships while you sleep.</p>
-        <p class="pil-b">Decisions that used to wait for your morning happen overnight. Your judgment runs whether you&rsquo;re attending or not.</p>
+      <div class="unlock-item">
+        <p class="unlock-role"><span class="unlock-n">02</span> Parents &amp; caregivers</p>
+        <p class="unlock-line"><span class="unlock-from">Unreachable in meetings or asleep</span> &rarr; <b>reachable in real time, callback already done</b></p>
       </div>
-      <div class="pil">
-        <p class="pil-k">03 &middot; Scale</p>
-        <p class="pil-t">10&times; the relationships, not 10&times; the time.</p>
-        <p class="pil-b">Every new client used to cost you proportional attention. Now it costs the agent&rsquo;s compute. The number of people you can stay close to stops being capped by your day.</p>
+      <div class="unlock-item">
+        <p class="unlock-role"><span class="unlock-n">03</span> On-call</p>
+        <p class="unlock-line"><span class="unlock-from">Woken to an alarm, triage from cold</span> &rarr; <b>woken to a diagnosis + draft rollback</b></p>
+      </div>
+      <div class="unlock-item">
+        <p class="unlock-role"><span class="unlock-n">04</span> Teams</p>
+        <p class="unlock-line"><span class="unlock-from">Coverage = present headcount</span> &rarr; <b>coverage = headcount</b></p>
+      </div>
+      <div class="unlock-item">
+        <p class="unlock-role"><span class="unlock-n">05</span> Relationships</p>
+        <p class="unlock-line"><span class="unlock-from">Decay because you forgot</span> &rarr; <b>held by memory of who, what, how</b></p>
       </div>
     </div>
 
-    <p class="how-close reveal">Not work that&rsquo;s faster. Work that happens without you.</p>
+    <p class="how-close reveal">Throughput stops requiring presence. Warmth stops requiring perfect recall. Being human stops being a chokepoint &mdash; <b>operationally and socially.</b></p>
   </div>
   <div class="slide-num">06 / 15</div>
 </section>
